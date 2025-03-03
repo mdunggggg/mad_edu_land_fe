@@ -1,9 +1,11 @@
 import 'package:auto_route/annotations.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:edu_land/src/feature/components/primary_button.dart';
 import 'package:edu_land/src/feature/components/secondary_button.dart';
 import 'package:edu_land/src/resources/constant/app_colors.dart';
 import 'package:edu_land/src/resources/constant/app_images.dart';
 import 'package:edu_land/src/resources/constant/app_styles.dart';
+import 'package:edu_land/src/router/router.gr.dart';
 import 'package:edu_land/src/shared/extension/ext_num.dart';
 import 'package:flutter/material.dart';
 
@@ -38,7 +40,9 @@ class WelcomeScreen extends StatelessWidget {
               width: 160,
               child: PrimaryButton(
                 text: AppStrings.txtLogin,
-                onClick: () {},
+                onClick: () {
+                  context.router.push(const LoginAndRegisterRoute());
+                },
                 color: const Color(AppColors.cFFD),
               ),
             ),

@@ -8,14 +8,35 @@
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:auto_route/auto_route.dart' as _i3;
-import 'package:edu_land/src/feature/screen/splash/splash_screen.dart' as _i1;
-import 'package:edu_land/src/feature/screen/welcome/welcome_screen.dart' as _i2;
+import 'package:auto_route/auto_route.dart' as _i4;
+import 'package:edu_land/src/feature/screen/login_and_register/login_and_register_screen.dart'
+    as _i1;
+import 'package:edu_land/src/feature/screen/splash/splash_screen.dart' as _i2;
+import 'package:edu_land/src/feature/screen/welcome/welcome_screen.dart' as _i3;
 
 /// generated route for
-/// [_i1.SplashScreen]
-class SplashRoute extends _i3.PageRouteInfo<void> {
-  const SplashRoute({List<_i3.PageRouteInfo>? children})
+/// [_i1.LoginAndRegisterScreen]
+class LoginAndRegisterRoute extends _i4.PageRouteInfo<void> {
+  const LoginAndRegisterRoute({List<_i4.PageRouteInfo>? children})
+      : super(
+          LoginAndRegisterRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'LoginAndRegisterRoute';
+
+  static _i4.PageInfo page = _i4.PageInfo(
+    name,
+    builder: (data) {
+      return const _i1.LoginAndRegisterScreen();
+    },
+  );
+}
+
+/// generated route for
+/// [_i2.SplashScreen]
+class SplashRoute extends _i4.PageRouteInfo<void> {
+  const SplashRoute({List<_i4.PageRouteInfo>? children})
       : super(
           SplashRoute.name,
           initialChildren: children,
@@ -23,18 +44,18 @@ class SplashRoute extends _i3.PageRouteInfo<void> {
 
   static const String name = 'SplashRoute';
 
-  static _i3.PageInfo page = _i3.PageInfo(
+  static _i4.PageInfo page = _i4.PageInfo(
     name,
     builder: (data) {
-      return const _i1.SplashScreen();
+      return const _i2.SplashScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i2.WelcomeScreen]
-class WelcomeRoute extends _i3.PageRouteInfo<void> {
-  const WelcomeRoute({List<_i3.PageRouteInfo>? children})
+/// [_i3.WelcomeScreen]
+class WelcomeRoute extends _i4.PageRouteInfo<void> {
+  const WelcomeRoute({List<_i4.PageRouteInfo>? children})
       : super(
           WelcomeRoute.name,
           initialChildren: children,
@@ -42,10 +63,10 @@ class WelcomeRoute extends _i3.PageRouteInfo<void> {
 
   static const String name = 'WelcomeRoute';
 
-  static _i3.PageInfo page = _i3.PageInfo(
+  static _i4.PageInfo page = _i4.PageInfo(
     name,
     builder: (data) {
-      return const _i2.WelcomeScreen();
+      return const _i3.WelcomeScreen();
     },
   );
 }

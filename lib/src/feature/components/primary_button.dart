@@ -9,11 +9,14 @@ class PrimaryButton extends StatelessWidget {
   final double paddingVer;
   final String text;
   final Color color;
+  final TextStyle? textStyle;
+
 
   const PrimaryButton({
     super.key,
     required this.text,
     required this.onClick,
+    this.textStyle,
     this.paddingHor = 16,
     this.paddingVer = 8, required this.color,
   });
@@ -33,7 +36,7 @@ class PrimaryButton extends StatelessWidget {
         text,
         maxLines: 1,
         softWrap: false,
-        style: StyleApp.normal(),
+        style: textStyle ?? StyleApp.normal(),
       ),
     );
   }
