@@ -13,13 +13,22 @@ import 'package:edu_land/src/feature/screen/login_and_register/login_and_registe
     as _i1;
 import 'package:edu_land/src/feature/screen/splash/splash_screen.dart' as _i2;
 import 'package:edu_land/src/feature/screen/welcome/welcome_screen.dart' as _i3;
+import 'package:flutter/material.dart' as _i5;
 
 /// generated route for
 /// [_i1.LoginAndRegisterScreen]
-class LoginAndRegisterRoute extends _i4.PageRouteInfo<void> {
-  const LoginAndRegisterRoute({List<_i4.PageRouteInfo>? children})
-      : super(
+class LoginAndRegisterRoute
+    extends _i4.PageRouteInfo<LoginAndRegisterRouteArgs> {
+  LoginAndRegisterRoute({
+    _i5.Key? key,
+    _i1.TabItem tabItem = _i1.TabItem.login,
+    List<_i4.PageRouteInfo>? children,
+  }) : super(
           LoginAndRegisterRoute.name,
+          args: LoginAndRegisterRouteArgs(
+            key: key,
+            tabItem: tabItem,
+          ),
           initialChildren: children,
         );
 
@@ -28,9 +37,30 @@ class LoginAndRegisterRoute extends _i4.PageRouteInfo<void> {
   static _i4.PageInfo page = _i4.PageInfo(
     name,
     builder: (data) {
-      return const _i1.LoginAndRegisterScreen();
+      final args = data.argsAs<LoginAndRegisterRouteArgs>(
+          orElse: () => const LoginAndRegisterRouteArgs());
+      return _i1.LoginAndRegisterScreen(
+        key: args.key,
+        tabItem: args.tabItem,
+      );
     },
   );
+}
+
+class LoginAndRegisterRouteArgs {
+  const LoginAndRegisterRouteArgs({
+    this.key,
+    this.tabItem = _i1.TabItem.login,
+  });
+
+  final _i5.Key? key;
+
+  final _i1.TabItem tabItem;
+
+  @override
+  String toString() {
+    return 'LoginAndRegisterRouteArgs{key: $key, tabItem: $tabItem}';
+  }
 }
 
 /// generated route for

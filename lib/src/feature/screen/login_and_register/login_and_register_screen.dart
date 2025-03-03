@@ -1,16 +1,21 @@
 import 'package:auto_route/annotations.dart';
 import 'package:edu_land/src/feature/components/fa_icon.dart';
 import 'package:edu_land/src/feature/screen/login_and_register/login/login_screen.dart';
+import 'package:edu_land/src/feature/screen/login_and_register/register/register_screen.dart';
 import 'package:edu_land/src/resources/constant/app_colors.dart';
 import 'package:edu_land/src/resources/constant/app_strings.dart';
 import 'package:edu_land/src/resources/constant/app_styles.dart';
 import 'package:edu_land/src/shared/extension/ext_num.dart';
-import 'package:edu_land/src/shared/extension/ext_widget.dart';
 import 'package:flutter/material.dart';
+
+enum TabItem { login, register }
+
 
 @RoutePage()
 class LoginAndRegisterScreen extends StatefulWidget {
-  const LoginAndRegisterScreen({super.key});
+  const LoginAndRegisterScreen({super.key, this.tabItem = TabItem.login});
+
+  final TabItem tabItem;
 
   @override
   State<LoginAndRegisterScreen> createState() => _LoginAndRegisterScreenState();
@@ -23,6 +28,7 @@ class _LoginAndRegisterScreenState extends State<LoginAndRegisterScreen>
   @override
   void initState() {
     tabController = TabController(length: 2, vsync: this);
+    tabController.index = widget.tabItem.index;
     super.initState();
   }
 
@@ -86,6 +92,7 @@ class _LoginAndRegisterScreenState extends State<LoginAndRegisterScreen>
         child: Column(
           children: [
             _buildTabar(),
+            16.height,
             _buildTabView(),
           ],
         ),
@@ -116,12 +123,12 @@ class _LoginAndRegisterScreenState extends State<LoginAndRegisterScreen>
             child: Text(
               AppStrings.txtLogin,
             ),
-          ).padding(8.paddingVer),
+          ),
           Tab(
             child: Text(
               AppStrings.register,
             ),
-          ).padding(8.paddingVer),
+          ),
         ],
       ),
     );
@@ -135,9 +142,13 @@ class _LoginAndRegisterScreenState extends State<LoginAndRegisterScreen>
           LoginScreen(
             onRegister: () => tabController.animateTo(1),
           ),
-          Container(),
+          RegisterScreen(
+            onLogin: () => tabController.animateTo(0),
+          ),
         ],
       ),
     );
   }
+
+
 }

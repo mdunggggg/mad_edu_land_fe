@@ -17,7 +17,7 @@ class FaIcon extends StatelessWidget {
     required this.iconCode,
     this.color,
     this.size = 16,
-    this.type = FaIconType.regular,
+    this.type = FaIconType.solid,
   });
 
   final String iconCode;
@@ -31,7 +31,7 @@ class FaIcon extends StatelessWidget {
       String.fromCharCode(int.parse(iconCode, radix: 16)),
       style: TextStyle(
         fontFamily: 'FontAwesome',
-        color: color ?? Colors.grey,
+        color: color,
         fontSize: size,
         fontWeight: type.weight,
       ),

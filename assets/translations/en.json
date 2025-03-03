@@ -148,5 +148,6 @@
   "write_comment": "Write a comment",
   "your_classes": "Your Classes",
   "your_profile": "Your Profile",
-  "your_quizzes": "Your Quizzes"
+  "your_quizzes": "Your Quizzes",
+  "field_required": "This field is required"
 }

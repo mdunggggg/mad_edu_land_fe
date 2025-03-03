@@ -19,61 +19,74 @@ class LoginScreen extends StatefulWidget {
   State<LoginScreen> createState() => _LoginScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _LoginScreenState extends State<LoginScreen> with AutomaticKeepAliveClientMixin{
+
+  final key = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        Image.asset(
-          AppImages.imgLogin,
-          height: 192,
-        ),
-        8.height,
-        AppInput(
-          label: AppStrings.usernameOrEmail,
-          hintText: AppStrings.enterUsernameOrEmail,
-        ),
-        16.height,
-        AppInputPassword(
-          label: AppStrings.password,
-          hintText: AppStrings.enterPassword,
-        ),
-        16.height,
-        Text(
-          AppStrings.forgotPassword,
-          style: StyleApp.normal(color: const Color(AppColors.c3B)),
-          textAlign: TextAlign.right,
-        ),
-        16.height,
-        PrimaryButton(
-          text: AppStrings.txtLogin,
-          onClick: () {},
-          color: const Color(AppColors.c3B),
-          paddingVer: 16,
-          textStyle: StyleApp.normal(color: const Color(AppColors.cFFFF)),
-        ),
-        const Spacer(),
-        RichText(
-          textAlign: TextAlign.center,
-          text: TextSpan(
-            text: '${AppStrings.dontHaveAccount} ',
-            style: StyleApp.normal(),
-            children: [
-              TextSpan(
-                text: AppStrings.registerNow,
-                style: StyleApp.normal(
-                  color: const Color(
-                    AppColors.c3B,
-                  ),
-                ),
-                recognizer: TapGestureRecognizer()
-                  ..onTap = widget.onRegister,
-              ),
-            ],
+    return Form(
+      key: key,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Image.asset(
+            AppImages.imgLogin,
+            height: 192,
           ),
-        ),
-      ],
+          8.height,
+          AppInput(
+            label: AppStrings.usernameOrEmail,
+            hintText: AppStrings.enterUsernameOrEmail,
+            required: true,
+          ),
+          16.height,
+          AppInputPassword(
+            label: AppStrings.password,
+            hintText: AppStrings.enterPassword,
+            required: true,
+          ),
+          16.height,
+          Text(
+            AppStrings.forgotPassword,
+            style: StyleApp.normal(color: const Color(AppColors.c3B)),
+            textAlign: TextAlign.right,
+          ),
+          16.height,
+          PrimaryButton(
+            text: AppStrings.txtLogin,
+            onClick: () {
+              if(!key.currentState!.validate()) return;
+            },
+            color: const Color(AppColors.c3B),
+            paddingVer: 16,
+            textStyle: StyleApp.normal(color: const Color(AppColors.cFFFF)),
+          ),
+          const Spacer(),
+          RichText(
+            textAlign: TextAlign.center,
+            text: TextSpan(
+              text: '${AppStrings.dontHaveAccount} ',
+              style: StyleApp.normal(),
+              children: [
+                TextSpan(
+                  text: AppStrings.registerNow,
+                  style: StyleApp.normal(
+                    color: const Color(
+                      AppColors.c3B,
+                    ),
+                  ),
+                  recognizer: TapGestureRecognizer()
+                    ..onTap = widget.onRegister,
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }

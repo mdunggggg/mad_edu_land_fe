@@ -10,6 +10,7 @@ import 'package:edu_land/src/shared/extension/ext_num.dart';
 import 'package:flutter/material.dart';
 
 import '../../../resources/constant/app_strings.dart';
+import '../login_and_register/login_and_register_screen.dart';
 
 @RoutePage()
 class WelcomeScreen extends StatelessWidget {
@@ -41,7 +42,7 @@ class WelcomeScreen extends StatelessWidget {
               child: PrimaryButton(
                 text: AppStrings.txtLogin,
                 onClick: () {
-                  context.router.push(const LoginAndRegisterRoute());
+                  context.router.push(LoginAndRegisterRoute());
                 },
                 color: const Color(AppColors.cFFD),
               ),
@@ -53,12 +54,17 @@ class WelcomeScreen extends StatelessWidget {
               width: 160,
               child: SecondaryButton(
                 text: AppStrings.register,
-                onClick: () {},
+                onClick: () {
+                  context.router
+                      .push(LoginAndRegisterRoute(tabItem: TabItem.register));
+                },
                 color: const Color(AppColors.c73),
               ),
             ),
           ),
-          const Spacer(flex: 2,),
+          const Spacer(
+            flex: 2,
+          ),
         ],
       ),
     );

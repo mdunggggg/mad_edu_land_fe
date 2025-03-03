@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../../resources/constant/app_colors.dart';
+import '../../resources/constant/app_strings.dart';
 
 class AppInputPassword extends StatelessWidget {
   AppInputPassword({
@@ -68,78 +69,91 @@ class AppInputPassword extends StatelessWidget {
             ),
           ),
         if (label != null) 8.height,
-        ValueListenableBuilder(valueListenable: showPass, builder: (context, value, child) {
-          return TextFormField(
-            initialValue: initialValue,
-            readOnly: readOnly,
-            onTap: () {
-              if (onTap != null) onTap?.call();
-            },
-            onChanged: (String? value) {
-              if (value != null && onChanged != null) {
-                onChanged!(value);
-              }
-            },
-            onFieldSubmitted: (value) {
-              if (onConfirm != null) {
-                onConfirm!(value);
-              }
-            },
-            onTapOutside: (event) =>
-            onTapOutside?.call() ??
-                FocusManager.instance.primaryFocus?.unfocus(),
-            keyboardType: textInputType,
-            controller: controller,
-            textAlign: textAlign,
-            validator: validate,
-            obscureText: !value,
-            inputFormatters: inputFormatters,
-            decoration: InputDecoration(
-              filled: true,
-              fillColor: const Color(AppColors.cF9),
-              hintText: hintText,
-              hintStyle: StyleApp.light(),
-              isDense: true,
-              border: OutlineInputBorder(
-                borderRadius: 16.radius,
-                borderSide: BorderSide(
-                  color: Colors.black.withOpacity(0.3),
-                  width: 1,
+        ValueListenableBuilder(
+          valueListenable: showPass,
+          builder: (context, value, child) {
+            return TextFormField(
+              initialValue: initialValue,
+              readOnly: readOnly,
+              onTap: () {
+                if (onTap != null) onTap?.call();
+              },
+              onChanged: (String? value) {
+                if (value != null && onChanged != null) {
+                  onChanged!(value);
+                }
+              },
+              onFieldSubmitted: (value) {
+                if (onConfirm != null) {
+                  onConfirm!(value);
+                }
+              },
+              onTapOutside: (event) =>
+                  onTapOutside?.call() ??
+                  FocusManager.instance.primaryFocus?.unfocus(),
+              keyboardType: textInputType,
+              controller: controller,
+              textAlign: textAlign,
+              validator: required
+                  ? (value) {
+                      if (value == null || value.isEmpty) {
+                        return AppStrings.fieldRequired;
+                      }
+                      if (validate != null) {
+                        return validate!(value);
+                      }
+                      return null;
+                    }
+                  : null,
+              obscureText: !value,
+              inputFormatters: inputFormatters,
+              decoration: InputDecoration(
+                filled: true,
+                fillColor: const Color(AppColors.cF9),
+                hintText: hintText,
+                hintStyle: StyleApp.medium(color: const Color(AppColors.cAD)),
+                isDense: true,
+                border: OutlineInputBorder(
+                  borderRadius: 16.radius,
+                  borderSide: BorderSide(
+                    color: Colors.black.withOpacity(0.3),
+                    width: 1,
+                  ),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: 16.radius,
+                  borderSide: const BorderSide(
+                    color: Colors.transparent,
+                    width: 1,
+                  ),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: 16.radius,
+                  borderSide: const BorderSide(
+                    color: Colors.black,
+                    width: 1,
+                  ),
+                ),
+                contentPadding: 8.paddingHor + 12.paddingVer,
+                suffixIcon: InkWell(
+                  onTap: () => showPass.value = !showPass.value,
+                  child: Icon(value
+                      ? Icons.remove_red_eye
+                      : Icons.remove_red_eye_outlined),
+                ).padding(12.paddingHor),
+                prefixIcon: prefixIcon?.padding(12.paddingHor),
+                suffixIconConstraints: const BoxConstraints(
+                  minHeight: 16,
+                  minWidth: 16,
+                ),
+                prefixIconConstraints: const BoxConstraints(
+                  minHeight: 16,
+                  minWidth: 16,
                 ),
               ),
-              enabledBorder: OutlineInputBorder(
-                borderRadius: 16.radius,
-                borderSide: BorderSide(
-                  color: Colors.black.withOpacity(0.3),
-                  width: 1,
-                ),
-              ),
-              focusedBorder: OutlineInputBorder(
-                borderRadius: 16.radius,
-                borderSide: const BorderSide(
-                  color: Colors.black,
-                  width: 1,
-                ),
-              ),
-              contentPadding: 8.paddingHor + 12.paddingVer,
-              suffixIcon: InkWell(
-                onTap: () => showPass.value = !showPass.value,
-                child: Icon(value ? Icons.remove_red_eye : Icons
-                    .remove_red_eye_outlined),
-              ).padding(6.paddingHor),
-              prefixIcon: prefixIcon?.padding(6.paddingHor),
-              suffixIconConstraints: const BoxConstraints(
-                minHeight: 16,
-                minWidth: 16,
-              ),
-              prefixIconConstraints: const BoxConstraints(
-                minHeight: 16,
-                minWidth: 16,
-              ),
-            ),
-          );
-        },)
-
+            );
+          },
+        )
       ],
     );
   }

@@ -153,4 +153,5 @@ abstract class AppStrings {
   static String yourClasses = 'your_classes'.tr();
   static String yourProfile = 'your_profile'.tr();
   static String yourQuizzes = 'your_quizzes'.tr();
+  static String fieldRequired = 'field_required'.tr();
 }

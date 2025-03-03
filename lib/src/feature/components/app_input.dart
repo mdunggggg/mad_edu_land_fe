@@ -1,4 +1,5 @@
 import 'package:edu_land/src/resources/constant/app_colors.dart';
+import 'package:edu_land/src/resources/constant/app_strings.dart';
 import 'package:edu_land/src/resources/constant/app_styles.dart';
 import 'package:edu_land/src/shared/extension/ext_num.dart';
 import 'package:edu_land/src/shared/extension/ext_widget.dart';
@@ -87,13 +88,21 @@ class AppInput extends StatelessWidget {
           keyboardType: textInputType,
           controller: controller,
           textAlign: textAlign,
-          validator: validate,
+          validator: required ? (value) {
+            if(value == null || value.isEmpty) {
+              return AppStrings.fieldRequired;
+            }
+            if(validate != null) {
+              return validate!(value);
+            }
+            return null;
+          } : null,
           inputFormatters: inputFormatters,
           decoration: InputDecoration(
             filled: true,
             fillColor: const Color(AppColors.cF9),
             hintText: hintText,
-            hintStyle: StyleApp.light(),
+            hintStyle: StyleApp.medium(color: const Color(AppColors.cAD)),
             isDense: true,
             border: OutlineInputBorder(
               borderRadius: 16.radius,
@@ -104,8 +113,8 @@ class AppInput extends StatelessWidget {
             ),
             enabledBorder: OutlineInputBorder(
               borderRadius: 16.radius,
-              borderSide:  BorderSide(
-                color: Colors.black.withOpacity(0.3),
+              borderSide:  const BorderSide(
+                color: Colors.transparent,
                 width: 1,
               ),
             ),
@@ -117,8 +126,8 @@ class AppInput extends StatelessWidget {
               ),
             ),
             contentPadding: 8.paddingHor + 12.paddingVer,
-            suffixIcon: suffixIcon?.padding(6.paddingHor),
-            prefixIcon: prefixIcon?.padding(6.paddingHor),
+            suffixIcon: suffixIcon?.padding(12.paddingHor),
+            prefixIcon: prefixIcon?.padding(12.paddingHor),
             suffixIconConstraints: const BoxConstraints(
               minHeight: 16,
               minWidth: 16,
