@@ -5,6 +5,7 @@ import 'package:edu_land/src/router/router.gr.dart';
 class AppRouter extends RootStackRouter {
   @override
   List<AutoRoute> get routes => [
-    AutoRoute(page: SplashRoute.page)
+    AutoRoute(page: SplashRoute.page),
+    AutoRoute(page: WelcomeRoute.page),
   ];
 }

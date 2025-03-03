@@ -51,5 +51,5 @@ class MainApp extends StatelessWidget {
 }
 
 List<PageRouteInfo> _mapRouteToPageRouteInfo() {
-  return [const SplashRoute()];
+  return [const WelcomeRoute()];
 }

@@ -1,143 +1,111 @@
 import 'package:flutter/material.dart';
 
-abstract class AppStyles {
-  static const String fontFamily = 'Roboto';
-  static const FontWeight fontWeightRegular = FontWeight.w400;
-  static const FontWeight fontWeightMedium = FontWeight.w500;
-  static const FontWeight fontWeightBold = FontWeight.w700;
+class StyleApp {
+  StyleApp._();
+  static const FontWeight _LIGHT = FontWeight.w300;
+  static const FontWeight _DEFAULT = FontWeight.w400;
+  static const FontWeight _MEDIUM = FontWeight.w500;
+  static const FontWeight _SEMIBOLD = FontWeight.w600;
+  static const FontWeight _BOLD = FontWeight.w700;
+  static const String _font = 'Roboto';
 
-  static TextStyle h1(Color color) => TextStyle(
-        fontFamily: fontFamily,
-        fontSize: 60,
-        fontWeight: fontWeightBold,
-        color: color,
-      );
+  static TextStyle light({
+    double fontSize = 14,
+    Color? color,
+    TextDecoration decoration = TextDecoration.none,
+  }) {
+    return TextStyle(
+      fontSize: fontSize,
+      color: color ?? Colors.black,
+      fontWeight: _LIGHT,
+      decoration: decoration,
+      fontFamily: _font,
+    );
+  }
 
-  static TextStyle h2(Color color) => TextStyle(
-        fontFamily: fontFamily,
-        fontSize: 32,
-        fontWeight: fontWeightMedium,
-        color: color,
-      );
+  static TextStyle normal({
+    double fontSize = 14,
+    Color? color,
+    TextDecoration decoration = TextDecoration.none,
+  }) {
+    return TextStyle(
+      fontSize: fontSize,
+      color: color ?? Colors.black,
+      fontWeight: _DEFAULT,
+      decoration: decoration,
+      fontFamily: _font,
+    );
+  }
 
-  static TextStyle h3(Color color) => TextStyle(
-        fontFamily: fontFamily,
-        fontSize: 28,
-        fontWeight: fontWeightMedium,
-        color: color,
-      );
+  static TextStyle normalItalic({
+    double fontSize = 14,
+    Color? color,
+    TextDecoration decoration = TextDecoration.none,
+  }) {
+    return TextStyle(
+      fontSize: fontSize,
+      color: color ?? Colors.black,
+      fontWeight: _DEFAULT,
+      decoration: decoration,
+      fontFamily: _font,
+      fontStyle: FontStyle.italic,
+    );
+  }
 
-  static TextStyle h4(Color color) => TextStyle(
-        fontFamily: fontFamily,
-        fontSize: 24,
-        fontWeight: fontWeightBold,
-        color: color,
-      );
+  static TextStyle boldItalic({
+    double fontSize = 14,
+    Color? color,
+    TextDecoration decoration = TextDecoration.none,
+  }) {
+    return TextStyle(
+      fontSize: fontSize,
+      color: color ?? Colors.black,
+      fontWeight: _BOLD,
+      decoration: decoration,
+      fontFamily: _font,
+      fontStyle: FontStyle.italic,
+    );
+  }
 
-  static TextStyle title1(Color color) => TextStyle(
-        fontFamily: fontFamily,
-        fontSize: 20,
-        fontWeight: fontWeightBold,
-        color: color,
-      );
+  static TextStyle medium({
+    double fontSize = 14,
+    Color? color,
+    TextDecoration decoration = TextDecoration.none,
+  }) {
+    return TextStyle(
+      fontSize: fontSize,
+      color: color ?? Colors.black,
+      fontWeight: _MEDIUM,
+      decoration: decoration,
+      fontFamily: _font,
+    );
+  }
 
-  static TextStyle title2(Color color) => TextStyle(
-        fontFamily: fontFamily,
-        fontSize: 18,
-        fontWeight: fontWeightBold,
-        color: color,
-      );
+  static TextStyle semibold({
+    double fontSize = 14,
+    Color? color,
+    TextDecoration decoration = TextDecoration.none,
+  }) {
+    return TextStyle(
+      fontSize: fontSize,
+      color: color ?? Colors.black,
+      fontWeight: _SEMIBOLD,
+      decoration: decoration,
+      fontFamily: _font,
+    );
+  }
 
-  static TextStyle title3(Color color) => TextStyle(
-        fontFamily: fontFamily,
-        fontSize: 15,
-        fontWeight: fontWeightMedium,
-        color: color,
-      );
-
-  static TextStyle subtitle1(Color color) => TextStyle(
-        fontFamily: fontFamily,
-        fontSize: 15,
-        fontWeight: fontWeightBold,
-        color: color,
-      );
-
-  static TextStyle subtitle2(Color color) => TextStyle(
-        fontFamily: fontFamily,
-        fontSize: 15,
-        fontWeight: fontWeightMedium,
-        color: color,
-      );
-
-  static TextStyle subtitle3(Color color) => TextStyle(
-        fontFamily: fontFamily,
-        fontSize: 13,
-        fontWeight: fontWeightBold,
-        color: color,
-      );
-
-  static TextStyle subtitle4(Color color) => TextStyle(
-        fontFamily: fontFamily,
-        fontSize: 13,
-        fontWeight: fontWeightMedium,
-        color: color,
-      );
-
-  static TextStyle body1(Color color) => TextStyle(
-        fontFamily: fontFamily,
-        fontSize: 13,
-        fontWeight: fontWeightRegular,
-        color: color,
-      );
-
-  static TextStyle body2(Color color) => TextStyle(
-        fontFamily: fontFamily,
-        fontSize: 13,
-        fontWeight: fontWeightMedium,
-        color: color,
-      );
-
-  static TextStyle caption1(Color color, {TextDecoration? decoration}) => TextStyle(
-        fontFamily: fontFamily,
-        fontSize: 12,
-        fontWeight: fontWeightRegular,
-        color: color,
-        decoration: decoration,
-      );
-
-  static TextStyle caption2(Color color) => TextStyle(
-        fontFamily: fontFamily,
-        fontSize: 12,
-        fontWeight: fontWeightMedium,
-        color: color,
-      );
-
-  static TextStyle caption3(Color color, {Color? backgroundColor}) => TextStyle(
-        fontFamily: fontFamily,
-        fontSize: 10,
-        fontWeight: fontWeightMedium,
-        color: color,
-        backgroundColor: backgroundColor,
-      );
-
-  static TextStyle otherMedium(double size, Color color) => TextStyle(
-        fontFamily: fontFamily,
-        fontSize: size,
-        fontWeight: fontWeightMedium,
-        color: color,
-      );
-
-  static TextStyle otherRegular(double size, Color color) => TextStyle(
-        fontFamily: fontFamily,
-        fontSize: size,
-        fontWeight: fontWeightRegular,
-        color: color,
-      );
-
-  static TextStyle otherBold(double size, Color color) => TextStyle(
-        fontFamily: fontFamily,
-        fontSize: size,
-        fontWeight: fontWeightBold,
-        color: color,
-      );
+  static TextStyle bold({
+    double fontSize = 14,
+    Color? color,
+    TextDecoration decoration = TextDecoration.none,
+  }) {
+    return TextStyle(
+      fontSize: fontSize,
+      color: color ?? Colors.black,
+      fontWeight: _BOLD,
+      decoration: decoration,
+      fontFamily: _font,
+    );
+  }
 }
