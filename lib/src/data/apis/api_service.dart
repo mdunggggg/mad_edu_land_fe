@@ -6,8 +6,11 @@ import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'api_interceptor.dart';
 
 class ApiService extends DioMixin {
+  static final ApiService _instance = ApiService._internal();
   static int decryptionShift = 0;
-  static const String _baseUrl = 'localhost:8080';
+  static const String _baseUrl = 'http://localhost:8080';
+
+  factory ApiService() => _instance;
 
   ApiService._internal() {
     options = BaseOptions(
@@ -28,22 +31,10 @@ class ApiService extends DioMixin {
       CurlLoggerDioInterceptor(
         printOnSuccess: true,
       ),
-      // RetryInterceptor(
-      //   dio: this,
-      //   retries: 3,
-      //   logPrint: print,
-      //   retryDelays: [
-      //     const Duration(seconds: 1),
-      //     const Duration(seconds: 2),
-      //     const Duration(seconds: 3),
-      //   ],
-      // ),
     ]);
     interceptors.removeImplyContentTypeInterceptor();
     httpClientAdapter = IOHttpClientAdapter();
   }
-
-  factory ApiService() => ApiService._internal();
 
   @override
   Future<Response<T>> fetch<T>(RequestOptions requestOptions) async {
@@ -54,5 +45,4 @@ class ApiService extends DioMixin {
       throw e.error ?? e;
     }
   }
-  
 }

@@ -69,6 +69,7 @@
   "fri": "Fri",
   "full_name": "Full Name",
   "good": "Good",
+  "elementary": "Elementary",
   "grade_1": "Grade 1",
   "grade_2": "Grade 2",
   "grade_3": "Grade 3",
@@ -149,5 +150,11 @@
   "your_classes": "Your Classes",
   "your_profile": "Your Profile",
   "your_quizzes": "Your Quizzes",
-  "field_required": "This field is required"
+  "field_required": "This field is required",
+  "password_not_match": "Passwords do not match",
+  "notifications": "Notifications",
+  "registering": "Registering...",
+  "success": "Success!!!",
+  "register_success" : "Register successfully",
+  "User existed": "User existed"
 }

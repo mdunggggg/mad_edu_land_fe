@@ -154,4 +154,10 @@ abstract class AppStrings {
   static String yourProfile = 'your_profile'.tr();
   static String yourQuizzes = 'your_quizzes'.tr();
   static String fieldRequired = 'field_required'.tr();
+  static String passwordNotMatch = 'password_not_match'.tr();
+  static String notifications = 'notifications'.tr();
+  static String registering = 'registering'.tr();
+  static String success = 'success'.tr();
+  static String registerSuccess = 'register_success'.tr();
+  static String elementary = 'elementary'.tr();
 }

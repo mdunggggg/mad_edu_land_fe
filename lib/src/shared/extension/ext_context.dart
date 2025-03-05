@@ -37,4 +37,19 @@ extension ExtContext on BuildContext {
       backgroundColor: Colors.transparent,
     );
   }
+
+  Future dialog(
+      Widget child, {
+        bool barrierDismissible = true,
+      }) async {
+    return showDialog(
+      context: this,
+      barrierDismissible: barrierDismissible,
+      builder: (context) => child,
+    );
+  }
+
+  pop({dynamic result}) async {
+    Navigator.pop(this, result);
+  }
 }

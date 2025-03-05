@@ -69,6 +69,7 @@
   "fri": "Thứ Sáu",
   "full_name": "Họ và tên",
   "good": "Tốt",
+  "elementary": "Tiểu học",
   "grade_1": "Lớp 1",
   "grade_2": "Lớp 2",
   "grade_3": "Lớp 3",
@@ -149,5 +150,11 @@
   "your_classes": "Lớp học",
   "your_profile": "Hồ sơ",
   "your_quizzes": "Bài kiểm tra",
-  "field_required": "Trường này là bắt buộc"
+  "field_required": "Trường này là bắt buộc",
+  "password_not_match": "Mật khẩu không khớp",
+  "notifications": "Thông báo",
+  "registering": "Đang đăng ký...",
+  "success": "Thành công!!!",
+  "register_success": "Đăng ký thành công",
+  "User existed": "Người dùng đã tồn tại"
 }
