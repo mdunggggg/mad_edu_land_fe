@@ -6,6 +6,7 @@ import 'package:edu_land/src/feature/components/app_input.dart';
 import 'package:edu_land/src/feature/components/app_input_password.dart';
 import 'package:edu_land/src/feature/components/fa_icon.dart';
 import 'package:edu_land/src/feature/components/primary_button.dart';
+import 'package:edu_land/src/feature/screen/login_and_register/login_and_register_screen.dart';
 import 'package:edu_land/src/feature/screen/login_and_register/register/register_bloc.dart';
 import 'package:edu_land/src/shared/extension/ext_context.dart';
 import 'package:edu_land/src/shared/extension/ext_num.dart';
@@ -32,9 +33,10 @@ enum GradleLevel {
 }
 
 class RegisterScreen extends StatefulWidget {
-  const RegisterScreen({super.key, required this.onLogin});
+  const RegisterScreen({super.key, required this.onLogin, required this.role});
 
   final VoidCallback onLogin;
+  final Role role;
 
   @override
   State<RegisterScreen> createState() => _RegisterScreenState();
@@ -62,6 +64,13 @@ class _RegisterScreenState extends State<RegisterScreen>
   }
 
   @override
+  void initState() {
+    // TODO: implement initState
+    bloc.type = widget.role;
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return BlocListener<RegisterBloc, BlocState>(
       bloc: bloc,
@@ -78,7 +87,7 @@ class _RegisterScreenState extends State<RegisterScreen>
         child: SingleChildScrollView(
           child: Column(
             children: [
-              _buildRegisterType(),
+              _buildRole(),
               16.height,
               AppInput(
                 label: AppStrings.fullName,
@@ -136,7 +145,7 @@ class _RegisterScreenState extends State<RegisterScreen>
               BlocBuilder<RegisterBloc, BlocState>(
                 bloc: bloc,
                 builder: (context, state) {
-                  if (bloc.type == RegisterType.teacher) {
+                  if (bloc.type == Role.teacher) {
                     return const SizedBox();
                   }
                   return AppInput(
@@ -208,7 +217,7 @@ class _RegisterScreenState extends State<RegisterScreen>
   @override
   bool get wantKeepAlive => true;
 
-  Container _buildRegisterType() {
+  Container _buildRole() {
     return Container(
       padding: 12.padding,
       margin: 32.paddingHor,
@@ -224,13 +233,13 @@ class _RegisterScreenState extends State<RegisterScreen>
               _buildItem(
                 'f19d',
                 AppStrings.student,
-                bloc.type == RegisterType.student,
+                bloc.type == Role.student,
               ).expanded(),
               16.width,
               _buildItem(
                 'f51c',
                 AppStrings.teacher,
-                bloc.type == RegisterType.teacher,
+                bloc.type == Role.teacher,
               ).expanded(),
             ],
           );
@@ -246,8 +255,8 @@ class _RegisterScreenState extends State<RegisterScreen>
         isActive ? const Color(AppColors.cDBE) : const Color(AppColors.cF3);
     return InkWell(
       onTap: () {
-        bloc.type = RegisterType.values[1 -
-            RegisterType.values.indexWhere(
+        bloc.type = Role.values[1 -
+            Role.values.indexWhere(
               (element) => bloc.type == element,
             )];
       },

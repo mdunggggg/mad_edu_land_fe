@@ -1,24 +1,19 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:edu_land/src/bloc/bloc_state.dart';
 import 'package:bloc/bloc.dart';
+import 'package:edu_land/src/feature/screen/login_and_register/login_and_register_screen.dart';
 import 'package:edu_land/src/repository/auth_repo.dart';
 import 'package:edu_land/src/resources/constant/app_strings.dart';
-
-enum RegisterType {
-  student,
-  teacher,
-}
 
 class RegisterBloc extends Cubit<BlocState> {
   RegisterBloc() : super(BlocState());
 
+  Role _type = Role.student;
   final authRepo = AuthRepo();
 
-  RegisterType _type = RegisterType.student;
+  Role get type => _type;
 
-  RegisterType get type => _type;
-
-  set type(RegisterType value) {
+  set type(Role value) {
     _type = value;
     emit(state.copyWith(status: Status.loaded));
   }
@@ -36,7 +31,7 @@ class RegisterBloc extends Cubit<BlocState> {
       'password': password,
       'fullName': fullName,
     };
-    if(type == RegisterType.student) {
+    if(type == Role.student) {
       body.addAll({'grade': grade});
     }
     // emit(state.copyWith(status: Status.success, msg: AppStrings.registerSuccess));

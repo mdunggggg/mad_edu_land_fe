@@ -1,19 +1,27 @@
 import 'package:edu_land/src/feature/components/app_input.dart';
 import 'package:edu_land/src/feature/components/primary_button.dart';
+import 'package:edu_land/src/feature/screen/login_and_register/login/login_bloc.dart';
 import 'package:edu_land/src/resources/constant/app_colors.dart';
 import 'package:edu_land/src/resources/constant/app_images.dart';
 import 'package:edu_land/src/resources/constant/app_strings.dart';
 import 'package:edu_land/src/resources/constant/app_styles.dart';
 import 'package:edu_land/src/shared/extension/ext_num.dart';
+import 'package:edu_land/src/shared/extension/ext_widget.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../bloc/bloc_state.dart';
 import '../../../components/app_input_password.dart';
+import '../../../components/fa_icon.dart';
+import '../login_and_register_screen.dart';
+import '../register/register_bloc.dart';
 
 class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key, required this.onRegister});
+  const LoginScreen({super.key, required this.onRegister, required this.role});
 
   final VoidCallback onRegister;
+  final Role role;
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
@@ -22,6 +30,13 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> with AutomaticKeepAliveClientMixin{
 
   final key = GlobalKey<FormState>();
+  final bloc = LoginBloc();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    bloc.type = widget.role;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,6 +45,8 @@ class _LoginScreenState extends State<LoginScreen> with AutomaticKeepAliveClient
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
+          _buildRole(),
+          16.height,
           Image.asset(
             AppImages.imgLogin,
             height: 192,
@@ -89,4 +106,69 @@ class _LoginScreenState extends State<LoginScreen> with AutomaticKeepAliveClient
 
   @override
   bool get wantKeepAlive => true;
+
+  Container _buildRole() {
+    return Container(
+      padding: 12.padding,
+      margin: 32.paddingHor,
+      decoration: BoxDecoration(
+        color: const Color(AppColors.cF9),
+        borderRadius: 16.radius,
+      ),
+      child: BlocBuilder<LoginBloc, BlocState>(
+        bloc: bloc,
+        builder: (context, state) {
+          return Row(
+            children: [
+              _buildItem(
+                'f19d',
+                AppStrings.student,
+                bloc.type == Role.student,
+              ).expanded(),
+              16.width,
+              _buildItem(
+                'f51c',
+                AppStrings.teacher,
+                bloc.type == Role.teacher,
+              ).expanded(),
+            ],
+          );
+        },
+      ),
+    );
+  }
+
+  Widget _buildItem(String code, String title, bool isActive) {
+    final colorText =
+    isActive ? const Color(AppColors.c3B) : const Color(AppColors.c9C);
+    final colorBg =
+    isActive ? const Color(AppColors.cDBE) : const Color(AppColors.cF3);
+    return InkWell(
+      onTap: () {
+        bloc.type = Role.values[1 -
+            Role.values.indexWhere(
+                  (element) => bloc.type == element,
+            )];
+      },
+      child: Container(
+        padding: 8.padding,
+        decoration: BoxDecoration(
+          color: colorBg,
+          borderRadius: 8.radius,
+        ),
+        child: Column(
+          children: [
+            FaIcon(
+              iconCode: code,
+              color: colorText,
+            ),
+            Text(
+              title,
+              style: StyleApp.normal(color: colorText),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 }

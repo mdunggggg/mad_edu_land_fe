@@ -9,13 +9,15 @@ import 'package:edu_land/src/shared/extension/ext_num.dart';
 import 'package:flutter/material.dart';
 
 enum TabItem { login, register }
+enum Role { student, teacher }
 
 
 @RoutePage()
 class LoginAndRegisterScreen extends StatefulWidget {
-  const LoginAndRegisterScreen({super.key, this.tabItem = TabItem.login});
+  const LoginAndRegisterScreen({super.key, this.tabItem = TabItem.login, required this.role});
 
   final TabItem tabItem;
+  final Role role;
 
   @override
   State<LoginAndRegisterScreen> createState() => _LoginAndRegisterScreenState();
@@ -141,9 +143,11 @@ class _LoginAndRegisterScreenState extends State<LoginAndRegisterScreen>
         children: [
           LoginScreen(
             onRegister: () => tabController.animateTo(1),
+            role: widget.role,
           ),
           RegisterScreen(
             onLogin: () => tabController.animateTo(0),
+            role: widget.role,
           ),
         ],
       ),

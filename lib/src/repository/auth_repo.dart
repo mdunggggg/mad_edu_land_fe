@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:edu_land/src/data/apis/api_path.dart';
 import 'package:edu_land/src/data/apis/api_service.dart';
+import 'package:edu_land/src/feature/screen/login_and_register/login_and_register_screen.dart';
 import 'package:edu_land/src/model/base_model.dart';
 
 import '../feature/screen/login_and_register/register/register_bloc.dart';
@@ -10,9 +11,9 @@ class AuthRepo {
 
   Future<BaseModel<bool>> register({
     required Map<String, dynamic> body,
-    required RegisterType type,
+    required Role type,
   }) async {
-    final path = type == RegisterType.student
+    final path = type == Role.student
         ? ApiPath.registerStudent
         : ApiPath.registerTeacher;
     try {
