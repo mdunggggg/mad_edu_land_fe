@@ -156,5 +156,6 @@
   "registering": "Đang đăng ký...",
   "success": "Thành công!!!",
   "register_success": "Đăng ký thành công",
-  "User existed": "Người dùng đã tồn tại"
+  "User existed": "Người dùng đã tồn tại",
+  "Invalid username or password": "Tên người dùng hoặc mật khẩu không hợp lệ"
 }

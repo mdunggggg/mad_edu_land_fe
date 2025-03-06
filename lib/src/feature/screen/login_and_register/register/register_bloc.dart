@@ -8,9 +8,8 @@ import 'package:edu_land/src/resources/constant/app_strings.dart';
 class RegisterBloc extends Cubit<BlocState> {
   RegisterBloc() : super(BlocState());
 
-  Role _type = Role.student;
   final authRepo = AuthRepo();
-
+  Role _type = Role.student;
   Role get type => _type;
 
   set type(Role value) {

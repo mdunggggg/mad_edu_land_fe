@@ -156,5 +156,6 @@
   "registering": "Registering...",
   "success": "Success!!!",
   "register_success" : "Register successfully",
-  "User existed": "User existed"
+  "User existed": "User existed",
+  "Invalid username or password": "Invalid username or password"
 }

@@ -6,3 +6,4 @@ abstract class AppImages {
   static const String icSuccess = '$_packageName/ic_success.svg';
   static const String icError = '$_packageName/ic_error.svg';
 }
+

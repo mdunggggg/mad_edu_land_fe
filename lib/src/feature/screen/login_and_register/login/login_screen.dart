@@ -12,6 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../bloc/bloc_state.dart';
+import '../../../../bloc/check_status_bloc.dart';
 import '../../../components/app_input_password.dart';
 import '../../../components/fa_icon.dart';
 import '../login_and_register_screen.dart';
@@ -27,79 +28,110 @@ class LoginScreen extends StatefulWidget {
   State<LoginScreen> createState() => _LoginScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> with AutomaticKeepAliveClientMixin{
+class _LoginScreenState extends State<LoginScreen>
+    with AutomaticKeepAliveClientMixin {
 
   final key = GlobalKey<FormState>();
   final bloc = LoginBloc();
+  final registerBloc = RegisterBloc();
+  final usernameCtrl = TextEditingController();
+  final passwordCtrl = TextEditingController();
 
   @override
   void initState() {
-    // TODO: implement initState
     bloc.type = widget.role;
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    bloc.close();
+    usernameCtrl.dispose();
+    passwordCtrl.dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Form(
-      key: key,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          _buildRole(),
-          16.height,
-          Image.asset(
-            AppImages.imgLogin,
-            height: 192,
-          ),
-          8.height,
-          AppInput(
-            label: AppStrings.usernameOrEmail,
-            hintText: AppStrings.enterUsernameOrEmail,
-            required: true,
-          ),
-          16.height,
-          AppInputPassword(
-            label: AppStrings.password,
-            hintText: AppStrings.enterPassword,
-            required: true,
-          ),
-          16.height,
-          Text(
-            AppStrings.forgotPassword,
-            style: StyleApp.normal(color: const Color(AppColors.c3B)),
-            textAlign: TextAlign.right,
-          ),
-          16.height,
-          PrimaryButton(
-            text: AppStrings.txtLogin,
-            onClick: () {
-              if(!key.currentState!.validate()) return;
-            },
-            color: const Color(AppColors.c3B),
-            paddingVer: 16,
-            textStyle: StyleApp.normal(color: const Color(AppColors.cFFFF)),
-          ),
-          const Spacer(),
-          RichText(
-            textAlign: TextAlign.center,
-            text: TextSpan(
-              text: '${AppStrings.dontHaveAccount} ',
-              style: StyleApp.normal(),
-              children: [
-                TextSpan(
-                  text: AppStrings.registerNow,
-                  style: StyleApp.normal(
-                    color: const Color(
-                      AppColors.c3B,
-                    ),
-                  ),
-                  recognizer: TapGestureRecognizer()
-                    ..onTap = widget.onRegister,
-                ),
-              ],
+    return BlocListener<LoginBloc, BlocState>(
+      bloc: bloc,
+      listener: (context, state) {
+        CheckStateBloc.check(
+          context,
+          state,
+          msg: state.msg,
+          success: () {
+            print('Login success');
+          },
+        );
+      },
+      child: Form(
+        key: key,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            _buildRole(),
+            16.height,
+            Image.asset(
+              AppImages.imgLogin,
+              height: 192,
             ),
-          ),
-        ],
+            8.height,
+            AppInput(
+              label: AppStrings.usernameOrEmail,
+              hintText: AppStrings.enterUsernameOrEmail,
+              required: true,
+              controller: usernameCtrl,
+            ),
+            16.height,
+            AppInputPassword(
+              label: AppStrings.password,
+              hintText: AppStrings.enterPassword,
+              required: true,
+              controller: passwordCtrl,
+            ),
+            16.height,
+            Text(
+              AppStrings.forgotPassword,
+              style: StyleApp.normal(color: const Color(AppColors.c3B)),
+              textAlign: TextAlign.right,
+            ),
+            16.height,
+            PrimaryButton(
+              text: AppStrings.txtLogin,
+              onClick: () {
+                if (!key.currentState!.validate()) return;
+                bloc.login(
+                  username: usernameCtrl.text,
+                  password: passwordCtrl.text,
+                );
+              },
+              color: const Color(AppColors.c3B),
+              paddingVer: 16,
+              textStyle: StyleApp.normal(color: const Color(AppColors.cFFFF)),
+            ),
+            const Spacer(),
+            RichText(
+              textAlign: TextAlign.center,
+              text: TextSpan(
+                text: '${AppStrings.dontHaveAccount} ',
+                style: StyleApp.normal(),
+                children: [
+                  TextSpan(
+                    text: AppStrings.registerNow,
+                    style: StyleApp.normal(
+                      color: const Color(
+                        AppColors.c3B,
+                      ),
+                    ),
+                    recognizer: TapGestureRecognizer()
+                      ..onTap = widget.onRegister,
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
