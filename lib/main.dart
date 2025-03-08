@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:edu_land/src/data/local/app_shared_preference.dart';
+import 'package:edu_land/src/feature/screen/student/home/student_homepage_screen.dart';
 import 'package:edu_land/src/resources/constant/app_constants.dart';
 import 'package:edu_land/src/router/router.dart';
 import 'package:edu_land/src/router/router.gr.dart';
@@ -51,5 +52,6 @@ class MainApp extends StatelessWidget {
 }
 
 List<PageRouteInfo> _mapRouteToPageRouteInfo() {
-  return [const WelcomeRoute()];
+  // return [const WelcomeRoute()];
+  return [const StudentHomepageRoute()];
 }
