@@ -33,5 +33,12 @@ class CheckStateBloc {
       DialogUtils.showError(context, msg ?? state.msg);
       failure?.call();
     }
+    if(state.status == Status.navigate) {
+      Navigator.pop(context);
+      if(route != null) {
+       context.router.push(route);
+      }
+    }
+
   }
 }

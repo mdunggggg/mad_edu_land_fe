@@ -8,7 +8,7 @@
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:auto_route/auto_route.dart' as _i6;
+import 'package:auto_route/auto_route.dart' as _i7;
 import 'package:edu_land/src/feature/screen/login_and_register/login_and_register_screen.dart'
     as _i1;
 import 'package:edu_land/src/feature/screen/select_role/select_role_screen.dart'
@@ -16,18 +16,20 @@ import 'package:edu_land/src/feature/screen/select_role/select_role_screen.dart'
 import 'package:edu_land/src/feature/screen/splash/splash_screen.dart' as _i3;
 import 'package:edu_land/src/feature/screen/student/home/student_homepage_screen.dart'
     as _i4;
-import 'package:edu_land/src/feature/screen/welcome/welcome_screen.dart' as _i5;
-import 'package:flutter/material.dart' as _i7;
+import 'package:edu_land/src/feature/screen/teacher/teacher_homepage_screen.dart'
+    as _i5;
+import 'package:edu_land/src/feature/screen/welcome/welcome_screen.dart' as _i6;
+import 'package:flutter/material.dart' as _i8;
 
 /// generated route for
 /// [_i1.LoginAndRegisterScreen]
 class LoginAndRegisterRoute
-    extends _i6.PageRouteInfo<LoginAndRegisterRouteArgs> {
+    extends _i7.PageRouteInfo<LoginAndRegisterRouteArgs> {
   LoginAndRegisterRoute({
-    _i7.Key? key,
+    _i8.Key? key,
     _i1.TabItem tabItem = _i1.TabItem.login,
     required _i1.Role role,
-    List<_i6.PageRouteInfo>? children,
+    List<_i7.PageRouteInfo>? children,
   }) : super(
           LoginAndRegisterRoute.name,
           args: LoginAndRegisterRouteArgs(
@@ -40,7 +42,7 @@ class LoginAndRegisterRoute
 
   static const String name = 'LoginAndRegisterRoute';
 
-  static _i6.PageInfo page = _i6.PageInfo(
+  static _i7.PageInfo page = _i7.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<LoginAndRegisterRouteArgs>();
@@ -60,7 +62,7 @@ class LoginAndRegisterRouteArgs {
     required this.role,
   });
 
-  final _i7.Key? key;
+  final _i8.Key? key;
 
   final _i1.TabItem tabItem;
 
@@ -74,11 +76,11 @@ class LoginAndRegisterRouteArgs {
 
 /// generated route for
 /// [_i2.SelectRoleScreen]
-class SelectRoleRoute extends _i6.PageRouteInfo<SelectRoleRouteArgs> {
+class SelectRoleRoute extends _i7.PageRouteInfo<SelectRoleRouteArgs> {
   SelectRoleRoute({
-    _i7.Key? key,
+    _i8.Key? key,
     required bool isRegister,
-    List<_i6.PageRouteInfo>? children,
+    List<_i7.PageRouteInfo>? children,
   }) : super(
           SelectRoleRoute.name,
           args: SelectRoleRouteArgs(
@@ -90,7 +92,7 @@ class SelectRoleRoute extends _i6.PageRouteInfo<SelectRoleRouteArgs> {
 
   static const String name = 'SelectRoleRoute';
 
-  static _i6.PageInfo page = _i6.PageInfo(
+  static _i7.PageInfo page = _i7.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<SelectRoleRouteArgs>();
@@ -108,7 +110,7 @@ class SelectRoleRouteArgs {
     required this.isRegister,
   });
 
-  final _i7.Key? key;
+  final _i8.Key? key;
 
   final bool isRegister;
 
@@ -120,8 +122,8 @@ class SelectRoleRouteArgs {
 
 /// generated route for
 /// [_i3.SplashScreen]
-class SplashRoute extends _i6.PageRouteInfo<void> {
-  const SplashRoute({List<_i6.PageRouteInfo>? children})
+class SplashRoute extends _i7.PageRouteInfo<void> {
+  const SplashRoute({List<_i7.PageRouteInfo>? children})
       : super(
           SplashRoute.name,
           initialChildren: children,
@@ -129,7 +131,7 @@ class SplashRoute extends _i6.PageRouteInfo<void> {
 
   static const String name = 'SplashRoute';
 
-  static _i6.PageInfo page = _i6.PageInfo(
+  static _i7.PageInfo page = _i7.PageInfo(
     name,
     builder: (data) {
       return const _i3.SplashScreen();
@@ -139,8 +141,8 @@ class SplashRoute extends _i6.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i4.StudentHomepageScreen]
-class StudentHomepageRoute extends _i6.PageRouteInfo<void> {
-  const StudentHomepageRoute({List<_i6.PageRouteInfo>? children})
+class StudentHomepageRoute extends _i7.PageRouteInfo<void> {
+  const StudentHomepageRoute({List<_i7.PageRouteInfo>? children})
       : super(
           StudentHomepageRoute.name,
           initialChildren: children,
@@ -148,7 +150,7 @@ class StudentHomepageRoute extends _i6.PageRouteInfo<void> {
 
   static const String name = 'StudentHomepageRoute';
 
-  static _i6.PageInfo page = _i6.PageInfo(
+  static _i7.PageInfo page = _i7.PageInfo(
     name,
     builder: (data) {
       return const _i4.StudentHomepageScreen();
@@ -157,9 +159,28 @@ class StudentHomepageRoute extends _i6.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i5.WelcomeScreen]
-class WelcomeRoute extends _i6.PageRouteInfo<void> {
-  const WelcomeRoute({List<_i6.PageRouteInfo>? children})
+/// [_i5.TeacherHomepageScreen]
+class TeacherHomepageRoute extends _i7.PageRouteInfo<void> {
+  const TeacherHomepageRoute({List<_i7.PageRouteInfo>? children})
+      : super(
+          TeacherHomepageRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'TeacherHomepageRoute';
+
+  static _i7.PageInfo page = _i7.PageInfo(
+    name,
+    builder: (data) {
+      return const _i5.TeacherHomepageScreen();
+    },
+  );
+}
+
+/// generated route for
+/// [_i6.WelcomeScreen]
+class WelcomeRoute extends _i7.PageRouteInfo<void> {
+  const WelcomeRoute({List<_i7.PageRouteInfo>? children})
       : super(
           WelcomeRoute.name,
           initialChildren: children,
@@ -167,10 +188,10 @@ class WelcomeRoute extends _i6.PageRouteInfo<void> {
 
   static const String name = 'WelcomeRoute';
 
-  static _i6.PageInfo page = _i6.PageInfo(
+  static _i7.PageInfo page = _i7.PageInfo(
     name,
     builder: (data) {
-      return const _i5.WelcomeScreen();
+      return const _i6.WelcomeScreen();
     },
   );
 }

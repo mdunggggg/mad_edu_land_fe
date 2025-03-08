@@ -17,7 +17,7 @@ class LoginBloc extends Cubit<BlocState> {
 
   set type(Role value) {
     _type = value;
-    emit(state.copyWith(status: Status.success));
+    emit(state.copyWith(status: Status.loaded));
   }
 
   Future<void> login({
@@ -33,7 +33,7 @@ class LoginBloc extends Cubit<BlocState> {
     };
     final result = await authRepo.login(body: body);
     if(result.data != null) {
-      emit(state.copyWith(status: Status.success, msg: "Đăng nhập thành công"));
+      emit(state.copyWith(status: Status.navigate, msg: 'Đăng nhập thành công'));
       sharedPref.setValue(PrefKeys.accessToken, result.data.accessToken);
       sharedPref.setValue(PrefKeys.refreshToken, result.data.refreshToken);
     } else {

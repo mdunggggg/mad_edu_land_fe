@@ -4,6 +4,7 @@ enum Status {
   loaded,
   error,
   success,
+  navigate,
 }
 
 class BlocState<T> {

@@ -5,6 +5,7 @@ import 'package:edu_land/src/resources/constant/app_colors.dart';
 import 'package:edu_land/src/resources/constant/app_images.dart';
 import 'package:edu_land/src/resources/constant/app_strings.dart';
 import 'package:edu_land/src/resources/constant/app_styles.dart';
+import 'package:edu_land/src/router/router.gr.dart';
 import 'package:edu_land/src/shared/extension/ext_num.dart';
 import 'package:edu_land/src/shared/extension/ext_widget.dart';
 import 'package:flutter/gestures.dart';
@@ -63,6 +64,9 @@ class _LoginScreenState extends State<LoginScreen>
           success: () {
             print('Login success');
           },
+          route: widget.role == Role.student
+              ? const StudentHomepageRoute()
+              : const  TeacherHomepageRoute(),
         );
       },
       child: Form(

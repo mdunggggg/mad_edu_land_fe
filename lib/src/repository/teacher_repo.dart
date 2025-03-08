@@ -1,0 +1,44 @@
+import 'package:dio/dio.dart';
+import 'package:edu_land/src/data/apis/api_path.dart';
+import 'package:edu_land/src/model/base_model.dart';
+import 'package:edu_land/src/model/teacher_overview_model.dart';
+
+import '../data/apis/api_service.dart';
+
+class TeacherRepo {
+  final _dio = ApiService();
+
+  Future<BaseModel> getTeacherOverview() async {
+    try {
+      final response = await _dio.post(ApiPath.teacher);
+      final dataModel = TeacherOverviewModel.fromJson(response.data['result']);
+      return BaseModel(
+        code: response.data['code'],
+        message: response.data['message'],
+        data: dataModel,
+      );
+    } catch (e) {
+      return _handleException(e, dataBool: false);
+    }
+  }
+
+  // Helper function to handle exceptions and return BaseModel
+  BaseModel _handleException(dynamic e, {bool dataBool = false}) {
+    if (e is DioException) {
+      final responseData = e.response?.data;
+      final errorMessage = responseData is Map<String, dynamic>
+          ? responseData['message'] ?? 'Unknown error'
+          : e.message ?? 'Dio error'; // Add null check for e.message
+      return BaseModel(
+        code: e.response?.statusCode ?? 400,
+        message: errorMessage,
+        data: dataBool, // Use the provided dataBool parameter
+      );
+    }
+    return BaseModel(
+      code: 400,
+      message: e.toString(),
+      data: dataBool, // Use the provided dataBool parameter
+    );
+  }
+}
