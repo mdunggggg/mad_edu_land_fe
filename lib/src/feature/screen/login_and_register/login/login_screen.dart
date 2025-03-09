@@ -41,6 +41,8 @@ class _LoginScreenState extends State<LoginScreen>
   @override
   void initState() {
     bloc.type = widget.role;
+    usernameCtrl.text = "dnminh";
+    passwordCtrl.text = "123";
     super.initState();
   }
 

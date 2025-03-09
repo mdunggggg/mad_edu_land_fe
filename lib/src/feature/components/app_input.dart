@@ -27,6 +27,11 @@ class AppInput extends StatelessWidget {
     this.onConfirm,
     this.onTapOutside,
     this.inputFormatters,
+    this.borderColor,
+    this.bgColor,
+    this.maxLines,
+    this.hintColor,
+    this.textColor,
   });
 
   final String? initialValue;
@@ -47,6 +52,11 @@ class AppInput extends StatelessWidget {
   final Function()? onTapOutside;
   final TextAlign textAlign = TextAlign.start;
   final List<TextInputFormatter>? inputFormatters;
+  final Color? borderColor;
+  final Color? bgColor;
+  final int? maxLines;
+  final Color? hintColor;
+  final Color? textColor;
 
   @override
   Widget build(BuildContext context) {
@@ -97,12 +107,14 @@ class AppInput extends StatelessWidget {
             }
             return null;
           } : null,
+          style: StyleApp.normal(fontSize: 16, color:textColor ??  Colors.black),
           inputFormatters: inputFormatters,
+          maxLines: maxLines,
           decoration: InputDecoration(
             filled: true,
-            fillColor: const Color(AppColors.cF9),
+            fillColor: bgColor ?? const Color(AppColors.cF9),
             hintText: hintText,
-            hintStyle: StyleApp.medium(color: const Color(AppColors.cAD)),
+            hintStyle: StyleApp.normal(fontSize: 16, color:hintColor ??  const Color(AppColors.cAD)),
             isDense: true,
             border: OutlineInputBorder(
               borderRadius: 16.radius,
@@ -113,8 +125,8 @@ class AppInput extends StatelessWidget {
             ),
             enabledBorder: OutlineInputBorder(
               borderRadius: 16.radius,
-              borderSide:  const BorderSide(
-                color: Colors.transparent,
+              borderSide:   BorderSide(
+                color: borderColor ?? Colors.transparent,
                 width: 1,
               ),
             ),

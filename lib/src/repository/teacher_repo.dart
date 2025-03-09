@@ -22,6 +22,19 @@ class TeacherRepo {
     }
   }
 
+  Future<BaseModel> createClass({required Map<String, dynamic> payload}) async {
+    try {
+      final response = await _dio.post(ApiPath.classroom, data: payload);
+      return BaseModel(
+        code: response.data['code'],
+        message: response.data['message'],
+        data: response.data['result'] as int?,
+      );
+    } catch (e) {
+      return _handleException(e, dataBool: true);
+    }
+  }
+
   // Helper function to handle exceptions and return BaseModel
   BaseModel _handleException(dynamic e, {bool dataBool = false}) {
     if (e is DioException) {
@@ -30,7 +43,7 @@ class TeacherRepo {
           ? responseData['message'] ?? 'Unknown error'
           : e.message ?? 'Dio error'; // Add null check for e.message
       return BaseModel(
-        code: e.response?.statusCode ?? 400,
+        code: 400,
         message: errorMessage,
         data: dataBool, // Use the provided dataBool parameter
       );

@@ -16,6 +16,9 @@ Widget ChipCustom({
   TextStyle? titleStyle,
   bool isBorder = true,
   BorderRadius? borderRadius,
+  bool center = false,
+  double titleSize = 12,
+
 }) {
   return GestureDetector(
     onTap: onTap,
@@ -23,7 +26,7 @@ Widget ChipCustom({
       padding: onTap != null ? 3.padding : 0.padding,
       decoration: onTap != null
           ? BoxDecoration(
-        borderRadius: 30.radius,
+        borderRadius: (borderRadius ?? 30.radius) + (borderRadius != null ? 3.radius : 0.radius),
         border: Border.all(
           color: isActive ? color : Colors.transparent,
         ),
@@ -42,13 +45,15 @@ Widget ChipCustom({
         ),
         child: Row(
           mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: center ? MainAxisAlignment.center : MainAxisAlignment.start,
           children: [
             if (perfixIcon != null) perfixIcon,
             if (perfixIcon != null) 4.width,
             Text(
               title,
               style: titleStyle?.copyWith(color: color) ??
-                  StyleApp.normal(color: color, fontSize: 12)
+                  StyleApp.normal(color: color, fontSize: titleSize),
+              textAlign: center ? TextAlign.center : TextAlign.start,
             ).flexible(),
             if (suffixIcon != null) suffixIcon,
           ],

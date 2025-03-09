@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:edu_land/src/bloc/bloc_state.dart';
 import 'package:edu_land/src/feature/components/chip_custom.dart';
 import 'package:edu_land/src/feature/components/fa_icon.dart';
@@ -11,6 +12,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../resources/constant/app_colors.dart';
 import '../../../../resources/constant/app_strings.dart';
+import '../../../../router/router.gr.dart';
 import '../../../components/custom_appbar.dart';
 
 class TeacherHomeScreen extends StatefulWidget {
@@ -185,8 +187,13 @@ class _TeacherHomeScreenState extends State<TeacherHomeScreen> {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(AppStrings.classes, style: StyleApp.normal(fontSize: 24)),
-        Text(AppStrings.viewAll,
-            style: StyleApp.normal(fontSize: 16, color: Color(AppColors.c4B))),
+        Text(
+          AppStrings.viewAll,
+          style: StyleApp.normal(
+            fontSize: 16,
+            color: const Color(AppColors.c4B),
+          ),
+        ),
       ],
     );
   }
@@ -208,25 +215,31 @@ class _TeacherHomeScreenState extends State<TeacherHomeScreen> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                classroom?.name ?? '',
-                style: StyleApp.normal(
-                    fontSize: 18, color: const Color(AppColors.c1F)),
-              ),
-              Text(
-                '${classroom?.totalStudent ?? 0} ${AppStrings.student.toLowerCase()}',
-                style: StyleApp.normal(
-                    fontSize: 14, color: const Color(AppColors.c6B)),
-              ),
-              8.height,
-              ChipCustom(
-                color: const Color(AppColors.c4B9),
-                title: "CODE: ${classroom?.code ?? 'NONE'}",
-              ),
-            ],
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  classroom?.name ?? '',
+                  style: StyleApp.normal(
+                    fontSize: 18,
+                    color: const Color(AppColors.c1F),
+                  ),
+                ),
+                Text(
+                  '${classroom?.totalStudent ?? 0} ${AppStrings.student.toLowerCase()}',
+                  style: StyleApp.normal(
+                    fontSize: 14,
+                    color: const Color(AppColors.c6B),
+                  ),
+                ),
+                8.height,
+                ChipCustom(
+                  color: const Color(AppColors.c4B9),
+                  title: "CODE: ${classroom?.code ?? 'NONE'}",
+                ),
+              ],
+            ),
           ),
           Container(
             padding: 16.padding,
@@ -249,24 +262,35 @@ class _TeacherHomeScreenState extends State<TeacherHomeScreen> {
       mainAxisSize: MainAxisSize.max,
       children: [
         Expanded(
-          child: Container(
-            padding: 16.paddingVer,
-            decoration: BoxDecoration(
-              color: const Color(AppColors.cF0),
-              borderRadius: 16.radius,
-            ),
-            child: Column(
-              children: [
-                _buildIcon(
-                  '2b',
-                  const Color(AppColors.c6B9),
+          child: InkWell(
+            onTap: () {
+              context.router.push(
+                CreateClassRoute(
+                  success: () {
+                    bloc.init();
+                  },
                 ),
-                8.height,
-                Text(
-                  AppStrings.newClass,
-                  style: StyleApp.normal(fontSize: 16),
-                ),
-              ],
+              );
+            },
+            child: Container(
+              padding: 16.paddingVer,
+              decoration: BoxDecoration(
+                color: const Color(AppColors.cF0),
+                borderRadius: 16.radius,
+              ),
+              child: Column(
+                children: [
+                  _buildIcon(
+                    '2b',
+                    const Color(AppColors.c6B9),
+                  ),
+                  8.height,
+                  Text(
+                    AppStrings.newClass,
+                    style: StyleApp.normal(fontSize: 16),
+                  ),
+                ],
+              ),
             ),
           ),
         ),

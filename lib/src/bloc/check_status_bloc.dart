@@ -16,6 +16,7 @@ class CheckStateBloc {
     String? svgIconSuccess,
     PageRouteInfo? route,
     bool isRemove = false,
+    bool returnBack = false,
   }) {
     if (state.status == Status.loading) {
       DialogUtils.showLoading(
@@ -24,9 +25,12 @@ class CheckStateBloc {
       );
     }
     if (state.status == Status.success) {
-      Navigator.pop(context);
-      DialogUtils.showSuccess(context, msg ?? state.msg);
       success?.call();
+      Navigator.pop(context);
+      if(returnBack) {
+        Navigator.pop(context);
+      }
+      DialogUtils.showSuccess(context, msg ?? state.msg);
     }
     if (state.status == Status.error) {
       Navigator.pop(context);

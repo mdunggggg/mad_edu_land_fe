@@ -4,4 +4,5 @@ class ApiPath {
   static const String registerTeacher = '/api/auth/register/teacher';
   static const String login = '/api/auth/login';
   static const String teacher = '/api/teacher';
+  static const String classroom = '/api/classrooms';
 }

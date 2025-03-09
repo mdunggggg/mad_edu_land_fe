@@ -20,7 +20,7 @@ import '../../../../resources/constant/app_strings.dart';
 import '../../../../resources/constant/app_styles.dart';
 
 enum GradleLevel {
-  elementary(0),
+  preschool(0),
   grade_1(1),
   grade_2(2),
   grade_3(3),

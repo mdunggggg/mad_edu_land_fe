@@ -8,28 +8,76 @@
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:auto_route/auto_route.dart' as _i7;
+import 'package:auto_route/auto_route.dart' as _i8;
 import 'package:edu_land/src/feature/screen/login_and_register/login_and_register_screen.dart'
-    as _i1;
-import 'package:edu_land/src/feature/screen/select_role/select_role_screen.dart'
     as _i2;
-import 'package:edu_land/src/feature/screen/splash/splash_screen.dart' as _i3;
+import 'package:edu_land/src/feature/screen/select_role/select_role_screen.dart'
+    as _i3;
+import 'package:edu_land/src/feature/screen/splash/splash_screen.dart' as _i4;
 import 'package:edu_land/src/feature/screen/student/home/student_homepage_screen.dart'
-    as _i4;
-import 'package:edu_land/src/feature/screen/teacher/teacher_homepage_screen.dart'
     as _i5;
-import 'package:edu_land/src/feature/screen/welcome/welcome_screen.dart' as _i6;
-import 'package:flutter/material.dart' as _i8;
+import 'package:edu_land/src/feature/screen/teacher/create_class/create_class_screen.dart'
+    as _i1;
+import 'package:edu_land/src/feature/screen/teacher/teacher_homepage_screen.dart'
+    as _i6;
+import 'package:edu_land/src/feature/screen/welcome/welcome_screen.dart' as _i7;
+import 'package:flutter/material.dart' as _i9;
 
 /// generated route for
-/// [_i1.LoginAndRegisterScreen]
+/// [_i1.CreateClassScreen]
+class CreateClassRoute extends _i8.PageRouteInfo<CreateClassRouteArgs> {
+  CreateClassRoute({
+    _i9.Key? key,
+    required _i9.VoidCallback success,
+    List<_i8.PageRouteInfo>? children,
+  }) : super(
+          CreateClassRoute.name,
+          args: CreateClassRouteArgs(
+            key: key,
+            success: success,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'CreateClassRoute';
+
+  static _i8.PageInfo page = _i8.PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<CreateClassRouteArgs>();
+      return _i1.CreateClassScreen(
+        key: args.key,
+        success: args.success,
+      );
+    },
+  );
+}
+
+class CreateClassRouteArgs {
+  const CreateClassRouteArgs({
+    this.key,
+    required this.success,
+  });
+
+  final _i9.Key? key;
+
+  final _i9.VoidCallback success;
+
+  @override
+  String toString() {
+    return 'CreateClassRouteArgs{key: $key, success: $success}';
+  }
+}
+
+/// generated route for
+/// [_i2.LoginAndRegisterScreen]
 class LoginAndRegisterRoute
-    extends _i7.PageRouteInfo<LoginAndRegisterRouteArgs> {
+    extends _i8.PageRouteInfo<LoginAndRegisterRouteArgs> {
   LoginAndRegisterRoute({
-    _i8.Key? key,
-    _i1.TabItem tabItem = _i1.TabItem.login,
-    required _i1.Role role,
-    List<_i7.PageRouteInfo>? children,
+    _i9.Key? key,
+    _i2.TabItem tabItem = _i2.TabItem.login,
+    required _i2.Role role,
+    List<_i8.PageRouteInfo>? children,
   }) : super(
           LoginAndRegisterRoute.name,
           args: LoginAndRegisterRouteArgs(
@@ -42,11 +90,11 @@ class LoginAndRegisterRoute
 
   static const String name = 'LoginAndRegisterRoute';
 
-  static _i7.PageInfo page = _i7.PageInfo(
+  static _i8.PageInfo page = _i8.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<LoginAndRegisterRouteArgs>();
-      return _i1.LoginAndRegisterScreen(
+      return _i2.LoginAndRegisterScreen(
         key: args.key,
         tabItem: args.tabItem,
         role: args.role,
@@ -58,15 +106,15 @@ class LoginAndRegisterRoute
 class LoginAndRegisterRouteArgs {
   const LoginAndRegisterRouteArgs({
     this.key,
-    this.tabItem = _i1.TabItem.login,
+    this.tabItem = _i2.TabItem.login,
     required this.role,
   });
 
-  final _i8.Key? key;
+  final _i9.Key? key;
 
-  final _i1.TabItem tabItem;
+  final _i2.TabItem tabItem;
 
-  final _i1.Role role;
+  final _i2.Role role;
 
   @override
   String toString() {
@@ -75,12 +123,12 @@ class LoginAndRegisterRouteArgs {
 }
 
 /// generated route for
-/// [_i2.SelectRoleScreen]
-class SelectRoleRoute extends _i7.PageRouteInfo<SelectRoleRouteArgs> {
+/// [_i3.SelectRoleScreen]
+class SelectRoleRoute extends _i8.PageRouteInfo<SelectRoleRouteArgs> {
   SelectRoleRoute({
-    _i8.Key? key,
+    _i9.Key? key,
     required bool isRegister,
-    List<_i7.PageRouteInfo>? children,
+    List<_i8.PageRouteInfo>? children,
   }) : super(
           SelectRoleRoute.name,
           args: SelectRoleRouteArgs(
@@ -92,11 +140,11 @@ class SelectRoleRoute extends _i7.PageRouteInfo<SelectRoleRouteArgs> {
 
   static const String name = 'SelectRoleRoute';
 
-  static _i7.PageInfo page = _i7.PageInfo(
+  static _i8.PageInfo page = _i8.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<SelectRoleRouteArgs>();
-      return _i2.SelectRoleScreen(
+      return _i3.SelectRoleScreen(
         key: args.key,
         isRegister: args.isRegister,
       );
@@ -110,7 +158,7 @@ class SelectRoleRouteArgs {
     required this.isRegister,
   });
 
-  final _i8.Key? key;
+  final _i9.Key? key;
 
   final bool isRegister;
 
@@ -121,9 +169,9 @@ class SelectRoleRouteArgs {
 }
 
 /// generated route for
-/// [_i3.SplashScreen]
-class SplashRoute extends _i7.PageRouteInfo<void> {
-  const SplashRoute({List<_i7.PageRouteInfo>? children})
+/// [_i4.SplashScreen]
+class SplashRoute extends _i8.PageRouteInfo<void> {
+  const SplashRoute({List<_i8.PageRouteInfo>? children})
       : super(
           SplashRoute.name,
           initialChildren: children,
@@ -131,18 +179,18 @@ class SplashRoute extends _i7.PageRouteInfo<void> {
 
   static const String name = 'SplashRoute';
 
-  static _i7.PageInfo page = _i7.PageInfo(
+  static _i8.PageInfo page = _i8.PageInfo(
     name,
     builder: (data) {
-      return const _i3.SplashScreen();
+      return const _i4.SplashScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i4.StudentHomepageScreen]
-class StudentHomepageRoute extends _i7.PageRouteInfo<void> {
-  const StudentHomepageRoute({List<_i7.PageRouteInfo>? children})
+/// [_i5.StudentHomepageScreen]
+class StudentHomepageRoute extends _i8.PageRouteInfo<void> {
+  const StudentHomepageRoute({List<_i8.PageRouteInfo>? children})
       : super(
           StudentHomepageRoute.name,
           initialChildren: children,
@@ -150,18 +198,18 @@ class StudentHomepageRoute extends _i7.PageRouteInfo<void> {
 
   static const String name = 'StudentHomepageRoute';
 
-  static _i7.PageInfo page = _i7.PageInfo(
+  static _i8.PageInfo page = _i8.PageInfo(
     name,
     builder: (data) {
-      return const _i4.StudentHomepageScreen();
+      return const _i5.StudentHomepageScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i5.TeacherHomepageScreen]
-class TeacherHomepageRoute extends _i7.PageRouteInfo<void> {
-  const TeacherHomepageRoute({List<_i7.PageRouteInfo>? children})
+/// [_i6.TeacherHomepageScreen]
+class TeacherHomepageRoute extends _i8.PageRouteInfo<void> {
+  const TeacherHomepageRoute({List<_i8.PageRouteInfo>? children})
       : super(
           TeacherHomepageRoute.name,
           initialChildren: children,
@@ -169,18 +217,18 @@ class TeacherHomepageRoute extends _i7.PageRouteInfo<void> {
 
   static const String name = 'TeacherHomepageRoute';
 
-  static _i7.PageInfo page = _i7.PageInfo(
+  static _i8.PageInfo page = _i8.PageInfo(
     name,
     builder: (data) {
-      return const _i5.TeacherHomepageScreen();
+      return const _i6.TeacherHomepageScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i6.WelcomeScreen]
-class WelcomeRoute extends _i7.PageRouteInfo<void> {
-  const WelcomeRoute({List<_i7.PageRouteInfo>? children})
+/// [_i7.WelcomeScreen]
+class WelcomeRoute extends _i8.PageRouteInfo<void> {
+  const WelcomeRoute({List<_i8.PageRouteInfo>? children})
       : super(
           WelcomeRoute.name,
           initialChildren: children,
@@ -188,10 +236,10 @@ class WelcomeRoute extends _i7.PageRouteInfo<void> {
 
   static const String name = 'WelcomeRoute';
 
-  static _i7.PageInfo page = _i7.PageInfo(
+  static _i8.PageInfo page = _i8.PageInfo(
     name,
     builder: (data) {
-      return const _i6.WelcomeScreen();
+      return const _i7.WelcomeScreen();
     },
   );
 }

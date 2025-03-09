@@ -22,7 +22,7 @@
   "choose_username": "Chọn tên người dùng",
   "class": "Lớp học",
   "class_code": "Mã lớp:",
-  "class_description": "Mô tả lớp học (Không bắt buộc)",
+  "class_description": "Mô tả lớp học",
   "class_name": "Tên lớp",
   "classes": "Lớp học",
   "click_to_add_image": "Nhấn để thêm hình ảnh",
@@ -158,5 +158,6 @@
   "success": "Thành công!!!",
   "register_success": "Đăng ký thành công",
   "User existed": "Người dùng đã tồn tại",
-  "Invalid username or password": "Tên người dùng hoặc mật khẩu không hợp lệ"
+  "Invalid username or password": "Tên người dùng hoặc mật khẩu không hợp lệ",
+  "Classroom code already exists" : "Mã lớp học đã tồn tại"
 }
