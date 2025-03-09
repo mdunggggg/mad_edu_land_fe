@@ -32,6 +32,7 @@ abstract class AppStrings {
   static String clickToAddImage = 'click_to_add_image'.tr();
   static String code = 'code'.tr();
   static String colorMission = 'color_mission'.tr();
+  static String countingMission = 'counting_mission'.tr();
   static String colors = 'colors'.tr();
   static String comments = 'comments'.tr();
   static String completed = 'completed'.tr();
