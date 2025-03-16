@@ -1,6 +1,7 @@
 import 'package:auto_route/annotations.dart';
 import 'package:edu_land/src/feature/components/fa_icon.dart';
 import 'package:edu_land/src/feature/screen/student/home/student_home_screen.dart';
+import 'package:edu_land/src/feature/screen/student/profile/student_profile_screen.dart';
 import 'package:edu_land/src/feature/screen/welcome/welcome_screen.dart';
 import 'package:edu_land/src/resources/constant/app_colors.dart';
 import 'package:edu_land/src/resources/constant/app_strings.dart';
@@ -29,11 +30,7 @@ class _StudentHomepageScreenState extends State<StudentHomepageScreen> {
         'Index 2: Forum',
       ),
     ),
-    Center(
-      child: Text(
-        'Index 3: Profile',
-      ),
-    ),
+   StudentProfileScreen(),
   ];
 
   @override

@@ -1,5 +1,6 @@
 import 'package:auto_route/annotations.dart';
 import 'package:edu_land/src/feature/components/fa_icon.dart';
+import 'package:edu_land/src/feature/screen/teacher/profile/teacher_profile_screen.dart';
 import 'package:edu_land/src/feature/screen/teacher/teacher_home_screen/teacher_home_screen.dart';
 import 'package:edu_land/src/resources/constant/app_colors.dart';
 import 'package:edu_land/src/resources/constant/app_strings.dart';
@@ -28,11 +29,7 @@ class _TeacherHomepageScreenState extends State<TeacherHomepageScreen> {
         'Index 2: Forum',
       ),
     ),
-    Center(
-      child: Text(
-        'Index 3: Profile',
-      ),
-    ),
+    TeacherProfileScreen(),
   ];
 
   @override

@@ -14,7 +14,7 @@ import 'package:edu_land/src/feature/screen/login_and_register/login_and_registe
 import 'package:edu_land/src/feature/screen/select_role/select_role_screen.dart'
     as _i3;
 import 'package:edu_land/src/feature/screen/splash/splash_screen.dart' as _i4;
-import 'package:edu_land/src/feature/screen/student/home/student_homepage_screen.dart'
+import 'package:edu_land/src/feature/screen/student/student_homepage_screen.dart'
     as _i5;
 import 'package:edu_land/src/feature/screen/teacher/create_class/create_class_screen.dart'
     as _i1;

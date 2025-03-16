@@ -9,7 +9,7 @@ class StudentHomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(AppColors.cFFFF),
+      backgroundColor: const Color(AppColors.cF9),
       body: Padding(
         padding: const EdgeInsets.only(left: 16.0, right: 16.0, top: 28.0, bottom: 16.0),
         child: Column(

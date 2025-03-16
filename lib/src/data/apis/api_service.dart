@@ -8,7 +8,7 @@ import 'api_interceptor.dart';
 class ApiService extends DioMixin {
   static final ApiService _instance = ApiService._internal();
   static int decryptionShift = 0;
-  static const String _baseUrl = 'http://192.168.100.236:8080';
+  static const String _baseUrl = 'http://localhost:8080';
 
   factory ApiService() => _instance;
 
