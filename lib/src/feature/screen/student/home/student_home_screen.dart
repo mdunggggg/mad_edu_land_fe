@@ -1,8 +1,18 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:edu_land/src/resources/constant/app_images.dart';
 import 'package:edu_land/src/resources/constant/app_strings.dart';
+import 'package:edu_land/src/router/router.gr.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../resources/constant/app_colors.dart';
+
+enum Category {
+  MATH,
+  COLOR,
+  VIETNAMESE,
+  COUNTING
+}
+
 class StudentHomeScreen extends StatelessWidget {
   const StudentHomeScreen({super.key});
 
@@ -12,86 +22,64 @@ class StudentHomeScreen extends StatelessWidget {
       backgroundColor: const Color(AppColors.cF9),
       body: Padding(
         padding: const EdgeInsets.only(left: 16.0, right: 16.0, top: 28.0, bottom: 16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Row(
-                children: [
-                  CircleAvatar(
-                    radius: 28
-                  ),
-                  SizedBox(width: 12.0),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text('Nguyễn Văn A', style: TextStyle(fontSize: 18, color: Color(AppColors.c1F))),
-                      Text('Lớp 1', style: TextStyle(fontSize: 14, color: Color(AppColors.c6B))),
-                    ],
-                  )
-                ],
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Row(
+                  children: [
+                    CircleAvatar(
+                      radius: 28
+                    ),
+                    SizedBox(width: 12.0),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text('Nguyễn Văn A', style: TextStyle(fontSize: 18, color: Color(AppColors.c1F))),
+                        Text('Lớp 1', style: TextStyle(fontSize: 14, color: Color(AppColors.c6B))),
+                      ],
+                    )
+                  ],
+                ),
+              const SizedBox(height: 16.0,),
+              const Text(
+                'Xin chào A! 👋',
+                style: TextStyle(fontSize: 24, color: Color(AppColors.cEC)),
               ),
-            const SizedBox(height: 16.0,),
-            const Text(
-              'Xin chào A! 👋',
-              style: TextStyle(fontSize: 24, color: Color(AppColors.cEC)),
-            ),
-            const SizedBox(height: 20.0),
-            Text(
-              AppStrings.learningPrompt,
-              style: const TextStyle(fontSize: 20, color: Color(AppColors.c1F)),
-            ),
-            const SizedBox(height: 24.0),
-                Text(
-                  AppStrings.colors,
-                  style: const TextStyle(fontSize: 18, color: Color(AppColors.c37)),
-            ),
-            _buildCard(AppStrings.colorMission, AppImages.imgColor, AppColors.cDBE, () {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text(
-                    "You clicked on Color Mission",
-                  ),
-                )
-              );
-            }),
-            const SizedBox(height: 24.0),
-            Text(
-              AppStrings.counting,
-              style: const TextStyle(fontSize: 18, color: Color(AppColors.c37)),
-            ),
-            _buildCard(AppStrings.countingMission, AppImages.imgCounting, AppColors.cFEF3, () {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text(
-                    "You clicked on Counting Mission",
-                  ),
-                )
-              );
-            }),
-            const SizedBox(height: 24.0),
-            Text(
-              AppStrings.subjects,
-              style: const TextStyle(fontSize: 18, color: Color(AppColors.c37)),
-            ),
-            _buildCard(AppStrings.math, AppImages.imgMath, AppColors.cFEE, () {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text(
-                    "You clicked on Math",
-                  ),
-                )
-              );
-            }),
-            _buildCard(AppStrings.vietnamese, AppImages.imgVietnamese, AppColors.cCC, () {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text(
-                    "You clicked on Vietnamese",
-                  ),
-                )
-              );
-            }),
-          ],
+              const SizedBox(height: 20.0),
+              Text(
+                AppStrings.learningPrompt,
+                style: const TextStyle(fontSize: 20, color: Color(AppColors.c1F)),
+              ),
+              const SizedBox(height: 24.0),
+                  Text(
+                    AppStrings.colors,
+                    style: const TextStyle(fontSize: 18, color: Color(AppColors.c37)),
+              ),
+              _buildCard(AppStrings.colorMission, AppImages.imgColor, AppColors.cDBE, () {
+                  context.router.push(QuestionSetDetailRoute(category: Category.COLOR));
+              }),
+              const SizedBox(height: 24.0),
+              Text(
+                AppStrings.counting,
+                style: const TextStyle(fontSize: 18, color: Color(AppColors.c37)),
+              ),
+              _buildCard(AppStrings.countingMission, AppImages.imgCounting, AppColors.cFEF3, () {
+                context.router.push(QuestionSetDetailRoute(category: Category.COUNTING));
+              }),
+              const SizedBox(height: 24.0),
+              Text(
+                AppStrings.subjects,
+                style: const TextStyle(fontSize: 18, color: Color(AppColors.c37)),
+              ),
+              _buildCard(AppStrings.math, AppImages.imgMath, AppColors.cFEE, () {
+                context.router.push(QuestionSetDetailRoute(category: Category.MATH));
+              }),
+              _buildCard(AppStrings.vietnamese, AppImages.imgVietnamese, AppColors.cCC, () {
+                context.router.push(QuestionSetDetailRoute(category: Category.VIETNAMESE));
+              }),
+            ],
+          ),
         ),
       ),
     );

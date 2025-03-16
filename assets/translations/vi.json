@@ -159,5 +159,6 @@
   "register_success": "Đăng ký thành công",
   "User existed": "Người dùng đã tồn tại",
   "Invalid username or password": "Tên người dùng hoặc mật khẩu không hợp lệ",
-  "Classroom code already exists" : "Mã lớp học đã tồn tại"
+  "Classroom code already exists" : "Mã lớp học đã tồn tại",
+  "color": "Màu sắc"
 }

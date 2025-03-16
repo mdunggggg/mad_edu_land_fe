@@ -41,8 +41,8 @@ class _LoginScreenState extends State<LoginScreen>
   @override
   void initState() {
     bloc.type = widget.role;
-    usernameCtrl.text = "dnminh";
-    passwordCtrl.text = "123";
+    usernameCtrl.text = "1";
+    passwordCtrl.text = "1";
     super.initState();
   }
 
@@ -66,7 +66,7 @@ class _LoginScreenState extends State<LoginScreen>
           success: () {
             print('Login success');
           },
-          route: widget.role == Role.student
+          route: bloc.type == Role.student
               ? const StudentHomepageRoute()
               : const  TeacherHomepageRoute(),
         );
