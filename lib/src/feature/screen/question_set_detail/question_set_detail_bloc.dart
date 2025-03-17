@@ -3,7 +3,8 @@ import 'package:edu_land/src/bloc/bloc_state.dart';
 import 'package:edu_land/src/model/question_set_model.dart';
 import 'package:edu_land/src/repository/question_set_repo.dart';
 
-import '../home/student_home_screen.dart';
+import '../student/home/student_home_screen.dart';
+
 
 class QuestionSetDetailBloc extends Cubit<BlocState<List<QuestionSetModel>>> {
   QuestionSetDetailBloc() : super(BlocState());

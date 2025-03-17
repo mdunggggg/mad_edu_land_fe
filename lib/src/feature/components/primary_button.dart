@@ -1,4 +1,5 @@
 import 'package:edu_land/src/shared/extension/ext_num.dart';
+import 'package:edu_land/src/shared/extension/ext_widget.dart';
 import 'package:flutter/material.dart';
 
 import '../../resources/constant/app_styles.dart';
@@ -10,7 +11,8 @@ class PrimaryButton extends StatelessWidget {
   final String text;
   final Color color;
   final TextStyle? textStyle;
-
+  final Widget? prefixIcon;
+  final Widget? suffixIcon;
 
   const PrimaryButton({
     super.key,
@@ -18,7 +20,10 @@ class PrimaryButton extends StatelessWidget {
     required this.onClick,
     this.textStyle,
     this.paddingHor = 16,
-    this.paddingVer = 8, required this.color,
+    this.paddingVer = 8,
+    required this.color,
+    this.prefixIcon,
+    this.suffixIcon,
   });
 
   @override
@@ -32,11 +37,24 @@ class PrimaryButton extends StatelessWidget {
         ),
         padding: paddingHor.paddingHor + paddingVer.paddingVer,
       ),
-      child: Text(
-        text,
-        maxLines: 1,
-        softWrap: false,
-        style: textStyle ?? StyleApp.normal(),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          if (prefixIcon != null) ...[
+            prefixIcon!,
+            const SizedBox(width: 8),
+          ],
+          Text(
+            text,
+            maxLines: 1,
+            softWrap: false,
+            style: textStyle ?? StyleApp.normal(),
+          ),
+          if (suffixIcon != null) ...[
+            const SizedBox(width: 8),
+            suffixIcon!,
+          ],
+        ],
       ),
     );
   }
