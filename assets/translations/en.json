@@ -160,5 +160,6 @@
   "User existed": "User existed",
   "Invalid username or password": "Invalid username or password",
   "Classroom code already exists" : "Classroom code already exists",
-  "color": "Color"
+  "color": "Color",
+  "got_score": "Got"
 }

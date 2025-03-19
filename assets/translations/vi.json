@@ -104,7 +104,7 @@
   "question_performance": "Hiệu suất câu hỏi",
   "question_text": "Nội dung câu hỏi",
   "questions": "Các câu hỏi",
-  "quiz_details": "Chi tiết bài kiểm tra",
+  "quiz_details": "Chi tiết",
   "quiz_name": "Tên bài kiểm tra",
   "quiz_results": "Kết quả bài kiểm tra",
   "quizzes": "Bài kiểm tra",
@@ -160,5 +160,6 @@
   "User existed": "Người dùng đã tồn tại",
   "Invalid username or password": "Tên người dùng hoặc mật khẩu không hợp lệ",
   "Classroom code already exists" : "Mã lớp học đã tồn tại",
-  "color": "Màu sắc"
+  "color": "Màu sắc",
+  "got_score": "Đạt"
 }

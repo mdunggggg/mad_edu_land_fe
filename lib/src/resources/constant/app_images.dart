@@ -9,5 +9,6 @@ abstract class AppImages {
   static const String imgMath = '$_packageName/img_math.png';
   static const String imgCounting = '$_packageName/img_counting.png';
   static const String imgVietnamese = '$_packageName/img_vietnamese.png';
+  static const String imgResult = '$_packageName/img_result_quiz.png';
 }
 

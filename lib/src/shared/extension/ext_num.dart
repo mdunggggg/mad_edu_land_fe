@@ -46,6 +46,18 @@ extension ExtNum on num {
     return '${hours.toString().padLeft(2, '0')}:${minutes.toString().padLeft(2, '0')}:${seconds.toString().padLeft(2, '0')}';
   }
 
+  String formatScore() {
+    final double percentage = this*10;
+    final String percentageString = percentage.toStringAsFixed(2);
+    if (percentageString.endsWith(".00")) {
+      return percentageString.substring(0, percentageString.length - 3);
+    } else if (percentageString.endsWith("0")) {
+      return percentageString.substring(0, percentageString.length - 1);
+    } else {
+      return percentageString;
+    }
+  }
+
   bool get isPositive => this > 0;
 
   bool get isNegative => this < 0;

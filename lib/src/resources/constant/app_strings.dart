@@ -161,4 +161,5 @@ abstract class AppStrings {
   static String success = 'success'.tr();
   static String registerSuccess = 'register_success'.tr();
   static String elementary = 'elementary'.tr();
+  static String gotScore = 'got_score'.tr();
 }
