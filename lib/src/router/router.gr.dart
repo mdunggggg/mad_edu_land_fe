@@ -8,38 +8,40 @@
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:auto_route/auto_route.dart' as _i11;
-import 'package:edu_land/src/feature/screen/login_and_register/login_and_register_screen.dart'
+import 'package:auto_route/auto_route.dart' as _i12;
+import 'package:edu_land/src/feature/screen/create_question_set/create_question_set_screen.dart'
     as _i2;
-import 'package:edu_land/src/feature/screen/play_quizz/play_quiz_screen.dart'
+import 'package:edu_land/src/feature/screen/login_and_register/login_and_register_screen.dart'
     as _i3;
-import 'package:edu_land/src/feature/screen/question_set_detail/question_set_detail_screen.dart'
+import 'package:edu_land/src/feature/screen/play_quizz/play_quiz_screen.dart'
     as _i4;
-import 'package:edu_land/src/feature/screen/result_play_quizz_screen/result_play_quiz_screen.dart'
+import 'package:edu_land/src/feature/screen/question_set_detail/question_set_detail_screen.dart'
     as _i5;
-import 'package:edu_land/src/feature/screen/select_role/select_role_screen.dart'
+import 'package:edu_land/src/feature/screen/result_play_quizz_screen/result_play_quiz_screen.dart'
     as _i6;
-import 'package:edu_land/src/feature/screen/splash/splash_screen.dart' as _i7;
+import 'package:edu_land/src/feature/screen/select_role/select_role_screen.dart'
+    as _i7;
+import 'package:edu_land/src/feature/screen/splash/splash_screen.dart' as _i8;
 import 'package:edu_land/src/feature/screen/student/home/student_home_screen.dart'
-    as _i13;
+    as _i14;
 import 'package:edu_land/src/feature/screen/student/student_homepage_screen.dart'
-    as _i8;
+    as _i9;
 import 'package:edu_land/src/feature/screen/teacher/create_class/create_class_screen.dart'
     as _i1;
 import 'package:edu_land/src/feature/screen/teacher/teacher_homepage_screen.dart'
-    as _i9;
-import 'package:edu_land/src/feature/screen/welcome/welcome_screen.dart'
     as _i10;
-import 'package:edu_land/src/model/scoring_model.dart' as _i14;
-import 'package:flutter/material.dart' as _i12;
+import 'package:edu_land/src/feature/screen/welcome/welcome_screen.dart'
+    as _i11;
+import 'package:edu_land/src/model/scoring_model.dart' as _i15;
+import 'package:flutter/material.dart' as _i13;
 
 /// generated route for
 /// [_i1.CreateClassScreen]
-class CreateClassRoute extends _i11.PageRouteInfo<CreateClassRouteArgs> {
+class CreateClassRoute extends _i12.PageRouteInfo<CreateClassRouteArgs> {
   CreateClassRoute({
-    _i12.Key? key,
-    required _i12.VoidCallback success,
-    List<_i11.PageRouteInfo>? children,
+    _i13.Key? key,
+    required _i13.VoidCallback success,
+    List<_i12.PageRouteInfo>? children,
   }) : super(
           CreateClassRoute.name,
           args: CreateClassRouteArgs(
@@ -51,7 +53,7 @@ class CreateClassRoute extends _i11.PageRouteInfo<CreateClassRouteArgs> {
 
   static const String name = 'CreateClassRoute';
 
-  static _i11.PageInfo page = _i11.PageInfo(
+  static _i12.PageInfo page = _i12.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<CreateClassRouteArgs>();
@@ -69,9 +71,9 @@ class CreateClassRouteArgs {
     required this.success,
   });
 
-  final _i12.Key? key;
+  final _i13.Key? key;
 
-  final _i12.VoidCallback success;
+  final _i13.VoidCallback success;
 
   @override
   String toString() {
@@ -80,14 +82,33 @@ class CreateClassRouteArgs {
 }
 
 /// generated route for
-/// [_i2.LoginAndRegisterScreen]
+/// [_i2.CreateQuestionSetScreen]
+class CreateQuestionSetRoute extends _i12.PageRouteInfo<void> {
+  const CreateQuestionSetRoute({List<_i12.PageRouteInfo>? children})
+      : super(
+          CreateQuestionSetRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'CreateQuestionSetRoute';
+
+  static _i12.PageInfo page = _i12.PageInfo(
+    name,
+    builder: (data) {
+      return const _i2.CreateQuestionSetScreen();
+    },
+  );
+}
+
+/// generated route for
+/// [_i3.LoginAndRegisterScreen]
 class LoginAndRegisterRoute
-    extends _i11.PageRouteInfo<LoginAndRegisterRouteArgs> {
+    extends _i12.PageRouteInfo<LoginAndRegisterRouteArgs> {
   LoginAndRegisterRoute({
-    _i12.Key? key,
-    _i2.TabItem tabItem = _i2.TabItem.login,
-    required _i2.Role role,
-    List<_i11.PageRouteInfo>? children,
+    _i13.Key? key,
+    _i3.TabItem tabItem = _i3.TabItem.login,
+    required _i3.Role role,
+    List<_i12.PageRouteInfo>? children,
   }) : super(
           LoginAndRegisterRoute.name,
           args: LoginAndRegisterRouteArgs(
@@ -100,11 +121,11 @@ class LoginAndRegisterRoute
 
   static const String name = 'LoginAndRegisterRoute';
 
-  static _i11.PageInfo page = _i11.PageInfo(
+  static _i12.PageInfo page = _i12.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<LoginAndRegisterRouteArgs>();
-      return _i2.LoginAndRegisterScreen(
+      return _i3.LoginAndRegisterScreen(
         key: args.key,
         tabItem: args.tabItem,
         role: args.role,
@@ -116,15 +137,15 @@ class LoginAndRegisterRoute
 class LoginAndRegisterRouteArgs {
   const LoginAndRegisterRouteArgs({
     this.key,
-    this.tabItem = _i2.TabItem.login,
+    this.tabItem = _i3.TabItem.login,
     required this.role,
   });
 
-  final _i12.Key? key;
+  final _i13.Key? key;
 
-  final _i2.TabItem tabItem;
+  final _i3.TabItem tabItem;
 
-  final _i2.Role role;
+  final _i3.Role role;
 
   @override
   String toString() {
@@ -133,13 +154,13 @@ class LoginAndRegisterRouteArgs {
 }
 
 /// generated route for
-/// [_i3.PlayQuizScreen]
-class PlayQuizRoute extends _i11.PageRouteInfo<PlayQuizRouteArgs> {
+/// [_i4.PlayQuizScreen]
+class PlayQuizRoute extends _i12.PageRouteInfo<PlayQuizRouteArgs> {
   PlayQuizRoute({
-    _i12.Key? key,
+    _i13.Key? key,
     required int idQuestionSet,
     required String title,
-    List<_i11.PageRouteInfo>? children,
+    List<_i12.PageRouteInfo>? children,
   }) : super(
           PlayQuizRoute.name,
           args: PlayQuizRouteArgs(
@@ -152,11 +173,11 @@ class PlayQuizRoute extends _i11.PageRouteInfo<PlayQuizRouteArgs> {
 
   static const String name = 'PlayQuizRoute';
 
-  static _i11.PageInfo page = _i11.PageInfo(
+  static _i12.PageInfo page = _i12.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<PlayQuizRouteArgs>();
-      return _i3.PlayQuizScreen(
+      return _i4.PlayQuizScreen(
         key: args.key,
         idQuestionSet: args.idQuestionSet,
         title: args.title,
@@ -172,7 +193,7 @@ class PlayQuizRouteArgs {
     required this.title,
   });
 
-  final _i12.Key? key;
+  final _i13.Key? key;
 
   final int idQuestionSet;
 
@@ -185,13 +206,13 @@ class PlayQuizRouteArgs {
 }
 
 /// generated route for
-/// [_i4.QuestionSetDetailScreen]
+/// [_i5.QuestionSetDetailScreen]
 class QuestionSetDetailRoute
-    extends _i11.PageRouteInfo<QuestionSetDetailRouteArgs> {
+    extends _i12.PageRouteInfo<QuestionSetDetailRouteArgs> {
   QuestionSetDetailRoute({
-    _i12.Key? key,
-    required _i13.Category category,
-    List<_i11.PageRouteInfo>? children,
+    _i13.Key? key,
+    required _i14.Category category,
+    List<_i12.PageRouteInfo>? children,
   }) : super(
           QuestionSetDetailRoute.name,
           args: QuestionSetDetailRouteArgs(
@@ -203,11 +224,11 @@ class QuestionSetDetailRoute
 
   static const String name = 'QuestionSetDetailRoute';
 
-  static _i11.PageInfo page = _i11.PageInfo(
+  static _i12.PageInfo page = _i12.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<QuestionSetDetailRouteArgs>();
-      return _i4.QuestionSetDetailScreen(
+      return _i5.QuestionSetDetailScreen(
         key: args.key,
         category: args.category,
       );
@@ -221,9 +242,9 @@ class QuestionSetDetailRouteArgs {
     required this.category,
   });
 
-  final _i12.Key? key;
+  final _i13.Key? key;
 
-  final _i13.Category category;
+  final _i14.Category category;
 
   @override
   String toString() {
@@ -232,12 +253,12 @@ class QuestionSetDetailRouteArgs {
 }
 
 /// generated route for
-/// [_i5.ResultPlayQuizScreen]
-class ResultPlayQuizRoute extends _i11.PageRouteInfo<ResultPlayQuizRouteArgs> {
+/// [_i6.ResultPlayQuizScreen]
+class ResultPlayQuizRoute extends _i12.PageRouteInfo<ResultPlayQuizRouteArgs> {
   ResultPlayQuizRoute({
-    _i12.Key? key,
-    required _i14.ScoringModel model,
-    List<_i11.PageRouteInfo>? children,
+    _i13.Key? key,
+    required _i15.ScoringModel model,
+    List<_i12.PageRouteInfo>? children,
   }) : super(
           ResultPlayQuizRoute.name,
           args: ResultPlayQuizRouteArgs(
@@ -249,11 +270,11 @@ class ResultPlayQuizRoute extends _i11.PageRouteInfo<ResultPlayQuizRouteArgs> {
 
   static const String name = 'ResultPlayQuizRoute';
 
-  static _i11.PageInfo page = _i11.PageInfo(
+  static _i12.PageInfo page = _i12.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<ResultPlayQuizRouteArgs>();
-      return _i5.ResultPlayQuizScreen(
+      return _i6.ResultPlayQuizScreen(
         key: args.key,
         model: args.model,
       );
@@ -267,9 +288,9 @@ class ResultPlayQuizRouteArgs {
     required this.model,
   });
 
-  final _i12.Key? key;
+  final _i13.Key? key;
 
-  final _i14.ScoringModel model;
+  final _i15.ScoringModel model;
 
   @override
   String toString() {
@@ -278,12 +299,12 @@ class ResultPlayQuizRouteArgs {
 }
 
 /// generated route for
-/// [_i6.SelectRoleScreen]
-class SelectRoleRoute extends _i11.PageRouteInfo<SelectRoleRouteArgs> {
+/// [_i7.SelectRoleScreen]
+class SelectRoleRoute extends _i12.PageRouteInfo<SelectRoleRouteArgs> {
   SelectRoleRoute({
-    _i12.Key? key,
+    _i13.Key? key,
     required bool isRegister,
-    List<_i11.PageRouteInfo>? children,
+    List<_i12.PageRouteInfo>? children,
   }) : super(
           SelectRoleRoute.name,
           args: SelectRoleRouteArgs(
@@ -295,11 +316,11 @@ class SelectRoleRoute extends _i11.PageRouteInfo<SelectRoleRouteArgs> {
 
   static const String name = 'SelectRoleRoute';
 
-  static _i11.PageInfo page = _i11.PageInfo(
+  static _i12.PageInfo page = _i12.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<SelectRoleRouteArgs>();
-      return _i6.SelectRoleScreen(
+      return _i7.SelectRoleScreen(
         key: args.key,
         isRegister: args.isRegister,
       );
@@ -313,7 +334,7 @@ class SelectRoleRouteArgs {
     required this.isRegister,
   });
 
-  final _i12.Key? key;
+  final _i13.Key? key;
 
   final bool isRegister;
 
@@ -324,9 +345,9 @@ class SelectRoleRouteArgs {
 }
 
 /// generated route for
-/// [_i7.SplashScreen]
-class SplashRoute extends _i11.PageRouteInfo<void> {
-  const SplashRoute({List<_i11.PageRouteInfo>? children})
+/// [_i8.SplashScreen]
+class SplashRoute extends _i12.PageRouteInfo<void> {
+  const SplashRoute({List<_i12.PageRouteInfo>? children})
       : super(
           SplashRoute.name,
           initialChildren: children,
@@ -334,18 +355,18 @@ class SplashRoute extends _i11.PageRouteInfo<void> {
 
   static const String name = 'SplashRoute';
 
-  static _i11.PageInfo page = _i11.PageInfo(
+  static _i12.PageInfo page = _i12.PageInfo(
     name,
     builder: (data) {
-      return const _i7.SplashScreen();
+      return const _i8.SplashScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i8.StudentHomepageScreen]
-class StudentHomepageRoute extends _i11.PageRouteInfo<void> {
-  const StudentHomepageRoute({List<_i11.PageRouteInfo>? children})
+/// [_i9.StudentHomepageScreen]
+class StudentHomepageRoute extends _i12.PageRouteInfo<void> {
+  const StudentHomepageRoute({List<_i12.PageRouteInfo>? children})
       : super(
           StudentHomepageRoute.name,
           initialChildren: children,
@@ -353,18 +374,18 @@ class StudentHomepageRoute extends _i11.PageRouteInfo<void> {
 
   static const String name = 'StudentHomepageRoute';
 
-  static _i11.PageInfo page = _i11.PageInfo(
+  static _i12.PageInfo page = _i12.PageInfo(
     name,
     builder: (data) {
-      return const _i8.StudentHomepageScreen();
+      return const _i9.StudentHomepageScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i9.TeacherHomepageScreen]
-class TeacherHomepageRoute extends _i11.PageRouteInfo<void> {
-  const TeacherHomepageRoute({List<_i11.PageRouteInfo>? children})
+/// [_i10.TeacherHomepageScreen]
+class TeacherHomepageRoute extends _i12.PageRouteInfo<void> {
+  const TeacherHomepageRoute({List<_i12.PageRouteInfo>? children})
       : super(
           TeacherHomepageRoute.name,
           initialChildren: children,
@@ -372,18 +393,18 @@ class TeacherHomepageRoute extends _i11.PageRouteInfo<void> {
 
   static const String name = 'TeacherHomepageRoute';
 
-  static _i11.PageInfo page = _i11.PageInfo(
+  static _i12.PageInfo page = _i12.PageInfo(
     name,
     builder: (data) {
-      return const _i9.TeacherHomepageScreen();
+      return const _i10.TeacherHomepageScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i10.WelcomeScreen]
-class WelcomeRoute extends _i11.PageRouteInfo<void> {
-  const WelcomeRoute({List<_i11.PageRouteInfo>? children})
+/// [_i11.WelcomeScreen]
+class WelcomeRoute extends _i12.PageRouteInfo<void> {
+  const WelcomeRoute({List<_i12.PageRouteInfo>? children})
       : super(
           WelcomeRoute.name,
           initialChildren: children,
@@ -391,10 +412,10 @@ class WelcomeRoute extends _i11.PageRouteInfo<void> {
 
   static const String name = 'WelcomeRoute';
 
-  static _i11.PageInfo page = _i11.PageInfo(
+  static _i12.PageInfo page = _i12.PageInfo(
     name,
     builder: (data) {
-      return const _i10.WelcomeScreen();
+      return const _i11.WelcomeScreen();
     },
   );
 }

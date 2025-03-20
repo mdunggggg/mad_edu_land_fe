@@ -32,6 +32,7 @@ class AppInput extends StatelessWidget {
     this.maxLines,
     this.hintColor,
     this.textColor,
+    this.titleStyle,
   });
 
   final String? initialValue;
@@ -57,6 +58,7 @@ class AppInput extends StatelessWidget {
   final int? maxLines;
   final Color? hintColor;
   final Color? textColor;
+  final TextStyle? titleStyle;
 
   @override
   Widget build(BuildContext context) {
@@ -68,7 +70,7 @@ class AppInput extends StatelessWidget {
           RichText(
             text: TextSpan(
               text: label,
-              style: StyleApp.medium(),
+              style: titleStyle?? StyleApp.medium(),
               children: [
                 if (required)
                   TextSpan(text: ' *', style: StyleApp.medium(color: Colors.red),)
@@ -117,21 +119,21 @@ class AppInput extends StatelessWidget {
             hintStyle: StyleApp.normal(fontSize: 16, color:hintColor ??  const Color(AppColors.cAD)),
             isDense: true,
             border: OutlineInputBorder(
-              borderRadius: 16.radius,
+              borderRadius: 12.radius,
               borderSide: BorderSide(
                 color: Colors.black.withOpacity(0.3),
                 width: 1,
               ),
             ),
             enabledBorder: OutlineInputBorder(
-              borderRadius: 16.radius,
+              borderRadius: 12.radius,
               borderSide:   BorderSide(
                 color: borderColor ?? Colors.transparent,
                 width: 1,
               ),
             ),
             focusedBorder: OutlineInputBorder(
-              borderRadius: 16.radius,
+              borderRadius: 12.radius,
               borderSide: const BorderSide(
                 color: Colors.black,
                 width: 1,

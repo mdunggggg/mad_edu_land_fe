@@ -296,24 +296,29 @@ class _TeacherHomeScreenState extends State<TeacherHomeScreen> {
         ),
         16.width,
         Expanded(
-          child: Container(
-            padding: 16.paddingVer,
-            decoration: BoxDecoration(
-              color: const Color(AppColors.cFFF),
-              borderRadius: 16.radius,
-            ),
-            child: Column(
-              children: [
-                _buildIcon(
-                  '3f',
-                  const Color(AppColors.cFF9),
-                ),
-                8.height,
-                Text(
-                  AppStrings.createQuiz,
-                  style: StyleApp.normal(fontSize: 16),
-                ),
-              ],
+          child: InkWell(
+            onTap: () {
+              context.router.push(const CreateQuestionSetRoute());
+            },
+            child: Container(
+              padding: 16.paddingVer,
+              decoration: BoxDecoration(
+                color: const Color(AppColors.cFFF),
+                borderRadius: 16.radius,
+              ),
+              child: Column(
+                children: [
+                  _buildIcon(
+                    '3f',
+                    const Color(AppColors.cFF9),
+                  ),
+                  8.height,
+                  Text(
+                    AppStrings.createQuiz,
+                    style: StyleApp.normal(fontSize: 16),
+                  ),
+                ],
+              ),
             ),
           ),
         ),

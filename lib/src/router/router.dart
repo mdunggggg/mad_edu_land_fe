@@ -15,5 +15,6 @@ class AppRouter extends RootStackRouter {
     AutoRoute(page: QuestionSetDetailRoute.page),
     AutoRoute(page: PlayQuizRoute.page),
     AutoRoute(page: ResultPlayQuizRoute.page),
+    AutoRoute(page: CreateQuestionSetRoute.page),
   ];
 }
