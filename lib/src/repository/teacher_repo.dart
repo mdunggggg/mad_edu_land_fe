@@ -1,9 +1,11 @@
 import 'package:dio/dio.dart';
 import 'package:edu_land/src/data/apis/api_path.dart';
 import 'package:edu_land/src/model/base_model.dart';
+import 'package:edu_land/src/model/question_set_model.dart';
 import 'package:edu_land/src/model/teacher_overview_model.dart';
 
 import '../data/apis/api_service.dart';
+import '../feature/screen/student/home/student_home_screen.dart';
 
 class TeacherRepo {
   final _dio = ApiService();
@@ -34,6 +36,38 @@ class TeacherRepo {
       return _handleException(e, dataBool: true);
     }
   }
+
+  Future<BaseModel<List<QuestionSetModel>>> myQuestionSet({Category? category}) async {
+    try {
+      final query = category != null ? {'category': category.name} : null;
+      final response = await _dio.get(ApiPath.myQuestionSet, queryParameters: query);
+      final data = response.data['result'] as List;
+      final dataModel = data.map((e) => QuestionSetModel.fromJson(e)).toList();
+      return BaseModel(
+        code: response.data['code'],
+        message: response.data['message'],
+        data: dataModel,
+      );
+    } catch (e) {
+      if (e is DioException) {
+        final responseData = e.response?.data;
+        final errorMessage = responseData is Map<String, dynamic>
+            ? responseData['message'] ?? 'Unknown error'
+            : e.message ?? 'Dio error'; // Add null check for e.message
+        return BaseModel(
+          code: 400,
+          message: errorMessage,
+          data: [], // Use the provided dataBool parameter
+        );
+      }
+      return BaseModel(
+        code: 400,
+        message: e.toString(),
+        data: [],
+      );
+    }
+  }
+
 
   // Helper function to handle exceptions and return BaseModel
   BaseModel _handleException(dynamic e, {bool dataBool = false}) {

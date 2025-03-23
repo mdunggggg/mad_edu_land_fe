@@ -12,6 +12,10 @@ _$QuestionSetModelImpl _$$QuestionSetModelImplFromJson(
       id: (json['id'] as num?)?.toInt(),
       name: json['name'] as String?,
       description: json['description'] as String?,
+      totalQuestion: (json['totalQuestion'] as num?)?.toInt(),
+      createdDate: json['createdDate'] == null
+          ? null
+          : DateTime.parse(json['createdDate'] as String),
     );
 
 Map<String, dynamic> _$$QuestionSetModelImplToJson(
@@ -20,4 +24,6 @@ Map<String, dynamic> _$$QuestionSetModelImplToJson(
       'id': instance.id,
       'name': instance.name,
       'description': instance.description,
+      'totalQuestion': instance.totalQuestion,
+      'createdDate': instance.createdDate?.toIso8601String(),
     };

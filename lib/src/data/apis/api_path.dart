@@ -8,4 +8,5 @@ class ApiPath {
   static const String questionSet = '/api/question-sets';
   static const String question = '/api/questions';
   static const String scoring = '$questionSet/scoring';
+  static const String myQuestionSet = '$teacher/my-question-sets';
 }

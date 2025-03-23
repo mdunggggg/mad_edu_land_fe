@@ -1,5 +1,6 @@
 import 'package:auto_route/annotations.dart';
 import 'package:edu_land/src/feature/components/fa_icon.dart';
+import 'package:edu_land/src/feature/screen/teacher/my_quizz/my_quiz_screen.dart';
 import 'package:edu_land/src/feature/screen/teacher/profile/teacher_profile_screen.dart';
 import 'package:edu_land/src/feature/screen/teacher/teacher_home_screen/teacher_home_screen.dart';
 import 'package:edu_land/src/resources/constant/app_colors.dart';
@@ -19,11 +20,7 @@ class _TeacherHomepageScreenState extends State<TeacherHomepageScreen> {
 
   static const List<Widget> _widgetOptions = <Widget>[
     TeacherHomeScreen(),
-    Center(
-      child: Text(
-        'Index 1: Classes',
-      ),
-    ),
+    MyQuizScreen(),
     Center(
       child: Text(
         'Index 2: Forum',

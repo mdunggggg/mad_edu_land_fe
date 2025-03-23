@@ -20,4 +20,14 @@ extension ExtString on String? {
     return double.tryParse(cleanString) ?? 0;
   }
 
+  DateTime? toDate({
+    String format = 'dd/MM/yyyy',
+  }) {
+    if (this != null) {
+      try {
+        return DateTime.tryParse(this!);
+      } catch (e) {}
+    }
+    return null;
+  }
 }

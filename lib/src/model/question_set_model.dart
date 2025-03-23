@@ -11,6 +11,8 @@ class QuestionSetModel with _$QuestionSetModel {
     int? id,
     String? name,
     String? description,
+    int? totalQuestion,
+    DateTime? createdDate,
   }) = _QuestionSetModel;
 
   factory QuestionSetModel.fromJson(Map<String, dynamic> json) => _$QuestionSetModelFromJson(json);

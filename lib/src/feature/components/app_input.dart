@@ -6,7 +6,6 @@ import 'package:edu_land/src/shared/extension/ext_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-
 class AppInput extends StatelessWidget {
   const AppInput({
     super.key,
@@ -33,6 +32,7 @@ class AppInput extends StatelessWidget {
     this.hintColor,
     this.textColor,
     this.titleStyle,
+    this.contentPadding,
   });
 
   final String? initialValue;
@@ -59,6 +59,7 @@ class AppInput extends StatelessWidget {
   final Color? hintColor;
   final Color? textColor;
   final TextStyle? titleStyle;
+  final EdgeInsetsGeometry? contentPadding;
 
   @override
   Widget build(BuildContext context) {
@@ -70,10 +71,13 @@ class AppInput extends StatelessWidget {
           RichText(
             text: TextSpan(
               text: label,
-              style: titleStyle?? StyleApp.medium(),
+              style: titleStyle ?? StyleApp.medium(),
               children: [
                 if (required)
-                  TextSpan(text: ' *', style: StyleApp.medium(color: Colors.red),)
+                  TextSpan(
+                    text: ' *',
+                    style: StyleApp.medium(color: Colors.red),
+                  )
               ],
             ),
           ),
@@ -95,51 +99,55 @@ class AppInput extends StatelessWidget {
             }
           },
           onTapOutside: (event) =>
-          onTapOutside?.call() ??
+              onTapOutside?.call() ??
               FocusManager.instance.primaryFocus?.unfocus(),
           keyboardType: textInputType,
           controller: controller,
           textAlign: textAlign,
-          validator: required ? (value) {
-            if(value == null || value.isEmpty) {
-              return AppStrings.fieldRequired;
-            }
-            if(validate != null) {
-              return validate!(value);
-            }
-            return null;
-          } : null,
-          style: StyleApp.normal(fontSize: 16, color:textColor ??  Colors.black),
+          validator: required
+              ? (value) {
+                  if (value == null || value.isEmpty) {
+                    return AppStrings.fieldRequired;
+                  }
+                  if (validate != null) {
+                    return validate!(value);
+                  }
+                  return null;
+                }
+              : null,
+          style:
+              StyleApp.normal(fontSize: 16, color: textColor ?? Colors.black),
           inputFormatters: inputFormatters,
           maxLines: maxLines,
           decoration: InputDecoration(
             filled: true,
             fillColor: bgColor ?? const Color(AppColors.cF9),
             hintText: hintText,
-            hintStyle: StyleApp.normal(fontSize: 16, color:hintColor ??  const Color(AppColors.cAD)),
+            hintStyle: StyleApp.normal(
+                fontSize: 16, color: hintColor ?? const Color(AppColors.cAD)),
             isDense: true,
             border: OutlineInputBorder(
-              borderRadius: 12.radius,
+              borderRadius: radius?.radius ?? 12.radius,
               borderSide: BorderSide(
                 color: Colors.black.withOpacity(0.3),
                 width: 1,
               ),
             ),
             enabledBorder: OutlineInputBorder(
-              borderRadius: 12.radius,
-              borderSide:   BorderSide(
+              borderRadius: radius?.radius ?? 12.radius,
+              borderSide: BorderSide(
                 color: borderColor ?? Colors.transparent,
                 width: 1,
               ),
             ),
             focusedBorder: OutlineInputBorder(
-              borderRadius: 12.radius,
+              borderRadius: radius?.radius ?? 12.radius,
               borderSide: const BorderSide(
                 color: Colors.black,
                 width: 1,
               ),
             ),
-            contentPadding: 8.paddingHor + 12.paddingVer,
+            contentPadding: contentPadding ?? (8.paddingHor + 12.paddingVer),
             suffixIcon: suffixIcon?.padding(12.paddingHor),
             prefixIcon: prefixIcon?.padding(12.paddingHor),
             suffixIconConstraints: const BoxConstraints(
