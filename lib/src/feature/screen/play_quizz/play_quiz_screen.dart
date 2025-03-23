@@ -203,32 +203,40 @@ class _PlayQuizScreenState extends State<PlayQuizScreen> {
         bloc.answerQuestion(e);
       },
       child: Container(
-        padding: 16.paddingHor + 8.paddingVer,
+        padding: e.isSelected ? 3.padding : 0.padding,
         margin: 16.paddingBottom,
-        decoration: BoxDecoration(
-          borderRadius: 16.radius,
-          color: color.withOpacity(0.5),
-        ),
-        child: Row(
-          children: [
-            AnswerChoice(title: e.choiceLabel ?? '', color: color),
-            16.width,
-            Text(
-              e.answerText ?? '',
-              style: StyleApp.normal(fontSize: 16),
-            ),
-            if(e.answerImageUrl != null)
-              BaseCacheImage(
-                url: e.answerImageUrl ?? '',
-                height: 50,
-                width: 50,
-                fit: BoxFit.fill,
+        decoration: e.isSelected
+            ? BoxDecoration(
+                borderRadius: 19.radius,
+                border: Border.all(
+                  color: color,
+                  width: 2.0,
+                ),
+              )
+            : null,
+        child: Container(
+          padding: 16.paddingHor + 8.paddingVer,
+          decoration: BoxDecoration(
+            borderRadius: 16.radius,
+            color: color.withOpacity(0.5),
+          ),
+          child: Row(
+            children: [
+              AnswerChoice(title: e.choiceLabel ?? '', color: color),
+              16.width,
+              Text(
+                e.answerText ?? '',
+                style: StyleApp.normal(fontSize: 16),
               ),
-            Spacer(),
-            if (e.isSelected) ...[
-              const FaIcon(iconCode: 'f00c', color: Colors.black),
+              if(e.answerImageUrl != null)
+                BaseCacheImage(
+                  url: e.answerImageUrl ?? '',
+                  height: 50,
+                  width: 50,
+                  fit: BoxFit.fill,
+                ),
             ],
-          ],
+          ),
         ),
       ),
     );
