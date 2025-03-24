@@ -3,6 +3,7 @@ import 'package:edu_land/src/data/apis/api_path.dart';
 import 'package:edu_land/src/model/base_model.dart';
 import 'package:edu_land/src/model/question_set_model.dart';
 import 'package:edu_land/src/model/teacher_overview_model.dart';
+import 'package:edu_land/src/model/teacher_profile_model.dart';
 
 import '../data/apis/api_service.dart';
 import '../feature/screen/student/home/student_home_screen.dart';
@@ -65,6 +66,20 @@ class TeacherRepo {
         message: e.toString(),
         data: [],
       );
+    }
+  }
+
+  Future<BaseModel> getTeacherProfile() async {
+    try {
+      final response = await _dio.post(ApiPath.teacherProfile);
+      final dataModel = TeacherProfileModel.fromJson(response.data['result']);
+      return BaseModel(
+        code: response.data['code'],
+        message: response.data['message'],
+        data: dataModel,
+      );
+    } catch (e) {
+      return _handleException(e, dataBool: false);
     }
   }
 
