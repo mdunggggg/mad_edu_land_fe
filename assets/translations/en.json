@@ -8,6 +8,7 @@
   "already_have_account": "Already have an account?",
   "quiz_completed": "Amazing job! You've completed the quiz!",
   "assigned": "Assigned",
+  "assign": "Assign",
   "assigned_exercises": "Assigned Exercises",
   "assignments": "Assignments",
   "attempts_over_time": "Attempts Over Time",
@@ -162,5 +163,8 @@
   "Classroom code already exists" : "Classroom code already exists",
   "color": "Color",
   "got_score": "Got",
-  "created_at": "Create at: "
+  "created_at": "Create at: ",
+  "assign_to_class": "Assign to Class",
+  "enter_class_code": "Enter class code or name",
+  "cancel": "Cancel",
 }

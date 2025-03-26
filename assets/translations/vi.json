@@ -8,6 +8,7 @@
   "already_have_account": "Bạn đã có tài khoản?",
   "quiz_completed": "Làm tốt lắm! Bạn đã hoàn thành bài kiểm tra!",
   "assigned": "Đã giao",
+  "assign": "Giao bài",
   "assigned_exercises": "Bài tập được giao",
   "assignments": "Bài tập",
   "attempts_over_time": "Số lần làm",
@@ -162,5 +163,8 @@
   "Classroom code already exists" : "Mã lớp học đã tồn tại",
   "color": "Màu sắc",
   "got_score": "Đạt",
-  "created_at": "Tạo lúc: "
+  "created_at": "Tạo lúc: ",
+  "assign_to_class": "Giao bài cho lớp học",
+  "enter_class_code": "Nhập mã hoặc tên lớp học",
+  "cancel": "Hủy"
 }

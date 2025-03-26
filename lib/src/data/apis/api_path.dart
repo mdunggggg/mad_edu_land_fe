@@ -11,4 +11,7 @@ class ApiPath {
   static const String myQuestionSet = '$teacher/my-question-sets';
   static const String studentProfile = '/api/student/profile';
   static const String teacherProfile = '/api/teacher/profile';
+  static const String stateAssignedClass = '/api/classrooms/state-assign-question';
+  static const String assignClass = '/api/question-sets/assign-to-classroom';
+
 }

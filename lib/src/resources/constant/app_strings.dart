@@ -12,6 +12,7 @@ abstract class AppStrings {
   static String alreadyHaveAccount = 'already_have_account'.tr();
   static String quizCompleted = 'quiz_completed'.tr();
   static String assigned = 'assigned'.tr();
+  static String assign = 'assign'.tr();
   static String assignedExercises = 'assigned_exercises'.tr();
   static String assignments = 'assignments'.tr();
   static String attemptsOverTime = 'attempts_over_time'.tr();
@@ -163,4 +164,7 @@ abstract class AppStrings {
   static String elementary = 'elementary'.tr();
   static String gotScore = 'got_score'.tr();
   static String createdAt = 'created_at'.tr();
+  static String assignToClass = 'assign_to_class'.tr();
+  static String enterClassCode = 'enter_class_code'.tr();
+  static String cancel = 'cancel'.tr();
 }

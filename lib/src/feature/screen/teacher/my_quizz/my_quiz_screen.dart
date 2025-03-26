@@ -1,6 +1,7 @@
 import 'package:auto_route/annotations.dart';
 import 'package:edu_land/src/bloc/bloc_state.dart';
 import 'package:edu_land/src/feature/components/app_input.dart';
+import 'package:edu_land/src/feature/screen/teacher/my_quizz/assign_quiz_dialog.dart';
 import 'package:edu_land/src/model/question_set_model.dart';
 import 'package:edu_land/src/resources/constant/app_styles.dart';
 import 'package:edu_land/src/shared/extension/ext_date.dart';
@@ -103,18 +104,24 @@ class _MyQuizScreenState extends State<MyQuizScreen> {
                 item.name ?? '',
                 style: StyleApp.normal(fontSize: 18),
               ).expanded(),
-              Container(
-                padding: 10.padding,
-                decoration: const BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Color(AppColors.cD1F),
+              InkWell(
+                borderRadius: BorderRadius.circular(50),
+                child: Container(
+                  padding: 10.padding,
+                  decoration: const BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Color(AppColors.cD1F),
+                  ),
+                  alignment: Alignment.center,
+                  child: const FaIcon(
+                    iconCode: '2b',
+                    color: Color(AppColors.c05),
+                    size: 12,
+                  ),
                 ),
-                alignment: Alignment.center,
-                child: const FaIcon(
-                  iconCode: '2b',
-                  color: Color(AppColors.c05),
-                  size: 12,
-                ),
+                onTap: () {
+                  _showAssignDialog(item.id ?? 0);
+                },
               ),
               4.width,
               Container(
@@ -143,5 +150,11 @@ class _MyQuizScreenState extends State<MyQuizScreen> {
         ],
       ),
     );
+  }
+
+  _showAssignDialog(int questionSetId) {
+    showDialog(context: context, builder: (BuildContext context) {
+      return AssignQuizDialog(questionSetId: questionSetId);
+    });
   }
 }

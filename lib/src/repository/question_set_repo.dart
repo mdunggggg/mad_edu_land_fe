@@ -15,7 +15,7 @@ class QuestionSetRepo {
     try {
       final query = category != null ? {'category': category.name} : null;
       final response =
-          await _dio.get(ApiPath.questionSet, queryParameters: query);
+          await _dio.get(ApiPath.assignClass, queryParameters: query);
       final data = response.data['result'] as List;
       final dataModel = data.map((e) => QuestionSetModel.fromJson(e)).toList();
       return BaseModel(
@@ -64,6 +64,39 @@ class QuestionSetRepo {
           code: 400,
           message: errorMessage,
           data: null // Use the provided dataBool parameter
+        );
+      }
+      return BaseModel(
+        code: 400,
+        message: e.toString(),
+        data: null, // Use the provided dataBool parameter
+      );
+    }
+  }
+
+  Future<BaseModel> assignToClass({required classroomId, required questionSetId}) async {
+    try {
+      final query = {
+        'classroomId': classroomId,
+        'questionSetId': questionSetId,
+      };
+      final response = await _dio.post(ApiPath.assignClass, data: query);
+      return BaseModel(
+        code: response.data['code'],
+        message: response.data['message'],
+        data: response.data['result'] as bool,
+      );
+    }
+    catch(e) {
+      if (e is DioException) {
+        final responseData = e.response?.data;
+        final errorMessage = responseData is Map<String, dynamic>
+            ? responseData['message'] ?? 'Unknown error'
+            : e.message ?? 'Dio error'; // Add null check for e.message
+        return BaseModel(
+            code: 400,
+            message: errorMessage,
+            data: null // Use the provided dataBool parameter
         );
       }
       return BaseModel(

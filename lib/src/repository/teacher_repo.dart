@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:edu_land/src/data/apis/api_path.dart';
 import 'package:edu_land/src/model/base_model.dart';
+import 'package:edu_land/src/model/class_assign_info_model.dart';
 import 'package:edu_land/src/model/question_set_model.dart';
 import 'package:edu_land/src/model/teacher_overview_model.dart';
 import 'package:edu_land/src/model/teacher_profile_model.dart';
@@ -83,6 +84,21 @@ class TeacherRepo {
     }
   }
 
+  Future<BaseModel> getStateAssignedClass({required int questionSetId}) async {
+    try {
+      final query = questionSetId != 0 ? {'questionSetId': questionSetId} : null;
+      final response = await _dio.get(ApiPath.stateAssignedClass, queryParameters: query);
+      final data = response.data['result'] as List;
+      final dataModel = data.map((e) => ClassAssignInfoModel.fromJson(e)).toList();
+      return BaseModel(
+        code: response.data['code'],
+        message: response.data['message'],
+        data: dataModel,
+      );
+    } catch (e) {
+      return _handleException(e, dataBool: false);
+    }
+  }
 
   // Helper function to handle exceptions and return BaseModel
   BaseModel _handleException(dynamic e, {bool dataBool = false}) {
