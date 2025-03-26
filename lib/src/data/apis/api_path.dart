@@ -13,5 +13,7 @@ class ApiPath {
   static const String teacherProfile = '/api/teacher/profile';
   static const String stateAssignedClass = '/api/classrooms/state-assign-question';
   static const String assignClass = '/api/question-sets/assign-to-classroom';
-
+  static const String studentInClassroom = '/api/classrooms/students';
+  static const String questionSetInClassroom = '/api/classrooms/question-sets';
+  static const String addStudentToClassroom = '/api/classrooms/add-student';
 }

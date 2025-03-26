@@ -199,60 +199,70 @@ class _TeacherHomeScreenState extends State<TeacherHomeScreen> {
   }
 
   _buildClass(ClassroomOverviewModel? classroom) {
-    return Container(
-      padding: 16.padding.copyWith(top: 8),
-      decoration: BoxDecoration(
-        color: const Color(AppColors.cFFFF),
-        borderRadius: 16.radius,
-        boxShadow: const [
-          BoxShadow(
-            color: Color(AppColors.cE5),
-            blurRadius: 1,
-            offset: Offset(0, 1),
+    return InkWell(
+      onTap: () {
+        context.router.push(
+          ClassroomDetailRoute(
+            id: classroom?.id ?? -1,
+            title: classroom?.name ?? ' '
           ),
-        ],
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  classroom?.name ?? '',
-                  style: StyleApp.normal(
-                    fontSize: 18,
-                    color: const Color(AppColors.c1F),
+        );
+      },
+      child: Container(
+        padding: 16.padding.copyWith(top: 8),
+        decoration: BoxDecoration(
+          color: const Color(AppColors.cFFFF),
+          borderRadius: 16.radius,
+          boxShadow: const [
+            BoxShadow(
+              color: Color(AppColors.cE5),
+              blurRadius: 1,
+              offset: Offset(0, 1),
+            ),
+          ],
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    classroom?.name ?? '',
+                    style: StyleApp.normal(
+                      fontSize: 18,
+                      color: const Color(AppColors.c1F),
+                    ),
                   ),
-                ),
-                Text(
-                  '${classroom?.totalStudent ?? 0} ${AppStrings.student.toLowerCase()}',
-                  style: StyleApp.normal(
-                    fontSize: 14,
-                    color: const Color(AppColors.c6B),
+                  Text(
+                    '${classroom?.totalStudent ?? 0} ${AppStrings.student.toLowerCase()}',
+                    style: StyleApp.normal(
+                      fontSize: 14,
+                      color: const Color(AppColors.c6B),
+                    ),
                   ),
-                ),
-                8.height,
-                ChipCustom(
-                  color: const Color(AppColors.c4B9),
-                  title: "CODE: ${classroom?.code ?? 'NONE'}",
-                ),
-              ],
+                  8.height,
+                  ChipCustom(
+                    color: const Color(AppColors.c4B9),
+                    title: "CODE: ${classroom?.code ?? 'NONE'}",
+                  ),
+                ],
+              ),
             ),
-          ),
-          Container(
-            padding: 16.padding,
-            decoration: const BoxDecoration(
-              shape: BoxShape.circle,
-              color: Color(AppColors.cF0),
+            Container(
+              padding: 16.padding,
+              decoration: const BoxDecoration(
+                shape: BoxShape.circle,
+                color: Color(AppColors.cF0),
+              ),
+              child: const Icon(
+                Icons.arrow_forward_ios,
+                color: Color(AppColors.c6B9),
+              ),
             ),
-            child: const Icon(
-              Icons.arrow_forward_ios,
-              color: Color(AppColors.c6B9),
-            ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -298,7 +308,7 @@ class _TeacherHomeScreenState extends State<TeacherHomeScreen> {
         Expanded(
           child: InkWell(
             onTap: () {
-              context.router.push(const CreateQuestionSetRoute());
+              context.router.push(CreateQuestionSetRoute());
             },
             child: Container(
               padding: 16.paddingVer,

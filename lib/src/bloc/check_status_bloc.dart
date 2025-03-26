@@ -28,7 +28,7 @@ class CheckStateBloc {
       success?.call();
       Navigator.pop(context);
       if(returnBack) {
-        Navigator.pop(context);
+        Navigator.pop(context, true);
       }
       DialogUtils.showSuccess(context, msg ?? state.msg);
     }

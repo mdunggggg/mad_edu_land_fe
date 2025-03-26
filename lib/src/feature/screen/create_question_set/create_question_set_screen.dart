@@ -20,7 +20,12 @@ import 'question_create_item.dart';
 
 @RoutePage()
 class CreateQuestionSetScreen extends StatefulWidget {
-  const CreateQuestionSetScreen({super.key});
+  const CreateQuestionSetScreen({
+    super.key,
+    this.classId,
+  });
+
+  final int? classId;
 
   @override
   State<CreateQuestionSetScreen> createState() =>
@@ -30,7 +35,9 @@ class CreateQuestionSetScreen extends StatefulWidget {
 class _CreateQuestionSetScreenState extends State<CreateQuestionSetScreen> {
   final CreateQuestionSetBloc _bloc = CreateQuestionSetBloc();
   final ScrollController _scrollController = ScrollController();
-  final TextEditingController _questionSetNameController = TextEditingController();
+  final TextEditingController _questionSetNameController =
+      TextEditingController();
+
 
   @override
   void dispose() {
@@ -51,12 +58,8 @@ class _CreateQuestionSetScreenState extends State<CreateQuestionSetScreen> {
       body: BlocListener<CreateQuestionSetBloc, BlocState>(
         bloc: _bloc,
         listener: (context, state) {
-          CheckStateBloc.check(
-            context,
-            state,
-            msg: state.msg,
-            returnBack: true
-          );
+          CheckStateBloc.check(context, state,
+              msg: state.msg, returnBack: true);
         },
         child: Padding(
           padding: 16.padding.copyWith(top: 0, bottom: 0),
@@ -84,7 +87,7 @@ class _CreateQuestionSetScreenState extends State<CreateQuestionSetScreen> {
         child: PrimaryButton(
           text: AppStrings.createQuiz,
           onClick: () {
-            _bloc.createQs(_questionSetNameController.text);
+            _bloc.createQs(_questionSetNameController.text, widget.classId);
           },
           color: Colors.blue,
           textStyle: StyleApp.normal(color: Colors.white, fontSize: 16),

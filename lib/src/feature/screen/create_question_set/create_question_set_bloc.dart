@@ -43,7 +43,7 @@ class CreateQuestionSetBloc extends Cubit<BlocState> {
     emit(state.copyWith(status: Status.loaded));
   }
 
-  void createQs(String name) async {
+  void createQs(String name, int? classId) async {
     emit(
       state.copyWith(
         status: Status.loading,
@@ -55,6 +55,11 @@ class CreateQuestionSetBloc extends Cubit<BlocState> {
       MapEntry('category', category.name),
       MapEntry('name', name),
     ]);
+    if(classId != null) {
+      formData.fields.addAll([
+        MapEntry('classroomId', classId.toString()),
+      ]);
+    }
 
     for (var i = 0; i < questions.length; i++) {
       final question = questions[i];
