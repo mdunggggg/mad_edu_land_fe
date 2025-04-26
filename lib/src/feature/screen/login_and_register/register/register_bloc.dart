@@ -29,6 +29,7 @@ class RegisterBloc extends Cubit<BlocState> {
       'username': username,
       'password': password,
       'fullName': fullName,
+      'role': type.name.toUpperCase(),
     };
     if(type == Role.student) {
       body.addAll({'grade': grade});

@@ -14,11 +14,8 @@ class AuthRepo {
     required Map<String, dynamic> body,
     required Role type,
   }) async {
-    final path = type == Role.student
-        ? ApiPath.registerStudent
-        : ApiPath.registerTeacher;
     try {
-      final response = await _dio.post(path, data: body);
+      final response = await _dio.post(ApiPath.register, data: body);
       final data = response.data['result'] as bool?;
       return BaseModel(
         code: response.data['code'],
