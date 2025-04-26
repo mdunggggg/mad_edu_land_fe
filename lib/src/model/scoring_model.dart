@@ -11,6 +11,8 @@ class ScoringModel with _$ScoringModel {
     int? correct,
     int? total,
     double? score,
+    int? timeTaken,
+    int? historyId,
   }) = _ScoringModel;
 
   factory ScoringModel.fromJson(Map<String, dynamic> json) => _$ScoringModelFromJson(json);

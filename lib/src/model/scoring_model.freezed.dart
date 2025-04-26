@@ -23,6 +23,8 @@ mixin _$ScoringModel {
   int? get correct => throw _privateConstructorUsedError;
   int? get total => throw _privateConstructorUsedError;
   double? get score => throw _privateConstructorUsedError;
+  int? get timeTaken => throw _privateConstructorUsedError;
+  int? get historyId => throw _privateConstructorUsedError;
 
   /// Serializes this ScoringModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -40,7 +42,12 @@ abstract class $ScoringModelCopyWith<$Res> {
           ScoringModel value, $Res Function(ScoringModel) then) =
       _$ScoringModelCopyWithImpl<$Res, ScoringModel>;
   @useResult
-  $Res call({int? correct, int? total, double? score});
+  $Res call(
+      {int? correct,
+      int? total,
+      double? score,
+      int? timeTaken,
+      int? historyId});
 }
 
 /// @nodoc
@@ -61,6 +68,8 @@ class _$ScoringModelCopyWithImpl<$Res, $Val extends ScoringModel>
     Object? correct = freezed,
     Object? total = freezed,
     Object? score = freezed,
+    Object? timeTaken = freezed,
+    Object? historyId = freezed,
   }) {
     return _then(_value.copyWith(
       correct: freezed == correct
@@ -75,6 +84,14 @@ class _$ScoringModelCopyWithImpl<$Res, $Val extends ScoringModel>
           ? _value.score
           : score // ignore: cast_nullable_to_non_nullable
               as double?,
+      timeTaken: freezed == timeTaken
+          ? _value.timeTaken
+          : timeTaken // ignore: cast_nullable_to_non_nullable
+              as int?,
+      historyId: freezed == historyId
+          ? _value.historyId
+          : historyId // ignore: cast_nullable_to_non_nullable
+              as int?,
     ) as $Val);
   }
 }
@@ -87,7 +104,12 @@ abstract class _$$ScoringModelImplCopyWith<$Res>
       __$$ScoringModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int? correct, int? total, double? score});
+  $Res call(
+      {int? correct,
+      int? total,
+      double? score,
+      int? timeTaken,
+      int? historyId});
 }
 
 /// @nodoc
@@ -106,6 +128,8 @@ class __$$ScoringModelImplCopyWithImpl<$Res>
     Object? correct = freezed,
     Object? total = freezed,
     Object? score = freezed,
+    Object? timeTaken = freezed,
+    Object? historyId = freezed,
   }) {
     return _then(_$ScoringModelImpl(
       correct: freezed == correct
@@ -120,6 +144,14 @@ class __$$ScoringModelImplCopyWithImpl<$Res>
           ? _value.score
           : score // ignore: cast_nullable_to_non_nullable
               as double?,
+      timeTaken: freezed == timeTaken
+          ? _value.timeTaken
+          : timeTaken // ignore: cast_nullable_to_non_nullable
+              as int?,
+      historyId: freezed == historyId
+          ? _value.historyId
+          : historyId // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
@@ -127,7 +159,9 @@ class __$$ScoringModelImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ScoringModelImpl extends _ScoringModel {
-  const _$ScoringModelImpl({this.correct, this.total, this.score}) : super._();
+  const _$ScoringModelImpl(
+      {this.correct, this.total, this.score, this.timeTaken, this.historyId})
+      : super._();
 
   factory _$ScoringModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$ScoringModelImplFromJson(json);
@@ -138,10 +172,14 @@ class _$ScoringModelImpl extends _ScoringModel {
   final int? total;
   @override
   final double? score;
+  @override
+  final int? timeTaken;
+  @override
+  final int? historyId;
 
   @override
   String toString() {
-    return 'ScoringModel(correct: $correct, total: $total, score: $score)';
+    return 'ScoringModel(correct: $correct, total: $total, score: $score, timeTaken: $timeTaken, historyId: $historyId)';
   }
 
   @override
@@ -151,12 +189,17 @@ class _$ScoringModelImpl extends _ScoringModel {
             other is _$ScoringModelImpl &&
             (identical(other.correct, correct) || other.correct == correct) &&
             (identical(other.total, total) || other.total == total) &&
-            (identical(other.score, score) || other.score == score));
+            (identical(other.score, score) || other.score == score) &&
+            (identical(other.timeTaken, timeTaken) ||
+                other.timeTaken == timeTaken) &&
+            (identical(other.historyId, historyId) ||
+                other.historyId == historyId));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, correct, total, score);
+  int get hashCode =>
+      Object.hash(runtimeType, correct, total, score, timeTaken, historyId);
 
   /// Create a copy of ScoringModel
   /// with the given fields replaced by the non-null parameter values.
@@ -178,7 +221,9 @@ abstract class _ScoringModel extends ScoringModel {
   const factory _ScoringModel(
       {final int? correct,
       final int? total,
-      final double? score}) = _$ScoringModelImpl;
+      final double? score,
+      final int? timeTaken,
+      final int? historyId}) = _$ScoringModelImpl;
   const _ScoringModel._() : super._();
 
   factory _ScoringModel.fromJson(Map<String, dynamic> json) =
@@ -190,6 +235,10 @@ abstract class _ScoringModel extends ScoringModel {
   int? get total;
   @override
   double? get score;
+  @override
+  int? get timeTaken;
+  @override
+  int? get historyId;
 
   /// Create a copy of ScoringModel
   /// with the given fields replaced by the non-null parameter values.

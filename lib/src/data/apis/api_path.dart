@@ -16,4 +16,5 @@ class ApiPath {
   static const String studentInClassroom = '/api/classrooms/students';
   static const String questionSetInClassroom = '/api/classrooms/question-sets';
   static const String addStudentToClassroom = '/api/classrooms/add-student';
+  static const String historyQuizPlayed = '/api/history';
 }

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:auto_route/annotations.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:edu_land/src/bloc/bloc_state.dart';
@@ -11,6 +13,7 @@ import 'package:edu_land/src/resources/constant/app_styles.dart';
 import 'package:edu_land/src/resources/constant/dummy_data.dart';
 import 'package:edu_land/src/router/router.gr.dart';
 import 'package:edu_land/src/shared/extension/ext_context.dart';
+import 'package:edu_land/src/shared/extension/ext_duration.dart';
 import 'package:edu_land/src/shared/extension/ext_num.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -37,10 +40,23 @@ class PlayQuizScreen extends StatefulWidget {
 class _PlayQuizScreenState extends State<PlayQuizScreen> {
   final bloc = PlayQuizBloc();
 
+  // Timer related variables
+  final timeNotifier = ValueNotifier<Duration>(Duration.zero);
+  Timer? timer;
+
   @override
   void initState() {
     bloc.init(questionSetId: widget.idQuestionSet);
     super.initState();
+    _startTimer();
+  }
+
+  @override
+  void dispose() {
+    _stopTimer();
+    timer = null;
+    timeNotifier.dispose();
+    super.dispose();
   }
 
   @override
@@ -87,6 +103,8 @@ class _PlayQuizScreenState extends State<PlayQuizScreen> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   _buildHeader(),
+                  4.height,
+                  _buildTimerUI(),
                   8.height,
                   _buildProgress(),
                   8.height,
@@ -117,13 +135,36 @@ class _PlayQuizScreenState extends State<PlayQuizScreen> {
   _buildHeader() {
     return Row(
       children: [
-        // Text(widget.title, style: StyleApp.normal(fontSize: 24),),
-        const Spacer(),
+        Expanded(
+            child: Text(
+              widget.title,
+              style: StyleApp.normal(fontSize: 24),
+              overflow: TextOverflow.ellipsis,
+              maxLines: 1,
+            ),
+        ),
+        const SizedBox(width: 24.0),
         Text(
           '${bloc.currentIndex + 1}/${bloc.questions.length}',
           style: StyleApp.normal(fontSize: 16),
         ),
       ],
+    );
+  }
+  
+  _buildTimerUI() {
+    return ValueListenableBuilder<Duration>(
+      valueListenable: timeNotifier,
+      builder: (BuildContext context, Duration value, Widget? child) {
+        return Text(
+          value.formatMMss,
+          style: const TextStyle(
+            fontSize: 24,
+            fontWeight: FontWeight.bold,
+            color: Color(AppColors.c1F),
+          ),
+        );
+      },
     );
   }
 
@@ -264,7 +305,9 @@ class _PlayQuizScreenState extends State<PlayQuizScreen> {
 
         InkWell(
           onTap: () async {
-            final model = await bloc.submit(questionSetId: widget.idQuestionSet);
+            _stopTimer();
+            int elapsedTime = getElapsedTimeInSeconds();
+            final model = await bloc.submit(questionSetId: widget.idQuestionSet, timeTaken: elapsedTime);
             if (model != null  && mounted) {
               print('result: ${model.toJson()}');
               context.router.push(ResultPlayQuizRoute(model: model));
@@ -283,7 +326,7 @@ class _PlayQuizScreenState extends State<PlayQuizScreen> {
                 ),
               ],
             ),
-            alignment: Alignment.center,
+
             child: const FaIcon(iconCode: 'f00c'),
           ),
         ),
@@ -305,5 +348,19 @@ class _PlayQuizScreenState extends State<PlayQuizScreen> {
         ),
       ],
     );
+  }
+
+  void _startTimer() {
+    timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      timeNotifier.value = timeNotifier.value + const Duration(seconds: 1);
+    });
+  }
+
+  void _stopTimer() {
+    timer?.cancel();
+  }
+
+  int getElapsedTimeInSeconds() {
+    return timeNotifier.value.inSeconds;
   }
 }

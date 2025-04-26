@@ -68,7 +68,7 @@ class PlayQuizBloc extends Cubit<BlocState> {
     emit(state.copyWith(status: Status.loaded));
   }
 
-  Future<ScoringModel?> submit({required int questionSetId}) async {
+  Future<ScoringModel?> submit({required int questionSetId, required int timeTaken}) async {
     final Map<String, dynamic> answers = {};
     for (int i = 0; i < _questions.length; i++) {
       final List<String> selectedAnswers = [];
@@ -81,6 +81,7 @@ class PlayQuizBloc extends Cubit<BlocState> {
     }
     final payload = {
       'questionSetId': questionSetId,
+      'timeTaken': timeTaken,
       'answers': answers,
     };
     final result = await questionRepo.scoring(body: payload);

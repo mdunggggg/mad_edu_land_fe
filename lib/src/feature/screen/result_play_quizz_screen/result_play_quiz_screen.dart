@@ -1,8 +1,10 @@
 import 'package:auto_route/annotations.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:edu_land/src/feature/components/fa_icon.dart';
 import 'package:edu_land/src/model/scoring_model.dart';
 import 'package:edu_land/src/resources/constant/app_images.dart';
 import 'package:edu_land/src/resources/constant/app_strings.dart';
+import 'package:edu_land/src/router/router.gr.dart';
 import 'package:edu_land/src/shared/extension/ext_num.dart';
 import 'package:flutter/material.dart';
 
@@ -204,9 +206,9 @@ class ResultPlayQuizScreen extends StatelessWidget {
                               ),
                             ),
                             const Spacer(),
-                            const Text(
-                              '4:30',
-                              style: TextStyle(
+                            Text(
+                              (model.timeTaken ?? 0).formatTimeTakenToMMss(),
+                              style: const TextStyle(
                                 fontSize: 16,
                                 color: Color(AppColors.c3B),
                               ),
@@ -221,13 +223,17 @@ class ResultPlayQuizScreen extends StatelessWidget {
                 MainButton(
                   buttonTitle: AppStrings.reviewAnswers,
                   backgroundColor: const Color(AppColors.c4F),
-                  onPressed: () {},
+                  onPressed: () {
+                    context.router.push(ReviewQuizPlayedRoute(historyId: model.historyId ?? 0));
+                  },
                 ),
                 const SizedBox(height: 16.0,),
                 MainButton(
                   buttonTitle: AppStrings.continueLearning,
                   backgroundColor: const Color(AppColors.c10),
-                  onPressed: () {},
+                  onPressed: () {
+                    context.router.popUntilRouteWithName(QuestionSetDetailRoute.name);
+                  },
                 ),
               ],
             ),

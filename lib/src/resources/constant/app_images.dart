@@ -10,5 +10,7 @@ abstract class AppImages {
   static const String imgCounting = '$_packageName/img_counting.png';
   static const String imgVietnamese = '$_packageName/img_vietnamese.png';
   static const String imgResult = '$_packageName/img_result_quiz.png';
+  static const String icWrongAnswer = '$_packageName/ic_wrong_answer.svg';
+  static const String icCorrectAnswer = '$_packageName/ic_correct_answer.svg';
 }
 

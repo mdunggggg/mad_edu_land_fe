@@ -11,6 +11,8 @@ _$ScoringModelImpl _$$ScoringModelImplFromJson(Map<String, dynamic> json) =>
       correct: (json['correct'] as num?)?.toInt(),
       total: (json['total'] as num?)?.toInt(),
       score: (json['score'] as num?)?.toDouble(),
+      timeTaken: (json['timeTaken'] as num?)?.toInt(),
+      historyId: (json['historyId'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$$ScoringModelImplToJson(_$ScoringModelImpl instance) =>
@@ -18,4 +20,6 @@ Map<String, dynamic> _$$ScoringModelImplToJson(_$ScoringModelImpl instance) =>
       'correct': instance.correct,
       'total': instance.total,
       'score': instance.score,
+      'timeTaken': instance.timeTaken,
+      'historyId': instance.historyId,
     };

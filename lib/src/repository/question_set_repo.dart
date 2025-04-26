@@ -15,7 +15,7 @@ class QuestionSetRepo {
     try {
       final query = category != null ? {'category': category.name} : null;
       final response =
-          await _dio.get(ApiPath.assignClass, queryParameters: query);
+          await _dio.get(ApiPath.questionSet, queryParameters: query);
       final data = response.data['result'] as List;
       final dataModel = data.map((e) => QuestionSetModel.fromJson(e)).toList();
       return BaseModel(
