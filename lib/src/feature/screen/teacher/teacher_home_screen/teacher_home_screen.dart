@@ -187,11 +187,19 @@ class _TeacherHomeScreenState extends State<TeacherHomeScreen> {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(AppStrings.classes, style: StyleApp.normal(fontSize: 24)),
-        Text(
-          AppStrings.viewAll,
-          style: StyleApp.normal(
-            fontSize: 16,
-            color: const Color(AppColors.c4B),
+        InkWell(
+          onTap: () {
+            context.router.push(const TeacherClassListRoute());
+          },
+          child: Padding(
+            padding: const EdgeInsets.all(4.0),
+            child: Text(
+              AppStrings.viewAll,
+              style: StyleApp.normal(
+                fontSize: 16,
+                color: const Color(AppColors.c4B),
+              ),
+            ),
           ),
         ),
       ],

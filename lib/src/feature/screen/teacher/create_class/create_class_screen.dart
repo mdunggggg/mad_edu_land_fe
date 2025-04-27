@@ -56,9 +56,9 @@ class _CreateClassScreenState extends State<CreateClassScreen> {
       child: Scaffold(
         backgroundColor: const Color(AppColors.cF9),
         appBar: AppBar(
-          title: Text(AppStrings.createNewClass),
-          centerTitle: true,
-          backgroundColor: Colors.white,
+            title: Text(AppStrings.createNewClass),
+            centerTitle: true,
+            backgroundColor: Colors.white,
         ),
         body: Padding(
           padding: 16.padding,

@@ -19,14 +19,14 @@ import 'package:edu_land/src/feature/screen/question_set_detail/question_set_det
     as _i7;
 import 'package:edu_land/src/feature/screen/result_play_quizz_screen/result_play_quiz_screen.dart'
     as _i8;
-import 'package:edu_land/src/feature/screen/review_quiz_played/review_quiz_played_screen.dart'
-    as _i9;
 import 'package:edu_land/src/feature/screen/select_role/select_role_screen.dart'
-    as _i10;
-import 'package:edu_land/src/feature/screen/splash/splash_screen.dart' as _i11;
+    as _i9;
+import 'package:edu_land/src/feature/screen/splash/splash_screen.dart' as _i10;
 import 'package:edu_land/src/feature/screen/student/home/student_home_screen.dart'
     as _i17;
 import 'package:edu_land/src/feature/screen/student/student_homepage_screen.dart'
+    as _i11;
+import 'package:edu_land/src/feature/screen/teacher/class_list/teacher_class_list_screen.dart'
     as _i12;
 import 'package:edu_land/src/feature/screen/teacher/classroom_detail/classroom_detail_screen.dart'
     as _i1;
@@ -406,54 +406,7 @@ class ResultPlayQuizRouteArgs {
 }
 
 /// generated route for
-/// [_i9.ReviewQuizPlayedScreen]
-class ReviewQuizPlayedRoute
-    extends _i15.PageRouteInfo<ReviewQuizPlayedRouteArgs> {
-  ReviewQuizPlayedRoute({
-    _i16.Key? key,
-    required int historyId,
-    List<_i15.PageRouteInfo>? children,
-  }) : super(
-          ReviewQuizPlayedRoute.name,
-          args: ReviewQuizPlayedRouteArgs(
-            key: key,
-            historyId: historyId,
-          ),
-          initialChildren: children,
-        );
-
-  static const String name = 'ReviewQuizPlayedRoute';
-
-  static _i15.PageInfo page = _i15.PageInfo(
-    name,
-    builder: (data) {
-      final args = data.argsAs<ReviewQuizPlayedRouteArgs>();
-      return _i9.ReviewQuizPlayedScreen(
-        key: args.key,
-        historyId: args.historyId,
-      );
-    },
-  );
-}
-
-class ReviewQuizPlayedRouteArgs {
-  const ReviewQuizPlayedRouteArgs({
-    this.key,
-    required this.historyId,
-  });
-
-  final _i16.Key? key;
-
-  final int historyId;
-
-  @override
-  String toString() {
-    return 'ReviewQuizPlayedRouteArgs{key: $key, historyId: $historyId}';
-  }
-}
-
-/// generated route for
-/// [_i10.SelectRoleScreen]
+/// [_i9.SelectRoleScreen]
 class SelectRoleRoute extends _i15.PageRouteInfo<SelectRoleRouteArgs> {
   SelectRoleRoute({
     _i16.Key? key,
@@ -474,7 +427,7 @@ class SelectRoleRoute extends _i15.PageRouteInfo<SelectRoleRouteArgs> {
     name,
     builder: (data) {
       final args = data.argsAs<SelectRoleRouteArgs>();
-      return _i10.SelectRoleScreen(
+      return _i9.SelectRoleScreen(
         key: args.key,
         isRegister: args.isRegister,
       );
@@ -499,7 +452,7 @@ class SelectRoleRouteArgs {
 }
 
 /// generated route for
-/// [_i11.SplashScreen]
+/// [_i10.SplashScreen]
 class SplashRoute extends _i15.PageRouteInfo<void> {
   const SplashRoute({List<_i15.PageRouteInfo>? children})
       : super(
@@ -512,13 +465,13 @@ class SplashRoute extends _i15.PageRouteInfo<void> {
   static _i15.PageInfo page = _i15.PageInfo(
     name,
     builder: (data) {
-      return const _i11.SplashScreen();
+      return const _i10.SplashScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i12.StudentHomepageScreen]
+/// [_i11.StudentHomepageScreen]
 class StudentHomepageRoute extends _i15.PageRouteInfo<void> {
   const StudentHomepageRoute({List<_i15.PageRouteInfo>? children})
       : super(
@@ -531,7 +484,26 @@ class StudentHomepageRoute extends _i15.PageRouteInfo<void> {
   static _i15.PageInfo page = _i15.PageInfo(
     name,
     builder: (data) {
-      return const _i12.StudentHomepageScreen();
+      return const _i11.StudentHomepageScreen();
+    },
+  );
+}
+
+/// generated route for
+/// [_i12.TeacherClassListScreen]
+class TeacherClassListRoute extends _i15.PageRouteInfo<void> {
+  const TeacherClassListRoute({List<_i15.PageRouteInfo>? children})
+      : super(
+          TeacherClassListRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'TeacherClassListRoute';
+
+  static _i15.PageInfo page = _i15.PageInfo(
+    name,
+    builder: (data) {
+      return const _i12.TeacherClassListScreen();
     },
   );
 }
