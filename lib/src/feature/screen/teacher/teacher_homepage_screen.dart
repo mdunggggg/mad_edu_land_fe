@@ -6,6 +6,8 @@ import 'package:edu_land/src/feature/screen/teacher/teacher_home_screen/teacher_
 import 'package:edu_land/src/resources/constant/app_colors.dart';
 import 'package:edu_land/src/resources/constant/app_strings.dart';
 import 'package:flutter/material.dart';
+
+import '../forum/list_forum/list_forum_screen.dart';
 @RoutePage()
 class TeacherHomepageScreen extends StatefulWidget {
   const TeacherHomepageScreen({super.key});
@@ -21,11 +23,7 @@ class _TeacherHomepageScreenState extends State<TeacherHomepageScreen> {
   static const List<Widget> _widgetOptions = <Widget>[
     TeacherHomeScreen(),
     MyQuizScreen(),
-    Center(
-      child: Text(
-        'Index 2: Forum',
-      ),
-    ),
+    ListForumScreen(),
     TeacherProfileScreen(),
   ];
 

@@ -167,4 +167,12 @@ abstract class AppStrings {
   static String assignToClass = 'assign_to_class'.tr();
   static String enterClassCode = 'enter_class_code'.tr();
   static String cancel = 'cancel'.tr();
+  static String like = 'like'.tr();
+  static String createPost = 'create_post'.tr();
+  static String title = 'title'.tr();
+  static String enterPostTitle = 'enter_title'.tr();
+  static String content = 'content'.tr();
+  static String enterPostContent = 'enter_content'.tr();
+  static String readMore = 'read_more'.tr();
+  static String readLess = 'read_less'.tr();
 }

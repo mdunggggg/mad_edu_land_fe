@@ -167,4 +167,12 @@
   "assign_to_class": "Assign to Class",
   "enter_class_code": "Enter class code or name",
   "cancel": "Cancel",
+  "like": "Likes",
+  "create_post": "Create Post",
+  "title": "Title",
+  "enter_title": "Enter post title...",
+  "content": "Content",
+  "enter_content": "Write your post content here...",
+  "read_more": "Read more",
+  "read_less": "Read less"
 }

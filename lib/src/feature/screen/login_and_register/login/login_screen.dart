@@ -41,10 +41,12 @@ class _LoginScreenState extends State<LoginScreen>
   @override
   void initState() {
     bloc.type = widget.role;
-    usernameCtrl.text = "1";
-    passwordCtrl.text = "1";
+    usernameCtrl.text = bloc.type == Role.student ? 'hocsinh' : 'giaovien';
+    passwordCtrl.text = '1';
     super.initState();
   }
+
+
 
   @override
   void dispose() {

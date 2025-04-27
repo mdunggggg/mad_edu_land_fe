@@ -19,4 +19,5 @@ class ApiPath {
   static const String getMyClassrooms = '/api/student/classrooms';
   static const String historyQuizPlayed = '/api/history';
   static const String teacherClassList = '/api/teacher/my-classrooms';
+  static const String posts = '/api/posts';
 }

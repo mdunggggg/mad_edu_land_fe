@@ -166,5 +166,13 @@
   "created_at": "Tạo lúc: ",
   "assign_to_class": "Giao bài cho lớp học",
   "enter_class_code": "Nhập mã hoặc tên lớp học",
-  "cancel": "Hủy"
+  "cancel": "Hủy",
+  "like": "Luợt thích",
+  "create_post": "Tạo bài viết",
+  "title": "Tiêu đề",
+  "enter_title": "Nhập tiêu đề bài viết...",
+    "content": "Nội dung",
+    "enter_content": "Nhập nội dung bài viết...",
+  "read_more": "Xem thêm",
+    "read_less": "Thu gọn"
 }
