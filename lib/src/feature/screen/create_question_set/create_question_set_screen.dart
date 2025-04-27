@@ -231,6 +231,8 @@ class _CreateQuestionSetScreenState extends State<CreateQuestionSetScreen> {
         return ListView.separated(
           itemBuilder: (context, index) {
             return QuestionCreateItem(
+              key: ValueKey(_bloc.questions[index].hashCode),
+              index: index,
               model: _bloc.questions[index],
               onRemove: () {
                 _bloc.removeQuestion(index);

@@ -18,6 +18,7 @@ import '../../components/app_input.dart';
 class QuestionCreateItem extends StatefulWidget {
   const QuestionCreateItem({
     super.key,
+    required this.index,
     required this.onRemove,
     required this.model,
     required this.onChanged,
@@ -25,6 +26,7 @@ class QuestionCreateItem extends StatefulWidget {
 
   final VoidCallback onRemove;
   final QuestionCreateModel model;
+  final int index;
   final Function(QuestionCreateModel) onChanged;
 
   @override
@@ -69,10 +71,13 @@ class _QuestionCreateItemState extends State<QuestionCreateItem> {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
-          'Cau hoi 1',
+          'Cau hoi ${widget.index + 1}',
           style: StyleApp.normal(fontSize: 16),
         ),
-        const FaIcon(iconCode: 'f1f8', color: Colors.red),
+        InkWell(
+          onTap: widget.onRemove,
+            child: const FaIcon(iconCode: 'f1f8', color: Colors.red)
+        ),
       ],
     );
   }
@@ -80,6 +85,7 @@ class _QuestionCreateItemState extends State<QuestionCreateItem> {
   _buildQuestionTitle() {
     return AppInput(
       hintText: AppStrings.enterQuestion,
+      initialValue: widget.model.questionText,
       label: AppStrings.questionText,
       borderColor: const Color(AppColors.cE5),
       bgColor: Colors.white,
