@@ -1,6 +1,7 @@
 import 'package:auto_route/annotations.dart';
 import 'package:edu_land/src/feature/components/fa_icon.dart';
 import 'package:edu_land/src/feature/screen/student/home/student_home_screen.dart';
+import 'package:edu_land/src/feature/screen/student/my_classrooms/my_classrooms_screen.dart';
 import 'package:edu_land/src/feature/screen/student/profile/student_profile_screen.dart';
 import 'package:edu_land/src/feature/screen/welcome/welcome_screen.dart';
 import 'package:edu_land/src/resources/constant/app_colors.dart';
@@ -20,11 +21,7 @@ class _StudentHomepageScreenState extends State<StudentHomepageScreen> {
 
   static const List<Widget> _widgetOptions = <Widget>[
     StudentHomeScreen(),
-    Center(
-      child: Text(
-        'Index 1: Classes',
-      ),
-    ),
+    MyClassroomsScreen(),
     Center(
       child: Text(
         'Index 2: Forum',
