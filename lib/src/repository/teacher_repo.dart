@@ -131,6 +131,19 @@ class TeacherRepo {
     }
   }
 
+  Future<BaseModel> deleteQuestionSet({required int questionSetId}) async {
+    try {
+      final response = await _dio.delete('${ApiPath.deleteQuestionSet}/$questionSetId');
+      return BaseModel(
+        code: response.data['code'],
+        message: response.data['message'],
+        data: response.data['result'] as bool?,
+      );
+    } catch (e) {
+      return _handleException(e, dataBool: true);
+    }
+  }
+
   // Helper function to handle exceptions and return BaseModel
   BaseModel _handleException(dynamic e, {bool dataBool = false}) {
     if (e is DioException) {

@@ -167,6 +167,9 @@ abstract class AppStrings {
   static String assignToClass = 'assign_to_class'.tr();
   static String enterClassCode = 'enter_class_code'.tr();
   static String cancel = 'cancel'.tr();
+  static String delete = 'delete'.tr();
+  static String confirmDelete = 'confirm_delete'.tr();
+  static String deleteQuizMessage = 'delete_quiz_message'.tr();
   static String like = 'like'.tr();
   static String createPost = 'create_post'.tr();
   static String title = 'title'.tr();

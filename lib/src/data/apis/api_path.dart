@@ -1,7 +1,5 @@
 class ApiPath {
   static const String register = '/api/auth/register';
-  static const String registerStudent = '/api/auth/register/student';
-  static const String registerTeacher = '/api/auth/register/teacher';
   static const String login = '/api/auth/login';
   static const String teacher = '/api/teacher';
   static const String classroom = '/api/classrooms';
@@ -19,5 +17,6 @@ class ApiPath {
   static const String getMyClassrooms = '/api/student/classrooms';
   static const String historyQuizPlayed = '/api/history';
   static const String teacherClassList = '/api/teacher/my-classrooms';
+  static const String deleteQuestionSet = '/api/question-sets';
   static const String posts = '/api/posts';
 }

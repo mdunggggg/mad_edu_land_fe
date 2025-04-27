@@ -1,6 +1,7 @@
 import 'package:auto_route/annotations.dart';
 import 'package:edu_land/src/bloc/bloc_state.dart';
 import 'package:edu_land/src/feature/components/app_input.dart';
+import 'package:edu_land/src/feature/components/delete_dialog.dart';
 import 'package:edu_land/src/feature/screen/teacher/my_quizz/assign_quiz_dialog.dart';
 import 'package:edu_land/src/model/question_set_model.dart';
 import 'package:edu_land/src/resources/constant/app_styles.dart';
@@ -10,6 +11,7 @@ import 'package:edu_land/src/shared/extension/ext_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../bloc/check_status_bloc.dart';
 import '../../../../resources/constant/app_colors.dart';
 import '../../../../resources/constant/app_strings.dart';
 import '../../../components/fa_icon.dart';
@@ -34,48 +36,63 @@ class _MyQuizScreenState extends State<MyQuizScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color(AppColors.cF9),
-      appBar: AppBar(
-        title: Text(AppStrings.yourQuizzes),
-        backgroundColor: Colors.white,
-        bottom: PreferredSize(
-          preferredSize: const Size.fromHeight(40),
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: AppInput(
-              hintText: AppStrings.searchQuizzes,
-              radius: 999,
-              prefixIcon: const Icon(Icons.search),
-              contentPadding: 8.padding,
-              bgColor: const Color(AppColors.cF3),
+    return BlocListener<MyQuizBloc, BlocState>(
+      bloc: bloc,
+      listener: (context, state) {
+        CheckStateBloc.check(
+            context,
+            state,
+            msg: state.msg,
+            success: () {
+             bloc.init();
+            },
+        );
+      },
+      child: Scaffold(
+        backgroundColor: const Color(AppColors.cF9),
+        appBar: AppBar(
+          title: Text(AppStrings.yourQuizzes),
+          automaticallyImplyLeading: false,
+          centerTitle: true,
+          backgroundColor: Colors.white,
+          bottom: PreferredSize(
+            preferredSize: const Size.fromHeight(40),
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: AppInput(
+                hintText: AppStrings.searchQuizzes,
+                radius: 999,
+                prefixIcon: const Icon(Icons.search),
+                contentPadding: 8.padding,
+                bgColor: const Color(AppColors.cF3),
+              ),
             ),
           ),
         ),
-      ),
-      body: BlocBuilder<MyQuizBloc, BlocState>(
-        bloc: bloc,
-        builder: (context, state) {
-          if (state.status == Status.loading) {
-            return const Center(child: CircularProgressIndicator());
-          }
-          if (state.status == Status.error) {
-            return Center(child: Text(state.msg));
-          }
-          return Padding(
-            padding: 16.padding,
-            child: ListView.separated(
-              itemCount: bloc.questionSets.length,
-              itemBuilder: (context, index) {
-                final item = bloc.questionSets[index];
-                return _buildModel(item);
-              },
-              separatorBuilder: (context, index) {
-                return 16.height;
-              },
-            ),
-          );
-        },
+        body: BlocBuilder<MyQuizBloc, BlocState>(
+          bloc: bloc,
+          builder: (context, state) {
+            if (state.status == Status.loading) {
+              return const Center(child: CircularProgressIndicator());
+            }
+            if (state.status == Status.error) {
+              return Center(child: Text(state.msg));
+            }
+            return Padding(
+              padding: 16.padding,
+              child: ListView.separated(
+                itemCount: bloc.questionSets.length,
+                itemBuilder: (context, index) {
+                  final item = bloc.questionSets[index];
+                  return _buildModel(item);
+                },
+                separatorBuilder: (context, index) {
+                  return 16.height;
+                },
+              ),
+            );
+          },
+        ),
       ),
     );
   }
@@ -124,28 +141,37 @@ class _MyQuizScreenState extends State<MyQuizScreen> {
                 },
               ),
               4.width,
-              Container(
-                padding: 10.padding,
-                decoration: const BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Color(AppColors.cFEE),
+              InkWell(
+                borderRadius: BorderRadius.circular(50),
+                child: Container(
+                  padding: 10.padding,
+                  decoration: const BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Color(AppColors.cFEE),
+                  ),
+                  alignment: Alignment.center,
+                  child: const FaIcon(
+                    iconCode: 'f1f8',
+                    color: Color(AppColors.cDC),
+                    size: 12,
+                  ),
                 ),
-                alignment: Alignment.center,
-                child: const FaIcon(
-                  iconCode: 'f1f8',
-                  color: Color(AppColors.cDC),
-                  size: 12,
-                ),
+                onTap: () {
+                  _showDeleteDialog(item.id ?? 0);
+                },
               ),
             ],
           ),
           Text(
             '${item.totalQuestion} ${AppStrings.question.toLowerCase()}',
-            style: StyleApp.normal(fontSize: 14, color: const Color(AppColors.c6B)),
+            style: StyleApp.normal(
+                fontSize: 14, color: const Color(AppColors.c6B)),
           ),
           Text(
-            '${AppStrings.createdAt} ${item.createdDate.format(format: 'MMM dd, yyyy')}',
-            style: StyleApp.normal(fontSize: 12, color: const Color(AppColors.c6B)),
+            '${AppStrings.createdAt} ${item.createdDate.format(
+                format: 'MMM dd, yyyy')}',
+            style: StyleApp.normal(
+                fontSize: 12, color: const Color(AppColors.c6B)),
           )
         ],
       ),
@@ -155,6 +181,18 @@ class _MyQuizScreenState extends State<MyQuizScreen> {
   _showAssignDialog(int questionSetId) {
     showDialog(context: context, builder: (BuildContext context) {
       return AssignQuizDialog(questionSetId: questionSetId);
+    });
+  }
+
+  _showDeleteDialog(int questionSetId) {
+    showDialog(context: context, builder: (BuildContext context) {
+      return DeleteDialog(
+        title: AppStrings.confirmDelete,
+        message: AppStrings.deleteQuizMessage,
+        onDelete: () {
+          bloc.deleteQuiz(questionSetId);
+        },
+      );
     });
   }
 }
