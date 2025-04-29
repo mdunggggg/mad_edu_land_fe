@@ -177,5 +177,11 @@
   "content": "Content",
   "enter_content": "Write your post content here...",
   "read_more": "Read more",
-  "read_less": "Read less"
+  "read_less": "Read less",
+  "join_class_title": "Join Class",
+  "join_class_message": "Enter the class code to join",
+  "join_class": "Join Class",
+  "class_code_2": "Class Code",
+  "join_class_code_hint": "Enter class code",
+  "join": "Join"
 }

@@ -175,8 +175,13 @@
   "create_post": "Tạo bài viết",
   "title": "Tiêu đề",
   "enter_title": "Nhập tiêu đề bài viết...",
-    "content": "Nội dung",
-    "enter_content": "Nhập nội dung bài viết...",
+  "content": "Nội dung",
+  "enter_content": "Nhập nội dung bài viết...",
   "read_more": "Xem thêm",
-    "read_less": "Thu gọn"
+  "read_less": "Thu gọn",
+  "join_class_title": "Tham gia lớp học",
+  "join_class_message": "Nhập mã lớp học để tham gia",
+  "class_code_2": "Mã lớp học",
+  "join_class_code_hint": "Nhập mã lớp học",
+  "join": "Tham gia"
 }

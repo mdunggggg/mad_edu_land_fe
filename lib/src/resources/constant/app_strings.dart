@@ -178,4 +178,9 @@ abstract class AppStrings {
   static String enterPostContent = 'enter_content'.tr();
   static String readMore = 'read_more'.tr();
   static String readLess = 'read_less'.tr();
+  static String joinClassTitle = 'join_class_title'.tr();
+  static String joinClassMessage = 'join_class_message'.tr();
+  static String classCode2 = 'class_code_2'.tr();
+  static String joinClassCodeHint = 'join_class_code_hint'.tr();
+  static String join = 'join'.tr();
 }

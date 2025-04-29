@@ -53,6 +53,20 @@ class StudentRepo {
     }
   }
 
+  Future<BaseModel> joinClassroom({required String code}) async {
+    try {
+      final response = await _dio.post(ApiPath.joinClassroom,
+          data: {'classroomCode': code});
+      return BaseModel(
+        data: response.data['result'] as bool,
+        code: response.data['code'],
+        message: response.data['message'],
+      );
+    } catch (e) {
+      return _handleException(e);
+    }
+  }
+
   BaseModel _handleException(dynamic e, {bool dataBool = false}) {
     if (e is DioException) {
       final responseData = e.response?.data;

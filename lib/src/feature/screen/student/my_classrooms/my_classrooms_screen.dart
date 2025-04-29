@@ -1,8 +1,10 @@
 import 'dart:math';
 
 import 'package:auto_route/annotations.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:edu_land/src/bloc/bloc_state.dart';
 import 'package:edu_land/src/feature/components/fa_icon.dart';
+import 'package:edu_land/src/feature/screen/student/my_classrooms/enter_class_code_dialog.dart';
 import 'package:edu_land/src/model/classroom_model.dart';
 import 'package:edu_land/src/resources/constant/app_colors.dart';
 import 'package:edu_land/src/resources/constant/app_strings.dart';
@@ -13,8 +15,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:linear_progress_bar/linear_progress_bar.dart';
 
+import '../../../../bloc/check_status_bloc.dart';
 import '../../../../resources/constant/dummy_data.dart';
 import '../../../components/custom_icon.dart';
+import '../../../components/dialog_utils.dart';
 import 'my_classrooms_bloc.dart';
 
 class MyClassroomsScreen extends StatefulWidget {
@@ -38,6 +42,7 @@ class _MyClassroomsScreenState extends State<MyClassroomsScreen> {
     return Scaffold(
       backgroundColor: const Color(AppColors.cF9),
       appBar: AppBar(
+        centerTitle: true,
         title: Text(AppStrings.classes),
         automaticallyImplyLeading: false,
         backgroundColor: Colors.white,
@@ -63,6 +68,18 @@ class _MyClassroomsScreenState extends State<MyClassroomsScreen> {
             );
           },
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            _showEnterClassCodeDialog();
+          },
+          backgroundColor: const Color(AppColors.c3B),
+          shape: const CircleBorder(),
+          child: const FaIcon(
+              iconCode: '2b',
+              color: Colors.white,
+              size: 20,
+          ),
       ),
     );
   }
@@ -108,6 +125,7 @@ class _MyClassroomsScreenState extends State<MyClassroomsScreen> {
                   ],
                 ),
                 8.height,
+                if (classroom.totalQuestionSet != 0)
                 Row(
                   children: [
                     LinearProgressBar(
@@ -130,5 +148,22 @@ class _MyClassroomsScreenState extends State<MyClassroomsScreen> {
         ],
       ),
     );
+  }
+
+  _showEnterClassCodeDialog() {
+    showDialog(context: context, builder: (BuildContext context) {
+      return EnterClassCodeDialog(
+        onClickJoin: (code) async {
+          print('code: $code');
+          final res = await bloc.joinClassroom(code);
+          if(res) {
+            bloc.init();
+          }
+          else{
+            DialogUtils.showError(context, bloc.errorMsg.tr());
+          }
+        },
+      );
+    });
   }
 }

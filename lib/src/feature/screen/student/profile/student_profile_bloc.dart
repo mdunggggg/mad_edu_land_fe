@@ -15,6 +15,4 @@ class StudentProfileBloc extends Cubit<BlocState<StudentProfileModel>> {
     emit(state.copyWith(status: Status.loaded, data: result.data as StudentProfileModel));
   }
 
-
-
 }

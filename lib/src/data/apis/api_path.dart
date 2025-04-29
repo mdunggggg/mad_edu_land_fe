@@ -19,4 +19,5 @@ class ApiPath {
   static const String teacherClassList = '/api/teacher/my-classrooms';
   static const String deleteQuestionSet = '/api/question-sets';
   static const String posts = '/api/posts';
+  static const String joinClassroom = '/api/student/classrooms/join';
 }
