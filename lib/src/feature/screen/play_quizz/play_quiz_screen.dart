@@ -28,10 +28,14 @@ class PlayQuizScreen extends StatefulWidget {
     super.key,
     required this.idQuestionSet,
     required this.title,
+    this.classId,
+    this.onSubmit,
   });
 
   final String title;
   final int idQuestionSet;
+  final int? classId;
+  final VoidCallback? onSubmit;
 
   @override
   State<PlayQuizScreen> createState() => _PlayQuizScreenState();
@@ -46,7 +50,7 @@ class _PlayQuizScreenState extends State<PlayQuizScreen> {
 
   @override
   void initState() {
-    bloc.init(questionSetId: widget.idQuestionSet);
+    bloc.init(questionSetId: widget.idQuestionSet, classId: widget.classId);
     super.initState();
     _startTimer();
   }
@@ -310,6 +314,8 @@ class _PlayQuizScreenState extends State<PlayQuizScreen> {
             final model = await bloc.submit(questionSetId: widget.idQuestionSet, timeTaken: elapsedTime);
             if (model != null  && mounted) {
               print('result: ${model.toJson()}');
+              widget.onSubmit?.call();
+              context.router.maybePop();
               context.router.push(ResultPlayQuizRoute(model: model));
             }
           },

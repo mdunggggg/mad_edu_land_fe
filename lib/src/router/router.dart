@@ -22,5 +22,6 @@ class AppRouter extends RootStackRouter {
     AutoRoute(page: TeacherClassListRoute.page),
     AutoRoute(page: CreatePostRoute.page),
     AutoRoute(page: DetailPostRoute.page),
+    AutoRoute(page: QuestionSetInClassRoute.page),
   ];
 }

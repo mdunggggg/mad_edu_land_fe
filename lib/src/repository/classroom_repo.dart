@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:edu_land/src/data/apis/api_service.dart';
 import 'package:edu_land/src/model/base_model.dart';
+import 'package:edu_land/src/model/question_set_in_student_class_model.dart';
 import 'package:edu_land/src/model/question_set_model.dart';
 import 'package:edu_land/src/model/student_profile_model.dart';
 
@@ -125,4 +126,38 @@ class ClassroomRepo {
       );
     }
   }
+
+  Future<BaseModel<List<QuestionSetInStudentClassModel>>> questionSetInStudentClass(int id) async {
+    try {
+      final res = await _dio.get(
+        '${ApiPath.classroom}/$id/question-sets',
+      );
+      final data = res.data['result'] as List;
+      final dataModel = data.map((e) => QuestionSetInStudentClassModel.fromJson(e)).toList();
+      return BaseModel(
+        code: res.data['code'],
+        message: res.data['message'],
+        data: dataModel,
+      );
+    }
+    catch(e) {
+      if (e is DioException) {
+        final responseData = e.response?.data;
+        final errorMessage = responseData is Map<String, dynamic>
+            ? responseData['message'] ?? 'Unknown error'
+            : e.message ?? 'Dio error'; // Add null check for e.message
+        return BaseModel(
+          code: 400,
+          message: errorMessage,
+          data: [], // Use the provided dataBool parameter
+        );
+      }
+      return BaseModel(
+        code: 400,
+        message: e.toString(),
+        data: [], // Use the provided dataBool parameter
+      );
+    }
+  }
+
 }

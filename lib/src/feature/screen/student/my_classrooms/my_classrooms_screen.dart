@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:auto_route/annotations.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:edu_land/src/bloc/bloc_state.dart';
 import 'package:edu_land/src/feature/components/fa_icon.dart';
@@ -9,6 +10,7 @@ import 'package:edu_land/src/model/classroom_model.dart';
 import 'package:edu_land/src/resources/constant/app_colors.dart';
 import 'package:edu_land/src/resources/constant/app_strings.dart';
 import 'package:edu_land/src/resources/constant/app_styles.dart';
+import 'package:edu_land/src/router/router.gr.dart';
 import 'package:edu_land/src/shared/extension/ext_num.dart';
 import 'package:edu_land/src/shared/extension/ext_widget.dart';
 import 'package:flutter/material.dart';
@@ -62,7 +64,12 @@ class _MyClassroomsScreenState extends State<MyClassroomsScreen> {
               itemCount: state.data?.length ?? 0,
               itemBuilder: (context, index) {
                 final classroom = state.data![index];
-                return _buildClassroomItem(classroom);
+                return InkWell(
+                  onTap: () {
+                    context.router.push(QuestionSetInClassRoute(id: classroom.id!, name: classroom.name ?? ''));
+                  },
+                  child: _buildClassroomItem(classroom),
+                );
               },
               separatorBuilder: (context, index) => 16.height,
             );

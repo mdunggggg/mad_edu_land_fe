@@ -15,6 +15,8 @@ class PlayQuizBloc extends Cubit<BlocState> {
   final repo = QuestionRepo();
   final questionRepo = QuestionRepo();
 
+  int? classroomId;
+
   List<QuestionModel> _questions = [];
 
   List<QuestionModel> get questions => _questions;
@@ -28,8 +30,9 @@ class PlayQuizBloc extends Cubit<BlocState> {
     emit(state.copyWith(status: Status.loaded));
   }
 
-  Future<void> init({required int questionSetId}) async {
+  Future<void> init({required int questionSetId, int? classId}) async {
     emit(state.copyWith(status: Status.loading));
+    classroomId = classId;
     final res = await repo.getQuestions(questionSetId: questionSetId);
     _questions = res.data as List<QuestionModel>;
     emit(state.copyWith(status: Status.loaded, data: _questions));
@@ -84,6 +87,9 @@ class PlayQuizBloc extends Cubit<BlocState> {
       'timeTaken': timeTaken,
       'answers': answers,
     };
+    if(classroomId != null) {
+      payload['classroomId'] = classroomId!;
+    }
     final result = await questionRepo.scoring(body: payload);
     if(result.data != null) {
       return result.data as ScoringModel;

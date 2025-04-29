@@ -25,7 +25,6 @@ class LoginBloc extends Cubit<BlocState> {
     required String password,
   }) async {
     emit(state.copyWith(status: Status.loading, msg: "Đang đăng nhập..."));
-    await Future.delayed(const Duration(seconds: 2));
     final body = {
       'username': username,
       'password': password,
