@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:edu_land/src/bloc/bloc_state.dart';
 import 'package:edu_land/src/feature/components/app_input.dart';
 import 'package:edu_land/src/feature/components/custom_icon.dart';
+import 'package:edu_land/src/feature/components/delete_dialog.dart';
 import 'package:edu_land/src/feature/components/dialog_utils.dart';
 import 'package:edu_land/src/feature/components/primary_button.dart';
 import 'package:edu_land/src/feature/screen/teacher/classroom_detail/tabs/student_tab/student_bloc.dart';
@@ -145,12 +146,38 @@ class _StudentTabState extends State<StudentTab> {
             student.fullName ?? '',
             style: StyleApp.normal(fontSize: 16),
           ).expanded(),
-          const CustomIcon(
-            code: 'e59b',
-            color: Colors.red,
+          InkWell(
+            onTap: () {
+              _showDeleteStudentDialog(widget.id, student.id ?? 0);
+            },
+            child: const CustomIcon(
+              code: 'e59b',
+              color: Colors.red,
+            ),
           )
         ],
       ),
+    );
+  }
+
+  _showDeleteStudentDialog(int classroomId, int studentId) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return DeleteDialog(
+          title: AppStrings.confirmDelete,
+          message: AppStrings.deleteStudentMessage,
+          onDelete: () async {
+            final res = await bloc.removeStudent(
+                classroomId: classroomId, studentId: studentId);
+            if (res) {
+              bloc.init(classroomId);
+            } else {
+              DialogUtils.showError(context, bloc.errorMsg.tr());
+            }
+          },
+        );
+      },
     );
   }
 }

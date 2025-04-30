@@ -183,4 +183,5 @@ abstract class AppStrings {
   static String classCode2 = 'class_code_2'.tr();
   static String joinClassCodeHint = 'join_class_code_hint'.tr();
   static String join = 'join'.tr();
+  static String deleteStudentMessage = 'delete_student_message'.tr();
 }

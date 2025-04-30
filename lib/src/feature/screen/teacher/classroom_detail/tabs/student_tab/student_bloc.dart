@@ -32,4 +32,16 @@ class StudentBloc extends Cubit<BlocState<List<StudentProfileModel>>> {
     errorMsg = response.message;
     return response.data;
   }
+
+  Future<bool> removeStudent({
+    required int classroomId,
+    required int studentId,
+  }) async {
+    final response = await repo.removeStudentFromClassroom(
+      classroomId: classroomId,
+      studentId: studentId,
+    );
+    errorMsg = response.message;
+    return response.data;
+  }
 }

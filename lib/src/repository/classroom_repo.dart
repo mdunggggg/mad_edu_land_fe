@@ -127,6 +127,45 @@ class ClassroomRepo {
     }
   }
 
+  Future<BaseModel> removeStudentFromClassroom({
+    required int classroomId,
+    required int studentId
+  }) async {
+    try {
+      final response = await _dio.delete(
+        ApiPath.removeStudentFromClassroom,
+        data: {
+          'classroomId': classroomId,
+          'studentId': studentId,
+        },
+      );
+
+      return BaseModel(
+        code: response.data['code'],
+        message: response.data['message'],
+        data: response.data['result'] as bool,
+      );
+    }
+    catch (e) {
+      if (e is DioException) {
+        final responseData = e.response?.data;
+        final errorMessage = responseData is Map<String, dynamic>
+            ? responseData['message'] ?? 'Unknown error'
+            : e.message ?? 'Dio error'; // Add null check for e.message
+        return BaseModel(
+          code: 400,
+          message: errorMessage,
+          data: false
+        );
+      }
+      return BaseModel(
+        code: 400,
+        message: e.toString(),
+        data: false
+      );
+    }
+  }
+
   Future<BaseModel<List<QuestionSetInStudentClassModel>>> questionSetInStudentClass(int id) async {
     try {
       final res = await _dio.get(

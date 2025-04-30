@@ -183,5 +183,6 @@
   "join_class": "Join Class",
   "class_code_2": "Class Code",
   "join_class_code_hint": "Enter class code",
-  "join": "Join"
+  "join": "Join",
+  "delete_student_message": "Are you sure you want to delete this student? This action cannot be undone."
 }

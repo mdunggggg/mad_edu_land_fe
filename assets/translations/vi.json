@@ -183,5 +183,6 @@
   "join_class_message": "Nhập mã lớp học để tham gia",
   "class_code_2": "Mã lớp học",
   "join_class_code_hint": "Nhập mã lớp học",
-  "join": "Tham gia"
+  "join": "Tham gia",
+  "delete_student_message": "Bạn có chắc chắn muốn xóa học sinh này không? Hành động này không thể hoàn tác."
 }
