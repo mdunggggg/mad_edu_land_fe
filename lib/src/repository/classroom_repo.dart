@@ -12,12 +12,14 @@ class ClassroomRepo {
 
   Future<BaseModel<List<StudentProfileModel>>> getStudentInClassroom({
     required int classroomId,
+    String? search
   }) async {
     try {
       final response = await _dio.get(
         ApiPath.studentInClassroom,
         queryParameters: {
           'classroomId': classroomId,
+          'search': search,
         },
       );
 

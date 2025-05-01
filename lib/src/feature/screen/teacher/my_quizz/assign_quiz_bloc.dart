@@ -11,9 +11,9 @@ class AssignQuizBloc extends Cubit<BlocState<List<ClassAssignInfoModel>>> {
   final repo = TeacherRepo();
   final questionSetRepo = QuestionSetRepo();
 
-  Future<void> getStateAssignedClass(int questionSetId) async {
+  Future<void> getStateAssignedClass(int questionSetId, {String? search}) async {
     emit(state.copyWith(status: Status.loading));
-    final result = await repo.getStateAssignedClass(questionSetId: questionSetId);
+    final result = await repo.getStateAssignedClass(questionSetId: questionSetId, search: search);
     emit(state.copyWith(status: Status.loaded, data: result.data as List<ClassAssignInfoModel>));
   }
 

@@ -64,6 +64,12 @@ extension ExtNum on num {
     return '${minutes.toString().padLeft(2, '0')}:${seconds.toString().padLeft(2, '0')}';
   }
 
+  String formatTimeTakenToMMss2() {
+    final minutes = this ~/ Duration.secondsPerMinute;
+    final seconds = this % Duration.secondsPerMinute;
+    return '${minutes.toString().padLeft(1, '0')}m ${seconds.toString().padLeft(1, '0')}s';
+  }
+
   bool get isPositive => this > 0;
 
   bool get isNegative => this < 0;

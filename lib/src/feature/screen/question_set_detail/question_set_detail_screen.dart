@@ -99,7 +99,8 @@ class _QuestionSetDetailScreenState extends State<QuestionSetDetailScreen> {
   Widget _buildItem(QuestionSetModel item) {
     return InkWell(
       onTap: () {
-        context.router.push(PlayQuizRoute(idQuestionSet: item.id ?? -1, title: item.name ?? ''));
+        context.router.push(StudentAttemptHistoryRoute(questionSetId: item.id ?? -1, title: item.name ?? ''));
+        // context.router.push(PlayQuizRoute(idQuestionSet: item.id ?? -1, title: item.name ?? ''));
       },
       child: Container(
         padding: 16.padding,

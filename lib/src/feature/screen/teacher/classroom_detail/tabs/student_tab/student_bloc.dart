@@ -10,9 +10,9 @@ class StudentBloc extends Cubit<BlocState<List<StudentProfileModel>>> {
 
   String errorMsg = '';
 
-  void init(int classroomId) {
+  void init(int classroomId, {String? search}) {
     emit(state.copyWith(status: Status.loading));
-    repo.getStudentInClassroom(classroomId: classroomId).then((res) {
+    repo.getStudentInClassroom(classroomId: classroomId, search: search).then((res) {
       if (res.code == 1000) {
         emit(state.copyWith(status: Status.loaded, data: res.data));
       } else {

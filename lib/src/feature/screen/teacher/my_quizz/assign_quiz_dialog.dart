@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../resources/constant/app_styles.dart';
+import '../../../components/delay_call_back.dart';
 import '../../../components/main_button.dart';
 class AssignQuizDialog extends StatefulWidget {
   const AssignQuizDialog({super.key, required this.questionSetId});
@@ -20,6 +21,8 @@ class AssignQuizDialog extends StatefulWidget {
 
 class _AssignQuizDialogState extends State<AssignQuizDialog> {
   final bloc = AssignQuizBloc();
+
+  final delayCallBack = DelayCallBack();
   
   @override
   void initState() {
@@ -61,6 +64,16 @@ class _AssignQuizDialogState extends State<AssignQuizDialog> {
               prefixIcon: const Icon(Icons.search),
               bgColor: const Color(AppColors.cF3),
               borderColor: const Color(AppColors.cE5),
+              onChanged: (p0) {
+                delayCallBack.debounce(
+                  () {
+                    bloc.getStateAssignedClass(
+                      widget.questionSetId,
+                      search: p0.isEmpty ? null : p0.trim()
+                    );
+                  },
+                );
+              },
           ),
           const SizedBox(height: 16.0),
           ConstrainedBox(

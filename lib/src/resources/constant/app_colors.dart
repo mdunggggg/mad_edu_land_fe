@@ -82,4 +82,6 @@ abstract class AppColors {
   static const int cE0 = 0xFFE0E0E0;
   static const int c42 = 0xFF424242;
   static const int cAC = 0xFFAC7BFF;
+  static const int cF8 = 0xFFF87171;
+  static const int cFB9 = 0xFFFB923C;
 }

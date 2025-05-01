@@ -17,9 +17,9 @@ class TeacherClassListBloc extends Cubit<BlocState> {
     _classList = value;
   }
 
-  Future<void> init() async {
+  Future<void> init({String? search}) async {
     emit(state.copyWith(status: Status.loading));
-    final res = await repo.getTeacherClassList();
+    final res = await repo.getTeacherClassList(search: search);
     _classList = res.data as List<TeacherClassInfoModel>;
     emit(state.copyWith(status: Status.loaded, data: _classList));
   }

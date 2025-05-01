@@ -15,6 +15,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import '../../../../resources/constant/app_images.dart';
 import '../../../../resources/constant/app_strings.dart';
 import '../../../components/app_input.dart';
+import '../../../components/delay_call_back.dart';
 
 @RoutePage()
 class TeacherClassListScreen extends StatefulWidget {
@@ -26,6 +27,8 @@ class TeacherClassListScreen extends StatefulWidget {
 
 class _TeacherClassListScreenState extends State<TeacherClassListScreen> {
   final bloc = TeacherClassListBloc();
+
+  final delayCallBack = DelayCallBack();
 
   @override
   void initState() {
@@ -82,6 +85,15 @@ class _TeacherClassListScreenState extends State<TeacherClassListScreen> {
                 prefixIcon: const Icon(Icons.search),
                 contentPadding: 8.padding,
                 bgColor: const Color(AppColors.cF3),
+                onChanged: (p0) {
+                  delayCallBack.debounce(
+                    () {
+                      bloc.init(
+                        search: p0.isEmpty ? null : p0.trim()
+                      );
+                    },
+                  );
+                },
               ),
             ),
         ),

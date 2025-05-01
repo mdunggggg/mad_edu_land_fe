@@ -14,6 +14,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../bloc/check_status_bloc.dart';
 import '../../../../resources/constant/app_colors.dart';
 import '../../../../resources/constant/app_strings.dart';
+import '../../../components/delay_call_back.dart';
 import '../../../components/fa_icon.dart';
 import 'my_quiz_bloc.dart';
 
@@ -27,6 +28,7 @@ class MyQuizScreen extends StatefulWidget {
 
 class _MyQuizScreenState extends State<MyQuizScreen> {
   final bloc = MyQuizBloc();
+  final delayCallBack = DelayCallBack();
 
   @override
   void initState() {
@@ -65,6 +67,15 @@ class _MyQuizScreenState extends State<MyQuizScreen> {
                 prefixIcon: const Icon(Icons.search),
                 contentPadding: 8.padding,
                 bgColor: const Color(AppColors.cF3),
+                onChanged:(p0) {
+                  delayCallBack.debounce(
+                    () {
+                      bloc.init(
+                        search: p0.isEmpty ? null : p0.trim(),
+                      );
+                    },
+                  );
+                } ,
               ),
             ),
           ),

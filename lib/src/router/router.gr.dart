@@ -8,7 +8,7 @@
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:auto_route/auto_route.dart' as _i20;
+import 'package:auto_route/auto_route.dart' as _i21;
 import 'package:edu_land/src/feature/screen/create_question_set/create_question_set_screen.dart'
     as _i4;
 import 'package:edu_land/src/feature/screen/forum/create_post/create_post_screen.dart'
@@ -31,13 +31,15 @@ import 'package:edu_land/src/feature/screen/select_role/select_role_screen.dart'
     as _i14;
 import 'package:edu_land/src/feature/screen/splash/splash_screen.dart' as _i15;
 import 'package:edu_land/src/feature/screen/student/home/student_home_screen.dart'
-    as _i22;
+    as _i23;
 import 'package:edu_land/src/feature/screen/student/question_set_in_class/question_set_in_class_screen.dart'
     as _i11;
-import 'package:edu_land/src/feature/screen/student/student_homepage_screen.dart'
+import 'package:edu_land/src/feature/screen/student/student_attempt_history/student_attempt_history_screen.dart'
     as _i16;
-import 'package:edu_land/src/feature/screen/teacher/class_list/teacher_class_list_screen.dart'
+import 'package:edu_land/src/feature/screen/student/student_homepage_screen.dart'
     as _i17;
+import 'package:edu_land/src/feature/screen/teacher/class_list/teacher_class_list_screen.dart'
+    as _i18;
 import 'package:edu_land/src/feature/screen/teacher/classroom_detail/classroom_detail_screen.dart'
     as _i1;
 import 'package:edu_land/src/feature/screen/teacher/create_class/create_class_screen.dart'
@@ -45,21 +47,21 @@ import 'package:edu_land/src/feature/screen/teacher/create_class/create_class_sc
 import 'package:edu_land/src/feature/screen/teacher/my_quizz/my_quiz_screen.dart'
     as _i8;
 import 'package:edu_land/src/feature/screen/teacher/teacher_homepage_screen.dart'
-    as _i18;
-import 'package:edu_land/src/feature/screen/welcome/welcome_screen.dart'
     as _i19;
-import 'package:edu_land/src/model/scoring_model.dart' as _i23;
-import 'package:flutter/material.dart' as _i21;
+import 'package:edu_land/src/feature/screen/welcome/welcome_screen.dart'
+    as _i20;
+import 'package:edu_land/src/model/scoring_model.dart' as _i24;
+import 'package:flutter/material.dart' as _i22;
 
 /// generated route for
 /// [_i1.ClassroomDetailScreen]
 class ClassroomDetailRoute
-    extends _i20.PageRouteInfo<ClassroomDetailRouteArgs> {
+    extends _i21.PageRouteInfo<ClassroomDetailRouteArgs> {
   ClassroomDetailRoute({
-    _i21.Key? key,
+    _i22.Key? key,
     required int id,
     required String title,
-    List<_i20.PageRouteInfo>? children,
+    List<_i21.PageRouteInfo>? children,
   }) : super(
           ClassroomDetailRoute.name,
           args: ClassroomDetailRouteArgs(
@@ -72,7 +74,7 @@ class ClassroomDetailRoute
 
   static const String name = 'ClassroomDetailRoute';
 
-  static _i20.PageInfo page = _i20.PageInfo(
+  static _i21.PageInfo page = _i21.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<ClassroomDetailRouteArgs>();
@@ -92,7 +94,7 @@ class ClassroomDetailRouteArgs {
     required this.title,
   });
 
-  final _i21.Key? key;
+  final _i22.Key? key;
 
   final int id;
 
@@ -106,11 +108,11 @@ class ClassroomDetailRouteArgs {
 
 /// generated route for
 /// [_i2.CreateClassScreen]
-class CreateClassRoute extends _i20.PageRouteInfo<CreateClassRouteArgs> {
+class CreateClassRoute extends _i21.PageRouteInfo<CreateClassRouteArgs> {
   CreateClassRoute({
-    _i21.Key? key,
-    required _i21.VoidCallback success,
-    List<_i20.PageRouteInfo>? children,
+    _i22.Key? key,
+    required _i22.VoidCallback success,
+    List<_i21.PageRouteInfo>? children,
   }) : super(
           CreateClassRoute.name,
           args: CreateClassRouteArgs(
@@ -122,7 +124,7 @@ class CreateClassRoute extends _i20.PageRouteInfo<CreateClassRouteArgs> {
 
   static const String name = 'CreateClassRoute';
 
-  static _i20.PageInfo page = _i20.PageInfo(
+  static _i21.PageInfo page = _i21.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<CreateClassRouteArgs>();
@@ -140,9 +142,9 @@ class CreateClassRouteArgs {
     required this.success,
   });
 
-  final _i21.Key? key;
+  final _i22.Key? key;
 
-  final _i21.VoidCallback success;
+  final _i22.VoidCallback success;
 
   @override
   String toString() {
@@ -152,11 +154,11 @@ class CreateClassRouteArgs {
 
 /// generated route for
 /// [_i3.CreatePostScreen]
-class CreatePostRoute extends _i20.PageRouteInfo<CreatePostRouteArgs> {
+class CreatePostRoute extends _i21.PageRouteInfo<CreatePostRouteArgs> {
   CreatePostRoute({
-    _i21.Key? key,
-    required _i21.VoidCallback onSuccess,
-    List<_i20.PageRouteInfo>? children,
+    _i22.Key? key,
+    required _i22.VoidCallback onSuccess,
+    List<_i21.PageRouteInfo>? children,
   }) : super(
           CreatePostRoute.name,
           args: CreatePostRouteArgs(
@@ -168,7 +170,7 @@ class CreatePostRoute extends _i20.PageRouteInfo<CreatePostRouteArgs> {
 
   static const String name = 'CreatePostRoute';
 
-  static _i20.PageInfo page = _i20.PageInfo(
+  static _i21.PageInfo page = _i21.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<CreatePostRouteArgs>();
@@ -186,9 +188,9 @@ class CreatePostRouteArgs {
     required this.onSuccess,
   });
 
-  final _i21.Key? key;
+  final _i22.Key? key;
 
-  final _i21.VoidCallback onSuccess;
+  final _i22.VoidCallback onSuccess;
 
   @override
   String toString() {
@@ -199,11 +201,11 @@ class CreatePostRouteArgs {
 /// generated route for
 /// [_i4.CreateQuestionSetScreen]
 class CreateQuestionSetRoute
-    extends _i20.PageRouteInfo<CreateQuestionSetRouteArgs> {
+    extends _i21.PageRouteInfo<CreateQuestionSetRouteArgs> {
   CreateQuestionSetRoute({
-    _i21.Key? key,
+    _i22.Key? key,
     int? classId,
-    List<_i20.PageRouteInfo>? children,
+    List<_i21.PageRouteInfo>? children,
   }) : super(
           CreateQuestionSetRoute.name,
           args: CreateQuestionSetRouteArgs(
@@ -215,7 +217,7 @@ class CreateQuestionSetRoute
 
   static const String name = 'CreateQuestionSetRoute';
 
-  static _i20.PageInfo page = _i20.PageInfo(
+  static _i21.PageInfo page = _i21.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<CreateQuestionSetRouteArgs>(
@@ -234,7 +236,7 @@ class CreateQuestionSetRouteArgs {
     this.classId,
   });
 
-  final _i21.Key? key;
+  final _i22.Key? key;
 
   final int? classId;
 
@@ -246,12 +248,12 @@ class CreateQuestionSetRouteArgs {
 
 /// generated route for
 /// [_i5.DetailPostScreen]
-class DetailPostRoute extends _i20.PageRouteInfo<DetailPostRouteArgs> {
+class DetailPostRoute extends _i21.PageRouteInfo<DetailPostRouteArgs> {
   DetailPostRoute({
-    _i21.Key? key,
+    _i22.Key? key,
     required int id,
-    required _i21.VoidCallback onSuccess,
-    List<_i20.PageRouteInfo>? children,
+    required _i22.VoidCallback onSuccess,
+    List<_i21.PageRouteInfo>? children,
   }) : super(
           DetailPostRoute.name,
           args: DetailPostRouteArgs(
@@ -264,7 +266,7 @@ class DetailPostRoute extends _i20.PageRouteInfo<DetailPostRouteArgs> {
 
   static const String name = 'DetailPostRoute';
 
-  static _i20.PageInfo page = _i20.PageInfo(
+  static _i21.PageInfo page = _i21.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<DetailPostRouteArgs>();
@@ -284,11 +286,11 @@ class DetailPostRouteArgs {
     required this.onSuccess,
   });
 
-  final _i21.Key? key;
+  final _i22.Key? key;
 
   final int id;
 
-  final _i21.VoidCallback onSuccess;
+  final _i22.VoidCallback onSuccess;
 
   @override
   String toString() {
@@ -298,8 +300,8 @@ class DetailPostRouteArgs {
 
 /// generated route for
 /// [_i6.ListForumScreen]
-class ListForumRoute extends _i20.PageRouteInfo<void> {
-  const ListForumRoute({List<_i20.PageRouteInfo>? children})
+class ListForumRoute extends _i21.PageRouteInfo<void> {
+  const ListForumRoute({List<_i21.PageRouteInfo>? children})
       : super(
           ListForumRoute.name,
           initialChildren: children,
@@ -307,7 +309,7 @@ class ListForumRoute extends _i20.PageRouteInfo<void> {
 
   static const String name = 'ListForumRoute';
 
-  static _i20.PageInfo page = _i20.PageInfo(
+  static _i21.PageInfo page = _i21.PageInfo(
     name,
     builder: (data) {
       return const _i6.ListForumScreen();
@@ -318,12 +320,12 @@ class ListForumRoute extends _i20.PageRouteInfo<void> {
 /// generated route for
 /// [_i7.LoginAndRegisterScreen]
 class LoginAndRegisterRoute
-    extends _i20.PageRouteInfo<LoginAndRegisterRouteArgs> {
+    extends _i21.PageRouteInfo<LoginAndRegisterRouteArgs> {
   LoginAndRegisterRoute({
-    _i21.Key? key,
+    _i22.Key? key,
     _i7.TabItem tabItem = _i7.TabItem.login,
     required _i7.Role role,
-    List<_i20.PageRouteInfo>? children,
+    List<_i21.PageRouteInfo>? children,
   }) : super(
           LoginAndRegisterRoute.name,
           args: LoginAndRegisterRouteArgs(
@@ -336,7 +338,7 @@ class LoginAndRegisterRoute
 
   static const String name = 'LoginAndRegisterRoute';
 
-  static _i20.PageInfo page = _i20.PageInfo(
+  static _i21.PageInfo page = _i21.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<LoginAndRegisterRouteArgs>();
@@ -356,7 +358,7 @@ class LoginAndRegisterRouteArgs {
     required this.role,
   });
 
-  final _i21.Key? key;
+  final _i22.Key? key;
 
   final _i7.TabItem tabItem;
 
@@ -370,8 +372,8 @@ class LoginAndRegisterRouteArgs {
 
 /// generated route for
 /// [_i8.MyQuizScreen]
-class MyQuizRoute extends _i20.PageRouteInfo<void> {
-  const MyQuizRoute({List<_i20.PageRouteInfo>? children})
+class MyQuizRoute extends _i21.PageRouteInfo<void> {
+  const MyQuizRoute({List<_i21.PageRouteInfo>? children})
       : super(
           MyQuizRoute.name,
           initialChildren: children,
@@ -379,7 +381,7 @@ class MyQuizRoute extends _i20.PageRouteInfo<void> {
 
   static const String name = 'MyQuizRoute';
 
-  static _i20.PageInfo page = _i20.PageInfo(
+  static _i21.PageInfo page = _i21.PageInfo(
     name,
     builder: (data) {
       return const _i8.MyQuizScreen();
@@ -389,14 +391,14 @@ class MyQuizRoute extends _i20.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i9.PlayQuizScreen]
-class PlayQuizRoute extends _i20.PageRouteInfo<PlayQuizRouteArgs> {
+class PlayQuizRoute extends _i21.PageRouteInfo<PlayQuizRouteArgs> {
   PlayQuizRoute({
-    _i21.Key? key,
+    _i22.Key? key,
     required int idQuestionSet,
     required String title,
     int? classId,
-    _i21.VoidCallback? onSubmit,
-    List<_i20.PageRouteInfo>? children,
+    _i22.VoidCallback? onSubmit,
+    List<_i21.PageRouteInfo>? children,
   }) : super(
           PlayQuizRoute.name,
           args: PlayQuizRouteArgs(
@@ -411,7 +413,7 @@ class PlayQuizRoute extends _i20.PageRouteInfo<PlayQuizRouteArgs> {
 
   static const String name = 'PlayQuizRoute';
 
-  static _i20.PageInfo page = _i20.PageInfo(
+  static _i21.PageInfo page = _i21.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<PlayQuizRouteArgs>();
@@ -435,7 +437,7 @@ class PlayQuizRouteArgs {
     this.onSubmit,
   });
 
-  final _i21.Key? key;
+  final _i22.Key? key;
 
   final int idQuestionSet;
 
@@ -443,7 +445,7 @@ class PlayQuizRouteArgs {
 
   final int? classId;
 
-  final _i21.VoidCallback? onSubmit;
+  final _i22.VoidCallback? onSubmit;
 
   @override
   String toString() {
@@ -454,11 +456,11 @@ class PlayQuizRouteArgs {
 /// generated route for
 /// [_i10.QuestionSetDetailScreen]
 class QuestionSetDetailRoute
-    extends _i20.PageRouteInfo<QuestionSetDetailRouteArgs> {
+    extends _i21.PageRouteInfo<QuestionSetDetailRouteArgs> {
   QuestionSetDetailRoute({
-    _i21.Key? key,
-    required _i22.Category category,
-    List<_i20.PageRouteInfo>? children,
+    _i22.Key? key,
+    required _i23.Category category,
+    List<_i21.PageRouteInfo>? children,
   }) : super(
           QuestionSetDetailRoute.name,
           args: QuestionSetDetailRouteArgs(
@@ -470,7 +472,7 @@ class QuestionSetDetailRoute
 
   static const String name = 'QuestionSetDetailRoute';
 
-  static _i20.PageInfo page = _i20.PageInfo(
+  static _i21.PageInfo page = _i21.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<QuestionSetDetailRouteArgs>();
@@ -488,9 +490,9 @@ class QuestionSetDetailRouteArgs {
     required this.category,
   });
 
-  final _i21.Key? key;
+  final _i22.Key? key;
 
-  final _i22.Category category;
+  final _i23.Category category;
 
   @override
   String toString() {
@@ -501,12 +503,12 @@ class QuestionSetDetailRouteArgs {
 /// generated route for
 /// [_i11.QuestionSetInClassScreen]
 class QuestionSetInClassRoute
-    extends _i20.PageRouteInfo<QuestionSetInClassRouteArgs> {
+    extends _i21.PageRouteInfo<QuestionSetInClassRouteArgs> {
   QuestionSetInClassRoute({
-    _i21.Key? key,
+    _i22.Key? key,
     required int id,
     required String name,
-    List<_i20.PageRouteInfo>? children,
+    List<_i21.PageRouteInfo>? children,
   }) : super(
           QuestionSetInClassRoute.name,
           args: QuestionSetInClassRouteArgs(
@@ -519,7 +521,7 @@ class QuestionSetInClassRoute
 
   static const String name = 'QuestionSetInClassRoute';
 
-  static _i20.PageInfo page = _i20.PageInfo(
+  static _i21.PageInfo page = _i21.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<QuestionSetInClassRouteArgs>();
@@ -539,7 +541,7 @@ class QuestionSetInClassRouteArgs {
     required this.name,
   });
 
-  final _i21.Key? key;
+  final _i22.Key? key;
 
   final int id;
 
@@ -553,11 +555,11 @@ class QuestionSetInClassRouteArgs {
 
 /// generated route for
 /// [_i12.ResultPlayQuizScreen]
-class ResultPlayQuizRoute extends _i20.PageRouteInfo<ResultPlayQuizRouteArgs> {
+class ResultPlayQuizRoute extends _i21.PageRouteInfo<ResultPlayQuizRouteArgs> {
   ResultPlayQuizRoute({
-    _i21.Key? key,
-    required _i23.ScoringModel model,
-    List<_i20.PageRouteInfo>? children,
+    _i22.Key? key,
+    required _i24.ScoringModel model,
+    List<_i21.PageRouteInfo>? children,
   }) : super(
           ResultPlayQuizRoute.name,
           args: ResultPlayQuizRouteArgs(
@@ -569,7 +571,7 @@ class ResultPlayQuizRoute extends _i20.PageRouteInfo<ResultPlayQuizRouteArgs> {
 
   static const String name = 'ResultPlayQuizRoute';
 
-  static _i20.PageInfo page = _i20.PageInfo(
+  static _i21.PageInfo page = _i21.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<ResultPlayQuizRouteArgs>();
@@ -587,9 +589,9 @@ class ResultPlayQuizRouteArgs {
     required this.model,
   });
 
-  final _i21.Key? key;
+  final _i22.Key? key;
 
-  final _i23.ScoringModel model;
+  final _i24.ScoringModel model;
 
   @override
   String toString() {
@@ -600,11 +602,11 @@ class ResultPlayQuizRouteArgs {
 /// generated route for
 /// [_i13.ReviewQuizPlayedScreen]
 class ReviewQuizPlayedRoute
-    extends _i20.PageRouteInfo<ReviewQuizPlayedRouteArgs> {
+    extends _i21.PageRouteInfo<ReviewQuizPlayedRouteArgs> {
   ReviewQuizPlayedRoute({
-    _i21.Key? key,
+    _i22.Key? key,
     required int historyId,
-    List<_i20.PageRouteInfo>? children,
+    List<_i21.PageRouteInfo>? children,
   }) : super(
           ReviewQuizPlayedRoute.name,
           args: ReviewQuizPlayedRouteArgs(
@@ -616,7 +618,7 @@ class ReviewQuizPlayedRoute
 
   static const String name = 'ReviewQuizPlayedRoute';
 
-  static _i20.PageInfo page = _i20.PageInfo(
+  static _i21.PageInfo page = _i21.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<ReviewQuizPlayedRouteArgs>();
@@ -634,7 +636,7 @@ class ReviewQuizPlayedRouteArgs {
     required this.historyId,
   });
 
-  final _i21.Key? key;
+  final _i22.Key? key;
 
   final int historyId;
 
@@ -646,11 +648,11 @@ class ReviewQuizPlayedRouteArgs {
 
 /// generated route for
 /// [_i14.SelectRoleScreen]
-class SelectRoleRoute extends _i20.PageRouteInfo<SelectRoleRouteArgs> {
+class SelectRoleRoute extends _i21.PageRouteInfo<SelectRoleRouteArgs> {
   SelectRoleRoute({
-    _i21.Key? key,
+    _i22.Key? key,
     required bool isRegister,
-    List<_i20.PageRouteInfo>? children,
+    List<_i21.PageRouteInfo>? children,
   }) : super(
           SelectRoleRoute.name,
           args: SelectRoleRouteArgs(
@@ -662,7 +664,7 @@ class SelectRoleRoute extends _i20.PageRouteInfo<SelectRoleRouteArgs> {
 
   static const String name = 'SelectRoleRoute';
 
-  static _i20.PageInfo page = _i20.PageInfo(
+  static _i21.PageInfo page = _i21.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<SelectRoleRouteArgs>();
@@ -680,7 +682,7 @@ class SelectRoleRouteArgs {
     required this.isRegister,
   });
 
-  final _i21.Key? key;
+  final _i22.Key? key;
 
   final bool isRegister;
 
@@ -692,8 +694,8 @@ class SelectRoleRouteArgs {
 
 /// generated route for
 /// [_i15.SplashScreen]
-class SplashRoute extends _i20.PageRouteInfo<void> {
-  const SplashRoute({List<_i20.PageRouteInfo>? children})
+class SplashRoute extends _i21.PageRouteInfo<void> {
+  const SplashRoute({List<_i21.PageRouteInfo>? children})
       : super(
           SplashRoute.name,
           initialChildren: children,
@@ -701,7 +703,7 @@ class SplashRoute extends _i20.PageRouteInfo<void> {
 
   static const String name = 'SplashRoute';
 
-  static _i20.PageInfo page = _i20.PageInfo(
+  static _i21.PageInfo page = _i21.PageInfo(
     name,
     builder: (data) {
       return const _i15.SplashScreen();
@@ -710,9 +712,68 @@ class SplashRoute extends _i20.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i16.StudentHomepageScreen]
-class StudentHomepageRoute extends _i20.PageRouteInfo<void> {
-  const StudentHomepageRoute({List<_i20.PageRouteInfo>? children})
+/// [_i16.StudentAttemptHistoryScreen]
+class StudentAttemptHistoryRoute
+    extends _i21.PageRouteInfo<StudentAttemptHistoryRouteArgs> {
+  StudentAttemptHistoryRoute({
+    _i22.Key? key,
+    int? classId,
+    required int questionSetId,
+    required String title,
+    List<_i21.PageRouteInfo>? children,
+  }) : super(
+          StudentAttemptHistoryRoute.name,
+          args: StudentAttemptHistoryRouteArgs(
+            key: key,
+            classId: classId,
+            questionSetId: questionSetId,
+            title: title,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'StudentAttemptHistoryRoute';
+
+  static _i21.PageInfo page = _i21.PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<StudentAttemptHistoryRouteArgs>();
+      return _i16.StudentAttemptHistoryScreen(
+        key: args.key,
+        classId: args.classId,
+        questionSetId: args.questionSetId,
+        title: args.title,
+      );
+    },
+  );
+}
+
+class StudentAttemptHistoryRouteArgs {
+  const StudentAttemptHistoryRouteArgs({
+    this.key,
+    this.classId,
+    required this.questionSetId,
+    required this.title,
+  });
+
+  final _i22.Key? key;
+
+  final int? classId;
+
+  final int questionSetId;
+
+  final String title;
+
+  @override
+  String toString() {
+    return 'StudentAttemptHistoryRouteArgs{key: $key, classId: $classId, questionSetId: $questionSetId, title: $title}';
+  }
+}
+
+/// generated route for
+/// [_i17.StudentHomepageScreen]
+class StudentHomepageRoute extends _i21.PageRouteInfo<void> {
+  const StudentHomepageRoute({List<_i21.PageRouteInfo>? children})
       : super(
           StudentHomepageRoute.name,
           initialChildren: children,
@@ -720,18 +781,18 @@ class StudentHomepageRoute extends _i20.PageRouteInfo<void> {
 
   static const String name = 'StudentHomepageRoute';
 
-  static _i20.PageInfo page = _i20.PageInfo(
+  static _i21.PageInfo page = _i21.PageInfo(
     name,
     builder: (data) {
-      return const _i16.StudentHomepageScreen();
+      return const _i17.StudentHomepageScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i17.TeacherClassListScreen]
-class TeacherClassListRoute extends _i20.PageRouteInfo<void> {
-  const TeacherClassListRoute({List<_i20.PageRouteInfo>? children})
+/// [_i18.TeacherClassListScreen]
+class TeacherClassListRoute extends _i21.PageRouteInfo<void> {
+  const TeacherClassListRoute({List<_i21.PageRouteInfo>? children})
       : super(
           TeacherClassListRoute.name,
           initialChildren: children,
@@ -739,18 +800,18 @@ class TeacherClassListRoute extends _i20.PageRouteInfo<void> {
 
   static const String name = 'TeacherClassListRoute';
 
-  static _i20.PageInfo page = _i20.PageInfo(
+  static _i21.PageInfo page = _i21.PageInfo(
     name,
     builder: (data) {
-      return const _i17.TeacherClassListScreen();
+      return const _i18.TeacherClassListScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i18.TeacherHomepageScreen]
-class TeacherHomepageRoute extends _i20.PageRouteInfo<void> {
-  const TeacherHomepageRoute({List<_i20.PageRouteInfo>? children})
+/// [_i19.TeacherHomepageScreen]
+class TeacherHomepageRoute extends _i21.PageRouteInfo<void> {
+  const TeacherHomepageRoute({List<_i21.PageRouteInfo>? children})
       : super(
           TeacherHomepageRoute.name,
           initialChildren: children,
@@ -758,18 +819,18 @@ class TeacherHomepageRoute extends _i20.PageRouteInfo<void> {
 
   static const String name = 'TeacherHomepageRoute';
 
-  static _i20.PageInfo page = _i20.PageInfo(
+  static _i21.PageInfo page = _i21.PageInfo(
     name,
     builder: (data) {
-      return const _i18.TeacherHomepageScreen();
+      return const _i19.TeacherHomepageScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i19.WelcomeScreen]
-class WelcomeRoute extends _i20.PageRouteInfo<void> {
-  const WelcomeRoute({List<_i20.PageRouteInfo>? children})
+/// [_i20.WelcomeScreen]
+class WelcomeRoute extends _i21.PageRouteInfo<void> {
+  const WelcomeRoute({List<_i21.PageRouteInfo>? children})
       : super(
           WelcomeRoute.name,
           initialChildren: children,
@@ -777,10 +838,10 @@ class WelcomeRoute extends _i20.PageRouteInfo<void> {
 
   static const String name = 'WelcomeRoute';
 
-  static _i20.PageInfo page = _i20.PageInfo(
+  static _i21.PageInfo page = _i21.PageInfo(
     name,
     builder: (data) {
-      return const _i19.WelcomeScreen();
+      return const _i20.WelcomeScreen();
     },
   );
 }

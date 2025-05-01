@@ -17,8 +17,8 @@ class MyQuizBloc extends Cubit<BlocState> {
     _questionSets = value;
   }
 
-  void init() {
-    repo.myQuestionSet().then((res) {
+  void init({String? search}) {
+    repo.myQuestionSet(search: search).then((res) {
       if (res.code == 1000) {
         questionSets = res.data ?? [];
         emit(state.copyWith(status: Status.loaded));

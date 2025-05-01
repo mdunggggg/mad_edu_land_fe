@@ -108,6 +108,7 @@ class _QuestionSetInClassScreenState extends State<QuestionSetInClassScreen> {
           ],
         ),
         8.height,
+       if((bloc.state.data?.length ?? 0) != 0)
        LinearProgressBar(
           maxSteps: bloc.state.data?.length ?? 0,
           currentStep: bloc.getTotalDone(),
@@ -125,9 +126,10 @@ class _QuestionSetInClassScreenState extends State<QuestionSetInClassScreen> {
       children: bloc.state.data?.map((e) {
         return InkWell(
           onTap: () {
-            context.router.push(PlayQuizRoute(idQuestionSet: e.id ?? -1, title: e.name ?? '', classId: widget.id, onSubmit: () {
-              bloc.init(widget.id);
-            },));
+            // context.router.push(PlayQuizRoute(idQuestionSet: e.id ?? -1, title: e.name ?? '', classId: widget.id, onSubmit: () {
+            //   bloc.init(widget.id);
+            // },));
+            context.router.push(StudentAttemptHistoryRoute(classId: widget.id, questionSetId: e.id ?? -1, title: widget.name));
           },
           child: Container(
             padding: 16.padding,
@@ -160,7 +162,6 @@ class _QuestionSetInClassScreenState extends State<QuestionSetInClassScreen> {
                 16.width,
                 if(e.done ?? false)
                   const FaIcon(iconCode: 'f00c', color: Color(AppColors.c34),)
-
               ],
             ),
           ),

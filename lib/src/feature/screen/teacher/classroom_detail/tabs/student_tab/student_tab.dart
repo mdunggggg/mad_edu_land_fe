@@ -3,6 +3,7 @@ import 'package:edu_land/src/bloc/bloc_state.dart';
 import 'package:edu_land/src/feature/components/app_input.dart';
 import 'package:edu_land/src/feature/components/custom_icon.dart';
 import 'package:edu_land/src/feature/components/delete_dialog.dart';
+import 'package:edu_land/src/feature/components/delay_call_back.dart';
 import 'package:edu_land/src/feature/components/dialog_utils.dart';
 import 'package:edu_land/src/feature/components/primary_button.dart';
 import 'package:edu_land/src/feature/screen/teacher/classroom_detail/tabs/student_tab/student_bloc.dart';
@@ -30,6 +31,7 @@ class _StudentTabState extends State<StudentTab> {
   final bloc = StudentBloc();
 
   final TextEditingController _studentController = TextEditingController();
+  final DelayCallBack delayCallBack = DelayCallBack();
 
   @override
   void dispose() {
@@ -95,11 +97,19 @@ class _StudentTabState extends State<StudentTab> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              const AppInput(
+               AppInput(
                 hintText: 'Tìm kiếm học sinh...',
                 prefixIcon: Icon(Icons.search),
                 borderColor: Color(AppColors.cE5),
                 bgColor: Colors.white,
+                onChanged: (p0) {
+                  delayCallBack.debounce(
+                    () {
+                      bloc.init(widget.id,
+                          search: p0.isEmpty ? null : p0.trim());
+                    },
+                  );
+                },
               ),
               16.height,
               BlocBuilder<StudentBloc, BlocState<List<StudentProfileModel>>>(

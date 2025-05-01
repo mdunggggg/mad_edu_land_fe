@@ -40,9 +40,12 @@ class TeacherRepo {
     }
   }
 
-  Future<BaseModel<List<QuestionSetModel>>> myQuestionSet({Category? category}) async {
+  Future<BaseModel<List<QuestionSetModel>>> myQuestionSet({Category? category, String? search}) async {
     try {
-      final query = category != null ? {'category': category.name} : null;
+      final Map<String, dynamic> query = category != null ? {'category': category.name, 'search': search} : {};
+      if (search != null) {
+        query['search'] = search;
+      }
       final response = await _dio.get(ApiPath.myQuestionSet, queryParameters: query);
       final data = response.data['result'] as List;
       final dataModel = data.map((e) => QuestionSetModel.fromJson(e)).toList();
@@ -85,7 +88,7 @@ class TeacherRepo {
     }
   }
 
-  Future<BaseModel> getStateAssignedClass({required int questionSetId}) async {
+  Future<BaseModel> getStateAssignedClass({required int questionSetId, String? search}) async {
     try {
       final query = questionSetId != 0 ? {'questionSetId': questionSetId} : null;
       final response = await _dio.get(ApiPath.stateAssignedClass, queryParameters: query);
@@ -101,9 +104,9 @@ class TeacherRepo {
     }
   }
 
-  Future<BaseModel<List<TeacherClassInfoModel>>> getTeacherClassList() async {
+  Future<BaseModel<List<TeacherClassInfoModel>>> getTeacherClassList({String? search}) async {
     try {
-      final response = await _dio.get(ApiPath.teacherClassList);
+      final response = await _dio.get(ApiPath.teacherClassList, queryParameters: {'search': search});
       final data = response.data['result'] as List;
       final dataModel = data.map((e) => TeacherClassInfoModel.fromJson(e)).toList();
       return BaseModel(
