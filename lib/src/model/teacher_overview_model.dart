@@ -9,6 +9,8 @@ class TeacherOverviewModel with _$TeacherOverviewModel {
   const TeacherOverviewModel._();
 
   const factory TeacherOverviewModel({
+    int? id,
+    int? userId,
     String? name,
     int? totalStudent,
     int? totalClass,

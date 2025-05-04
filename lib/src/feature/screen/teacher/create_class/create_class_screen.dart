@@ -1,4 +1,5 @@
 import 'package:auto_route/annotations.dart';
+import 'package:clipboard/clipboard.dart';
 import 'package:edu_land/src/bloc/bloc_state.dart';
 import 'package:edu_land/src/bloc/check_status_bloc.dart';
 import 'package:edu_land/src/feature/components/app_input.dart';
@@ -32,6 +33,12 @@ class _CreateClassScreenState extends State<CreateClassScreen> {
   final classCode = TextEditingController();
 
   @override
+  void initState() {
+    bloc.init();
+    super.initState();
+  }
+
+  @override
   void dispose() {
     name.dispose();
     description.dispose();
@@ -45,6 +52,7 @@ class _CreateClassScreenState extends State<CreateClassScreen> {
     return BlocListener<CreateClassBloc, BlocState>(
       bloc: bloc,
       listener: (context, state) {
+        classCode.text = bloc.code;
         CheckStateBloc.check(
           context,
           state,
@@ -95,7 +103,6 @@ class _CreateClassScreenState extends State<CreateClassScreen> {
                       bloc.createClass(
                         name: name.text,
                         description: description.text,
-                        code: classCode.text,
                       );
                     },
                     color: const Color(AppColors.c3B),
@@ -128,15 +135,33 @@ class _CreateClassScreenState extends State<CreateClassScreen> {
           ),
         ),
         8.width,
-        Container(
-          padding: 16.paddingHor + 12.paddingVer,
-          decoration: BoxDecoration(
-            borderRadius: 16.radius,
-            color: const Color(AppColors.cFCE),
-          ),
-          child: const FaIcon(
-            iconCode: 'f0c5',
-            color: Color(AppColors.cDB),
+        InkWell(
+          onTap: () {
+            FlutterClipboard.copy(classCode.text).then((value) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text('Đã sao chép mã lớp ${classCode.text}',
+                    style: StyleApp.medium(
+                      fontSize: 16,
+                      color: const Color(AppColors.c1F),
+                    ),
+                  ),
+                  duration: const Duration(seconds: 1),
+                  backgroundColor: Colors.white,
+                ),
+              );
+            },);
+          },
+          child: Container(
+            padding: 16.paddingHor + 12.paddingVer,
+            decoration: BoxDecoration(
+              borderRadius: 16.radius,
+              color: const Color(AppColors.cFCE),
+            ),
+            child: const FaIcon(
+              iconCode: 'f0c5',
+              color: Color(AppColors.cDB),
+            ),
           ),
         ),
       ],

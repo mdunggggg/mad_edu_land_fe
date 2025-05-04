@@ -9,6 +9,7 @@ class StudentProfileModel with _$StudentProfileModel {
 
   const factory StudentProfileModel({
     int? id,
+    int? userId,
     String? username,
     String? fullName,
     int? grade,

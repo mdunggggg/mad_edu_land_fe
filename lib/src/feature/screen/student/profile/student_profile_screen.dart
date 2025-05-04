@@ -60,7 +60,7 @@ class _StudentProfileScreenState extends State<StudentProfileScreen> {
                     ),
                   ),
                   const SizedBox(height: 28.0),
-                  Center(child: RandomAvatar("staytoonz", height: 125, width: 125)),
+                  Center(child: RandomAvatar((state.data?.userId ?? -1).toString(), height: 125, width: 125)),
                   const SizedBox(height: 40.0),
                   Container(
                     padding: const EdgeInsets.all(20.0),

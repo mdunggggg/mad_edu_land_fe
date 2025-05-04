@@ -10,9 +10,10 @@ import 'package:flutter/material.dart';
 import 'package:random_avatar/random_avatar.dart';
 
 class CustomAppbar extends StatelessWidget {
-  const CustomAppbar({super.key, required this.title});
+  const CustomAppbar({super.key, required this.title, required this.id});
 
   final String title;
+  final int id;
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +24,7 @@ class CustomAppbar extends StatelessWidget {
       ),
       child: Row(
         children: [
-          RandomAvatar('saytoonz', height: 50, width: 50),
+          RandomAvatar(id.toString(), height: 50, width: 50),
           16.width,
           Expanded(
             child: Column(

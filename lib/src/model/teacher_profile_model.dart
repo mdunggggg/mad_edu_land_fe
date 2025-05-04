@@ -9,6 +9,7 @@ class TeacherProfileModel with _$TeacherProfileModel {
 
   const factory TeacherProfileModel({
     int? id,
+    int? userId,
     String? username,
     String? fullName,
   }) = _TeacherProfileModel;

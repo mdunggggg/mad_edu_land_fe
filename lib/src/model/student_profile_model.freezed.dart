@@ -21,6 +21,7 @@ StudentProfileModel _$StudentProfileModelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$StudentProfileModel {
   int? get id => throw _privateConstructorUsedError;
+  int? get userId => throw _privateConstructorUsedError;
   String? get username => throw _privateConstructorUsedError;
   String? get fullName => throw _privateConstructorUsedError;
   int? get grade => throw _privateConstructorUsedError;
@@ -41,7 +42,8 @@ abstract class $StudentProfileModelCopyWith<$Res> {
           StudentProfileModel value, $Res Function(StudentProfileModel) then) =
       _$StudentProfileModelCopyWithImpl<$Res, StudentProfileModel>;
   @useResult
-  $Res call({int? id, String? username, String? fullName, int? grade});
+  $Res call(
+      {int? id, int? userId, String? username, String? fullName, int? grade});
 }
 
 /// @nodoc
@@ -60,6 +62,7 @@ class _$StudentProfileModelCopyWithImpl<$Res, $Val extends StudentProfileModel>
   @override
   $Res call({
     Object? id = freezed,
+    Object? userId = freezed,
     Object? username = freezed,
     Object? fullName = freezed,
     Object? grade = freezed,
@@ -68,6 +71,10 @@ class _$StudentProfileModelCopyWithImpl<$Res, $Val extends StudentProfileModel>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      userId: freezed == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
               as int?,
       username: freezed == username
           ? _value.username
@@ -93,7 +100,8 @@ abstract class _$$StudentProfileModelImplCopyWith<$Res>
       __$$StudentProfileModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int? id, String? username, String? fullName, int? grade});
+  $Res call(
+      {int? id, int? userId, String? username, String? fullName, int? grade});
 }
 
 /// @nodoc
@@ -110,6 +118,7 @@ class __$$StudentProfileModelImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
+    Object? userId = freezed,
     Object? username = freezed,
     Object? fullName = freezed,
     Object? grade = freezed,
@@ -118,6 +127,10 @@ class __$$StudentProfileModelImplCopyWithImpl<$Res>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      userId: freezed == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
               as int?,
       username: freezed == username
           ? _value.username
@@ -139,7 +152,7 @@ class __$$StudentProfileModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$StudentProfileModelImpl extends _StudentProfileModel {
   const _$StudentProfileModelImpl(
-      {this.id, this.username, this.fullName, this.grade})
+      {this.id, this.userId, this.username, this.fullName, this.grade})
       : super._();
 
   factory _$StudentProfileModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -147,6 +160,8 @@ class _$StudentProfileModelImpl extends _StudentProfileModel {
 
   @override
   final int? id;
+  @override
+  final int? userId;
   @override
   final String? username;
   @override
@@ -156,7 +171,7 @@ class _$StudentProfileModelImpl extends _StudentProfileModel {
 
   @override
   String toString() {
-    return 'StudentProfileModel(id: $id, username: $username, fullName: $fullName, grade: $grade)';
+    return 'StudentProfileModel(id: $id, userId: $userId, username: $username, fullName: $fullName, grade: $grade)';
   }
 
   @override
@@ -165,6 +180,7 @@ class _$StudentProfileModelImpl extends _StudentProfileModel {
         (other.runtimeType == runtimeType &&
             other is _$StudentProfileModelImpl &&
             (identical(other.id, id) || other.id == id) &&
+            (identical(other.userId, userId) || other.userId == userId) &&
             (identical(other.username, username) ||
                 other.username == username) &&
             (identical(other.fullName, fullName) ||
@@ -174,7 +190,8 @@ class _$StudentProfileModelImpl extends _StudentProfileModel {
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, username, fullName, grade);
+  int get hashCode =>
+      Object.hash(runtimeType, id, userId, username, fullName, grade);
 
   /// Create a copy of StudentProfileModel
   /// with the given fields replaced by the non-null parameter values.
@@ -196,6 +213,7 @@ class _$StudentProfileModelImpl extends _StudentProfileModel {
 abstract class _StudentProfileModel extends StudentProfileModel {
   const factory _StudentProfileModel(
       {final int? id,
+      final int? userId,
       final String? username,
       final String? fullName,
       final int? grade}) = _$StudentProfileModelImpl;
@@ -206,6 +224,8 @@ abstract class _StudentProfileModel extends StudentProfileModel {
 
   @override
   int? get id;
+  @override
+  int? get userId;
   @override
   String? get username;
   @override

@@ -21,6 +21,7 @@ TeacherProfileModel _$TeacherProfileModelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$TeacherProfileModel {
   int? get id => throw _privateConstructorUsedError;
+  int? get userId => throw _privateConstructorUsedError;
   String? get username => throw _privateConstructorUsedError;
   String? get fullName => throw _privateConstructorUsedError;
 
@@ -40,7 +41,7 @@ abstract class $TeacherProfileModelCopyWith<$Res> {
           TeacherProfileModel value, $Res Function(TeacherProfileModel) then) =
       _$TeacherProfileModelCopyWithImpl<$Res, TeacherProfileModel>;
   @useResult
-  $Res call({int? id, String? username, String? fullName});
+  $Res call({int? id, int? userId, String? username, String? fullName});
 }
 
 /// @nodoc
@@ -59,6 +60,7 @@ class _$TeacherProfileModelCopyWithImpl<$Res, $Val extends TeacherProfileModel>
   @override
   $Res call({
     Object? id = freezed,
+    Object? userId = freezed,
     Object? username = freezed,
     Object? fullName = freezed,
   }) {
@@ -66,6 +68,10 @@ class _$TeacherProfileModelCopyWithImpl<$Res, $Val extends TeacherProfileModel>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      userId: freezed == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
               as int?,
       username: freezed == username
           ? _value.username
@@ -87,7 +93,7 @@ abstract class _$$TeacherProfileModelImplCopyWith<$Res>
       __$$TeacherProfileModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int? id, String? username, String? fullName});
+  $Res call({int? id, int? userId, String? username, String? fullName});
 }
 
 /// @nodoc
@@ -104,6 +110,7 @@ class __$$TeacherProfileModelImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
+    Object? userId = freezed,
     Object? username = freezed,
     Object? fullName = freezed,
   }) {
@@ -111,6 +118,10 @@ class __$$TeacherProfileModelImplCopyWithImpl<$Res>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      userId: freezed == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
               as int?,
       username: freezed == username
           ? _value.username
@@ -127,7 +138,8 @@ class __$$TeacherProfileModelImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$TeacherProfileModelImpl extends _TeacherProfileModel {
-  const _$TeacherProfileModelImpl({this.id, this.username, this.fullName})
+  const _$TeacherProfileModelImpl(
+      {this.id, this.userId, this.username, this.fullName})
       : super._();
 
   factory _$TeacherProfileModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -136,13 +148,15 @@ class _$TeacherProfileModelImpl extends _TeacherProfileModel {
   @override
   final int? id;
   @override
+  final int? userId;
+  @override
   final String? username;
   @override
   final String? fullName;
 
   @override
   String toString() {
-    return 'TeacherProfileModel(id: $id, username: $username, fullName: $fullName)';
+    return 'TeacherProfileModel(id: $id, userId: $userId, username: $username, fullName: $fullName)';
   }
 
   @override
@@ -151,6 +165,7 @@ class _$TeacherProfileModelImpl extends _TeacherProfileModel {
         (other.runtimeType == runtimeType &&
             other is _$TeacherProfileModelImpl &&
             (identical(other.id, id) || other.id == id) &&
+            (identical(other.userId, userId) || other.userId == userId) &&
             (identical(other.username, username) ||
                 other.username == username) &&
             (identical(other.fullName, fullName) ||
@@ -159,7 +174,7 @@ class _$TeacherProfileModelImpl extends _TeacherProfileModel {
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, username, fullName);
+  int get hashCode => Object.hash(runtimeType, id, userId, username, fullName);
 
   /// Create a copy of TeacherProfileModel
   /// with the given fields replaced by the non-null parameter values.
@@ -181,6 +196,7 @@ class _$TeacherProfileModelImpl extends _TeacherProfileModel {
 abstract class _TeacherProfileModel extends TeacherProfileModel {
   const factory _TeacherProfileModel(
       {final int? id,
+      final int? userId,
       final String? username,
       final String? fullName}) = _$TeacherProfileModelImpl;
   const _TeacherProfileModel._() : super._();
@@ -190,6 +206,8 @@ abstract class _TeacherProfileModel extends TeacherProfileModel {
 
   @override
   int? get id;
+  @override
+  int? get userId;
   @override
   String? get username;
   @override

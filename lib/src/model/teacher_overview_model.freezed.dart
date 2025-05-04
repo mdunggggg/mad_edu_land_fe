@@ -20,6 +20,8 @@ TeacherOverviewModel _$TeacherOverviewModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$TeacherOverviewModel {
+  int? get id => throw _privateConstructorUsedError;
+  int? get userId => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
   int? get totalStudent => throw _privateConstructorUsedError;
   int? get totalClass => throw _privateConstructorUsedError;
@@ -43,7 +45,9 @@ abstract class $TeacherOverviewModelCopyWith<$Res> {
       _$TeacherOverviewModelCopyWithImpl<$Res, TeacherOverviewModel>;
   @useResult
   $Res call(
-      {String? name,
+      {int? id,
+      int? userId,
+      String? name,
       int? totalStudent,
       int? totalClass,
       List<ClassroomOverviewModel> classrooms});
@@ -65,12 +69,22 @@ class _$TeacherOverviewModelCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = freezed,
+    Object? userId = freezed,
     Object? name = freezed,
     Object? totalStudent = freezed,
     Object? totalClass = freezed,
     Object? classrooms = null,
   }) {
     return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      userId: freezed == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as int?,
       name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -100,7 +114,9 @@ abstract class _$$TeacherOverviewModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String? name,
+      {int? id,
+      int? userId,
+      String? name,
       int? totalStudent,
       int? totalClass,
       List<ClassroomOverviewModel> classrooms});
@@ -119,12 +135,22 @@ class __$$TeacherOverviewModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = freezed,
+    Object? userId = freezed,
     Object? name = freezed,
     Object? totalStudent = freezed,
     Object? totalClass = freezed,
     Object? classrooms = null,
   }) {
     return _then(_$TeacherOverviewModelImpl(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      userId: freezed == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as int?,
       name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -149,7 +175,9 @@ class __$$TeacherOverviewModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$TeacherOverviewModelImpl extends _TeacherOverviewModel {
   const _$TeacherOverviewModelImpl(
-      {this.name,
+      {this.id,
+      this.userId,
+      this.name,
       this.totalStudent,
       this.totalClass,
       final List<ClassroomOverviewModel> classrooms = const []})
@@ -159,6 +187,10 @@ class _$TeacherOverviewModelImpl extends _TeacherOverviewModel {
   factory _$TeacherOverviewModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$TeacherOverviewModelImplFromJson(json);
 
+  @override
+  final int? id;
+  @override
+  final int? userId;
   @override
   final String? name;
   @override
@@ -176,7 +208,7 @@ class _$TeacherOverviewModelImpl extends _TeacherOverviewModel {
 
   @override
   String toString() {
-    return 'TeacherOverviewModel(name: $name, totalStudent: $totalStudent, totalClass: $totalClass, classrooms: $classrooms)';
+    return 'TeacherOverviewModel(id: $id, userId: $userId, name: $name, totalStudent: $totalStudent, totalClass: $totalClass, classrooms: $classrooms)';
   }
 
   @override
@@ -184,6 +216,8 @@ class _$TeacherOverviewModelImpl extends _TeacherOverviewModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$TeacherOverviewModelImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.userId, userId) || other.userId == userId) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.totalStudent, totalStudent) ||
                 other.totalStudent == totalStudent) &&
@@ -195,8 +229,8 @@ class _$TeacherOverviewModelImpl extends _TeacherOverviewModel {
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, name, totalStudent, totalClass,
-      const DeepCollectionEquality().hash(_classrooms));
+  int get hashCode => Object.hash(runtimeType, id, userId, name, totalStudent,
+      totalClass, const DeepCollectionEquality().hash(_classrooms));
 
   /// Create a copy of TeacherOverviewModel
   /// with the given fields replaced by the non-null parameter values.
@@ -218,7 +252,9 @@ class _$TeacherOverviewModelImpl extends _TeacherOverviewModel {
 
 abstract class _TeacherOverviewModel extends TeacherOverviewModel {
   const factory _TeacherOverviewModel(
-          {final String? name,
+          {final int? id,
+          final int? userId,
+          final String? name,
           final int? totalStudent,
           final int? totalClass,
           final List<ClassroomOverviewModel> classrooms}) =
@@ -228,6 +264,10 @@ abstract class _TeacherOverviewModel extends TeacherOverviewModel {
   factory _TeacherOverviewModel.fromJson(Map<String, dynamic> json) =
       _$TeacherOverviewModelImpl.fromJson;
 
+  @override
+  int? get id;
+  @override
+  int? get userId;
   @override
   String? get name;
   @override

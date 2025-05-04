@@ -201,4 +201,22 @@ class ClassroomRepo {
     }
   }
 
+  Future<String> genClassCode() async {
+    try {
+      final res = await _dio.get(
+        ApiPath.generateClassCode,
+      );
+      return res.data['result'];
+    } catch (e) {
+      if (e is DioException) {
+        final responseData = e.response?.data;
+        final errorMessage = responseData is Map<String, dynamic>
+            ? responseData['message'] ?? 'Unknown error'
+            : e.message ?? 'Dio error'; // Add null check for e.message
+        return errorMessage;
+      }
+      return e.toString();
+    }
+  }
+
 }

@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:edu_land/src/bloc/bloc_state.dart';
 import 'package:edu_land/src/feature/components/chip_custom.dart';
@@ -40,7 +42,7 @@ class _TeacherHomeScreenState extends State<TeacherHomeScreen> {
           BlocBuilder<TeacherHomeBloc, BlocState<TeacherOverviewModel>>(
             bloc: bloc,
             builder: (context, state) {
-              return CustomAppbar(title: state.data?.name ?? AppStrings.home);
+              return CustomAppbar(id: state.data?.userId ?? -1, title: state.data?.name ?? AppStrings.home);
             },
           ),
           Expanded(
@@ -176,7 +178,7 @@ class _TeacherHomeScreenState extends State<TeacherHomeScreen> {
             return _buildClass(classroom);
           },
           separatorBuilder: (context, index) => 16.height,
-          itemCount: state.data?.classrooms.length ?? 0,
+          itemCount: min(state.data?.classrooms.length  ?? 0, 2),
         );
       },
     );

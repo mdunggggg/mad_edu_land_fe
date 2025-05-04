@@ -21,4 +21,5 @@ class ApiPath {
   static const String posts = '/api/posts';
   static const String joinClassroom = '/api/student/classrooms/join';
   static const String removeStudentFromClassroom = '/api/classrooms/remove-student';
+  static const String generateClassCode = '/api/classrooms/generate-code';
 }
