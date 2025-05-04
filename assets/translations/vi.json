@@ -170,7 +170,6 @@
   "delete": "Xóa",
   "confirm_delete": "Xác nhận xóa?",
   "delete_quiz_message": "Bạn có chắc chắn muốn xóa bộ câu hỏi này không? Hành động này không thể hoàn tác.",
-  "cancel": "Hủy",
   "like": "Luợt thích",
   "create_post": "Tạo bài viết",
   "title": "Tiêu đề",
@@ -184,5 +183,8 @@
   "class_code_2": "Mã lớp học",
   "join_class_code_hint": "Nhập mã lớp học",
   "join": "Tham gia",
+  "easy": "Dễ",
+  "medium": "Trung bình",
+  "hard": "Khó",
   "delete_student_message": "Bạn có chắc chắn muốn xóa học sinh này không? Hành động này không thể hoàn tác."
 }
