@@ -24,7 +24,6 @@ class RegisterBloc extends Cubit<BlocState> {
     int grade = 0,
 }) async {
     emit(state.copyWith(status: Status.loading, msg: AppStrings.registering));
-    await Future.delayed(const Duration(seconds: 2));
     final Map<String, dynamic> body = {
       'username': username,
       'password': password,
