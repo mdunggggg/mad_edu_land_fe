@@ -8,6 +8,7 @@ class StudentAttemptModel with _$StudentAttemptModel {
   const StudentAttemptModel._();
 
   const factory StudentAttemptModel({
+    int? historyId,
     double? score,
     int? timeTaken,
     int? correct,

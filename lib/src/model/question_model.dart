@@ -15,6 +15,7 @@ class QuestionModel with _$QuestionModel {
     String? questionText,
     String? questionImageUrl,
     @Default(<AnswerChoiceModel>[]) List<AnswerChoiceModel> answerChoices,
+    bool? isCorrect,
   }) = _QuestionModel;
 
   factory QuestionModel.fromJson(Map<String, dynamic> json) => _$QuestionModelFromJson(json);

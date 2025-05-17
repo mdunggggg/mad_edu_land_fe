@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:edu_land/src/feature/screen/game/more_or_less_game_screen.dart';
 import 'package:edu_land/src/feature/screen/game/simple_addition_game_screen.dart';
+import 'package:edu_land/src/feature/screen/teacher/detail_my_quizz/my_quiz_detail_screen.dart';
 import 'package:edu_land/src/router/router.gr.dart';
 
 @AutoRouterConfig()
@@ -30,5 +31,6 @@ class AppRouter extends RootStackRouter {
     AutoRoute(page: CountingGameRoute.page),
     AutoRoute(page: MoreOrLessGameRoute.page),
     AutoRoute(page: SimpleAdditionGameRoute.page),
+    AutoRoute(page: MyQuizDetailRoute.page),
   ];
 }

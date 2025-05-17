@@ -113,7 +113,12 @@ class _MyQuizScreenState extends State<MyQuizScreen> {
                 itemCount: bloc.questionSets.length,
                 itemBuilder: (context, index) {
                   final item = bloc.questionSets[index];
-                  return _buildModel(item);
+                  return InkWell(
+                    onTap: () {
+                      context.router.push(MyQuizDetailRoute(id: item.id ?? -1));
+                    },
+                      child: _buildModel(item)
+                    ,);
                 },
                 separatorBuilder: (context, index) {
                   return 16.height;

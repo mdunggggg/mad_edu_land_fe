@@ -147,6 +147,35 @@ class TeacherRepo {
     }
   }
 
+  Future<BaseModel<QuestionSetModel>> myDetailQuestionSet({required int id}) async {
+    try {
+      final response = await _dio.get('${ApiPath.myQuestionSet}/$id');
+      final dataModel = QuestionSetModel.fromJson(response.data['result']);
+      return BaseModel(
+        code: response.data['code'],
+        message: response.data['message'],
+        data: dataModel,
+      );
+    } catch (e) {
+      if (e is DioException) {
+        final responseData = e.response?.data;
+        final errorMessage = responseData is Map<String, dynamic>
+            ? responseData['message'] ?? 'Unknown error'
+            : e.message ?? 'Dio error'; // Add null check for e.message
+        return BaseModel(
+          code: 400,
+          message: errorMessage,
+          data: null, // Use the provided dataBool parameter
+        );
+      }
+      return BaseModel(
+        code: 400,
+        message: e.toString(),
+        data: null,
+      );
+    }
+  }
+
   // Helper function to handle exceptions and return BaseModel
   BaseModel _handleException(dynamic e, {bool dataBool = false}) {
     if (e is DioException) {
@@ -166,4 +195,5 @@ class TeacherRepo {
       data: dataBool, // Use the provided dataBool parameter
     );
   }
+
 }

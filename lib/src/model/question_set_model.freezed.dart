@@ -25,6 +25,7 @@ mixin _$QuestionSetModel {
   String? get description => throw _privateConstructorUsedError;
   int? get totalQuestion => throw _privateConstructorUsedError;
   DateTime? get createdDate => throw _privateConstructorUsedError;
+  List<QuestionModel> get questions => throw _privateConstructorUsedError;
 
   /// Serializes this QuestionSetModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -47,7 +48,8 @@ abstract class $QuestionSetModelCopyWith<$Res> {
       String? name,
       String? description,
       int? totalQuestion,
-      DateTime? createdDate});
+      DateTime? createdDate,
+      List<QuestionModel> questions});
 }
 
 /// @nodoc
@@ -70,6 +72,7 @@ class _$QuestionSetModelCopyWithImpl<$Res, $Val extends QuestionSetModel>
     Object? description = freezed,
     Object? totalQuestion = freezed,
     Object? createdDate = freezed,
+    Object? questions = null,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -92,6 +95,10 @@ class _$QuestionSetModelCopyWithImpl<$Res, $Val extends QuestionSetModel>
           ? _value.createdDate
           : createdDate // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      questions: null == questions
+          ? _value.questions
+          : questions // ignore: cast_nullable_to_non_nullable
+              as List<QuestionModel>,
     ) as $Val);
   }
 }
@@ -109,7 +116,8 @@ abstract class _$$QuestionSetModelImplCopyWith<$Res>
       String? name,
       String? description,
       int? totalQuestion,
-      DateTime? createdDate});
+      DateTime? createdDate,
+      List<QuestionModel> questions});
 }
 
 /// @nodoc
@@ -130,6 +138,7 @@ class __$$QuestionSetModelImplCopyWithImpl<$Res>
     Object? description = freezed,
     Object? totalQuestion = freezed,
     Object? createdDate = freezed,
+    Object? questions = null,
   }) {
     return _then(_$QuestionSetModelImpl(
       id: freezed == id
@@ -152,6 +161,10 @@ class __$$QuestionSetModelImplCopyWithImpl<$Res>
           ? _value.createdDate
           : createdDate // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      questions: null == questions
+          ? _value._questions
+          : questions // ignore: cast_nullable_to_non_nullable
+              as List<QuestionModel>,
     ));
   }
 }
@@ -164,8 +177,10 @@ class _$QuestionSetModelImpl extends _QuestionSetModel {
       this.name,
       this.description,
       this.totalQuestion,
-      this.createdDate})
-      : super._();
+      this.createdDate,
+      final List<QuestionModel> questions = const []})
+      : _questions = questions,
+        super._();
 
   factory _$QuestionSetModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$QuestionSetModelImplFromJson(json);
@@ -180,10 +195,18 @@ class _$QuestionSetModelImpl extends _QuestionSetModel {
   final int? totalQuestion;
   @override
   final DateTime? createdDate;
+  final List<QuestionModel> _questions;
+  @override
+  @JsonKey()
+  List<QuestionModel> get questions {
+    if (_questions is EqualUnmodifiableListView) return _questions;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_questions);
+  }
 
   @override
   String toString() {
-    return 'QuestionSetModel(id: $id, name: $name, description: $description, totalQuestion: $totalQuestion, createdDate: $createdDate)';
+    return 'QuestionSetModel(id: $id, name: $name, description: $description, totalQuestion: $totalQuestion, createdDate: $createdDate, questions: $questions)';
   }
 
   @override
@@ -198,13 +221,21 @@ class _$QuestionSetModelImpl extends _QuestionSetModel {
             (identical(other.totalQuestion, totalQuestion) ||
                 other.totalQuestion == totalQuestion) &&
             (identical(other.createdDate, createdDate) ||
-                other.createdDate == createdDate));
+                other.createdDate == createdDate) &&
+            const DeepCollectionEquality()
+                .equals(other._questions, _questions));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
-      runtimeType, id, name, description, totalQuestion, createdDate);
+      runtimeType,
+      id,
+      name,
+      description,
+      totalQuestion,
+      createdDate,
+      const DeepCollectionEquality().hash(_questions));
 
   /// Create a copy of QuestionSetModel
   /// with the given fields replaced by the non-null parameter values.
@@ -229,7 +260,8 @@ abstract class _QuestionSetModel extends QuestionSetModel {
       final String? name,
       final String? description,
       final int? totalQuestion,
-      final DateTime? createdDate}) = _$QuestionSetModelImpl;
+      final DateTime? createdDate,
+      final List<QuestionModel> questions}) = _$QuestionSetModelImpl;
   const _QuestionSetModel._() : super._();
 
   factory _QuestionSetModel.fromJson(Map<String, dynamic> json) =
@@ -245,6 +277,8 @@ abstract class _QuestionSetModel extends QuestionSetModel {
   int? get totalQuestion;
   @override
   DateTime? get createdDate;
+  @override
+  List<QuestionModel> get questions;
 
   /// Create a copy of QuestionSetModel
   /// with the given fields replaced by the non-null parameter values.

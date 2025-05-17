@@ -26,6 +26,7 @@ mixin _$QuestionModel {
   String? get questionImageUrl => throw _privateConstructorUsedError;
   List<AnswerChoiceModel> get answerChoices =>
       throw _privateConstructorUsedError;
+  bool? get isCorrect => throw _privateConstructorUsedError;
 
   /// Serializes this QuestionModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -48,7 +49,8 @@ abstract class $QuestionModelCopyWith<$Res> {
       QuestionType? questionType,
       String? questionText,
       String? questionImageUrl,
-      List<AnswerChoiceModel> answerChoices});
+      List<AnswerChoiceModel> answerChoices,
+      bool? isCorrect});
 }
 
 /// @nodoc
@@ -71,6 +73,7 @@ class _$QuestionModelCopyWithImpl<$Res, $Val extends QuestionModel>
     Object? questionText = freezed,
     Object? questionImageUrl = freezed,
     Object? answerChoices = null,
+    Object? isCorrect = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -93,6 +96,10 @@ class _$QuestionModelCopyWithImpl<$Res, $Val extends QuestionModel>
           ? _value.answerChoices
           : answerChoices // ignore: cast_nullable_to_non_nullable
               as List<AnswerChoiceModel>,
+      isCorrect: freezed == isCorrect
+          ? _value.isCorrect
+          : isCorrect // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ) as $Val);
   }
 }
@@ -110,7 +117,8 @@ abstract class _$$QuestionModelImplCopyWith<$Res>
       QuestionType? questionType,
       String? questionText,
       String? questionImageUrl,
-      List<AnswerChoiceModel> answerChoices});
+      List<AnswerChoiceModel> answerChoices,
+      bool? isCorrect});
 }
 
 /// @nodoc
@@ -131,6 +139,7 @@ class __$$QuestionModelImplCopyWithImpl<$Res>
     Object? questionText = freezed,
     Object? questionImageUrl = freezed,
     Object? answerChoices = null,
+    Object? isCorrect = freezed,
   }) {
     return _then(_$QuestionModelImpl(
       id: freezed == id
@@ -153,6 +162,10 @@ class __$$QuestionModelImplCopyWithImpl<$Res>
           ? _value._answerChoices
           : answerChoices // ignore: cast_nullable_to_non_nullable
               as List<AnswerChoiceModel>,
+      isCorrect: freezed == isCorrect
+          ? _value.isCorrect
+          : isCorrect // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ));
   }
 }
@@ -165,8 +178,8 @@ class _$QuestionModelImpl extends _QuestionModel {
       this.questionType,
       this.questionText,
       this.questionImageUrl,
-      final List<AnswerChoiceModel> answerChoices =
-          const <AnswerChoiceModel>[]})
+      final List<AnswerChoiceModel> answerChoices = const <AnswerChoiceModel>[],
+      this.isCorrect})
       : _answerChoices = answerChoices,
         super._();
 
@@ -191,8 +204,11 @@ class _$QuestionModelImpl extends _QuestionModel {
   }
 
   @override
+  final bool? isCorrect;
+
+  @override
   String toString() {
-    return 'QuestionModel(id: $id, questionType: $questionType, questionText: $questionText, questionImageUrl: $questionImageUrl, answerChoices: $answerChoices)';
+    return 'QuestionModel(id: $id, questionType: $questionType, questionText: $questionText, questionImageUrl: $questionImageUrl, answerChoices: $answerChoices, isCorrect: $isCorrect)';
   }
 
   @override
@@ -208,13 +224,21 @@ class _$QuestionModelImpl extends _QuestionModel {
             (identical(other.questionImageUrl, questionImageUrl) ||
                 other.questionImageUrl == questionImageUrl) &&
             const DeepCollectionEquality()
-                .equals(other._answerChoices, _answerChoices));
+                .equals(other._answerChoices, _answerChoices) &&
+            (identical(other.isCorrect, isCorrect) ||
+                other.isCorrect == isCorrect));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, questionType, questionText,
-      questionImageUrl, const DeepCollectionEquality().hash(_answerChoices));
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      questionType,
+      questionText,
+      questionImageUrl,
+      const DeepCollectionEquality().hash(_answerChoices),
+      isCorrect);
 
   /// Create a copy of QuestionModel
   /// with the given fields replaced by the non-null parameter values.
@@ -238,7 +262,8 @@ abstract class _QuestionModel extends QuestionModel {
       final QuestionType? questionType,
       final String? questionText,
       final String? questionImageUrl,
-      final List<AnswerChoiceModel> answerChoices}) = _$QuestionModelImpl;
+      final List<AnswerChoiceModel> answerChoices,
+      final bool? isCorrect}) = _$QuestionModelImpl;
   const _QuestionModel._() : super._();
 
   factory _QuestionModel.fromJson(Map<String, dynamic> json) =
@@ -254,6 +279,8 @@ abstract class _QuestionModel extends QuestionModel {
   String? get questionImageUrl;
   @override
   List<AnswerChoiceModel> get answerChoices;
+  @override
+  bool? get isCorrect;
 
   /// Create a copy of QuestionModel
   /// with the given fields replaced by the non-null parameter values.

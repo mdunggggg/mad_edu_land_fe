@@ -16,8 +16,12 @@ import '../../../components/fa_icon.dart';
 
 @RoutePage()
 class StudentAttemptHistoryScreen extends StatefulWidget {
-  const StudentAttemptHistoryScreen(
-      {super.key, this.classId, required this.questionSetId, required this.title});
+  const StudentAttemptHistoryScreen({
+    super.key,
+    this.classId,
+    required this.questionSetId,
+    required this.title,
+  });
 
   final int? classId;
   final int questionSetId;
@@ -86,7 +90,12 @@ class _StudentAttemptHistoryScreenState
                   return ListView.separated(
                     itemBuilder: (context, index) {
                       final item = state.data![index];
-                      return _buildAttemptItem(item);
+                      return InkWell(
+                        onTap: () {
+                          context.router.push(ReviewQuizPlayedRoute(historyId: item.historyId ?? -1));
+                        },
+                        child: _buildAttemptItem(item),
+                      );
                     },
                     shrinkWrap: true,
                     separatorBuilder: (context, index) => 16.height,
@@ -100,28 +109,31 @@ class _StudentAttemptHistoryScreenState
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: MainButton(
-                buttonTitle: (bloc.state.data?.isNotEmpty ?? false)
-                    ? 'Làm lại'
-                    : 'Bắt đầu làm bài',
-                onPressed: () {
-                  // context.router.push(PlayQuizRoute(idQuestionSet: e.id ?? -1, title: e.name ?? '', classId: widget.id, onSubmit: () {
-                  //   bloc.init(widget.id);
-                  // },));
-                  context.router.push(PlayQuizRoute(idQuestionSet: widget.questionSetId, title: widget.title, classId: widget.classId));
-                },
-                backgroundColor: const Color(AppColors.c10),
-                textStyle: const TextStyle(
-                  fontSize: 16,
-                  color: Colors.white,
-                  fontWeight: FontWeight.w500,
-                ),
-                icon: const FaIcon(
-                  iconCode: 'f04b',
-                  color: Colors.white,
-                  size: 20,
-                ),
+              buttonTitle: (bloc.state.data?.isNotEmpty ?? false)
+                  ? 'Làm lại'
+                  : 'Bắt đầu làm bài',
+              onPressed: () {
+                // context.router.push(PlayQuizRoute(idQuestionSet: e.id ?? -1, title: e.name ?? '', classId: widget.id, onSubmit: () {
+                //   bloc.init(widget.id);
+                // },));
+                context.router.push(PlayQuizRoute(
+                    idQuestionSet: widget.questionSetId,
+                    title: widget.title,
+                    classId: widget.classId));
+              },
+              backgroundColor: const Color(AppColors.c10),
+              textStyle: const TextStyle(
+                fontSize: 16,
+                color: Colors.white,
+                fontWeight: FontWeight.w500,
+              ),
+              icon: const FaIcon(
+                iconCode: 'f04b',
+                color: Colors.white,
+                size: 20,
+              ),
             ),
-          )
+          ),
         ],
       ),
     );
@@ -176,7 +188,8 @@ class _StudentAttemptHistoryScreenState
               ),
               10.width,
               Text(
-                'Thời gian làm bài : ' + (item.timeTaken ?? 0).formatTimeTakenToMMss2(),
+                'Thời gian làm bài : ' +
+                    (item.timeTaken ?? 0).formatTimeTakenToMMss2(),
                 style: const TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w500,
@@ -198,10 +211,10 @@ class _StudentAttemptHistoryScreenState
                 text: TextSpan(
                   text: 'Điểm : ',
                   style: const TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w500,
-                  color: Color(AppColors.c4B),
-                ),
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                    color: Color(AppColors.c4B),
+                  ),
                   children: [
                     TextSpan(
                       text: '${item.score ?? 0} / 10.0',
@@ -246,8 +259,7 @@ class _StudentAttemptHistoryScreenState
                 ),
               ),
             ],
-          )
-
+          ),
         ],
       ),
     );

@@ -20,6 +20,7 @@ StudentAttemptModel _$StudentAttemptModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$StudentAttemptModel {
+  int? get historyId => throw _privateConstructorUsedError;
   double? get score => throw _privateConstructorUsedError;
   int? get timeTaken => throw _privateConstructorUsedError;
   int? get correct => throw _privateConstructorUsedError;
@@ -45,7 +46,8 @@ abstract class $StudentAttemptModelCopyWith<$Res> {
       _$StudentAttemptModelCopyWithImpl<$Res, StudentAttemptModel>;
   @useResult
   $Res call(
-      {double? score,
+      {int? historyId,
+      double? score,
       int? timeTaken,
       int? correct,
       int? total,
@@ -69,6 +71,7 @@ class _$StudentAttemptModelCopyWithImpl<$Res, $Val extends StudentAttemptModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? historyId = freezed,
     Object? score = freezed,
     Object? timeTaken = freezed,
     Object? correct = freezed,
@@ -78,6 +81,10 @@ class _$StudentAttemptModelCopyWithImpl<$Res, $Val extends StudentAttemptModel>
     Object? finishedAt = freezed,
   }) {
     return _then(_value.copyWith(
+      historyId: freezed == historyId
+          ? _value.historyId
+          : historyId // ignore: cast_nullable_to_non_nullable
+              as int?,
       score: freezed == score
           ? _value.score
           : score // ignore: cast_nullable_to_non_nullable
@@ -119,7 +126,8 @@ abstract class _$$StudentAttemptModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {double? score,
+      {int? historyId,
+      double? score,
       int? timeTaken,
       int? correct,
       int? total,
@@ -141,6 +149,7 @@ class __$$StudentAttemptModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? historyId = freezed,
     Object? score = freezed,
     Object? timeTaken = freezed,
     Object? correct = freezed,
@@ -150,6 +159,10 @@ class __$$StudentAttemptModelImplCopyWithImpl<$Res>
     Object? finishedAt = freezed,
   }) {
     return _then(_$StudentAttemptModelImpl(
+      historyId: freezed == historyId
+          ? _value.historyId
+          : historyId // ignore: cast_nullable_to_non_nullable
+              as int?,
       score: freezed == score
           ? _value.score
           : score // ignore: cast_nullable_to_non_nullable
@@ -186,7 +199,8 @@ class __$$StudentAttemptModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$StudentAttemptModelImpl extends _StudentAttemptModel {
   const _$StudentAttemptModelImpl(
-      {this.score,
+      {this.historyId,
+      this.score,
       this.timeTaken,
       this.correct,
       this.total,
@@ -198,6 +212,8 @@ class _$StudentAttemptModelImpl extends _StudentAttemptModel {
   factory _$StudentAttemptModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$StudentAttemptModelImplFromJson(json);
 
+  @override
+  final int? historyId;
   @override
   final double? score;
   @override
@@ -215,7 +231,7 @@ class _$StudentAttemptModelImpl extends _StudentAttemptModel {
 
   @override
   String toString() {
-    return 'StudentAttemptModel(score: $score, timeTaken: $timeTaken, correct: $correct, total: $total, createdAt: $createdAt, startedAt: $startedAt, finishedAt: $finishedAt)';
+    return 'StudentAttemptModel(historyId: $historyId, score: $score, timeTaken: $timeTaken, correct: $correct, total: $total, createdAt: $createdAt, startedAt: $startedAt, finishedAt: $finishedAt)';
   }
 
   @override
@@ -223,6 +239,8 @@ class _$StudentAttemptModelImpl extends _StudentAttemptModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$StudentAttemptModelImpl &&
+            (identical(other.historyId, historyId) ||
+                other.historyId == historyId) &&
             (identical(other.score, score) || other.score == score) &&
             (identical(other.timeTaken, timeTaken) ||
                 other.timeTaken == timeTaken) &&
@@ -238,8 +256,8 @@ class _$StudentAttemptModelImpl extends _StudentAttemptModel {
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, score, timeTaken, correct, total,
-      createdAt, startedAt, finishedAt);
+  int get hashCode => Object.hash(runtimeType, historyId, score, timeTaken,
+      correct, total, createdAt, startedAt, finishedAt);
 
   /// Create a copy of StudentAttemptModel
   /// with the given fields replaced by the non-null parameter values.
@@ -260,7 +278,8 @@ class _$StudentAttemptModelImpl extends _StudentAttemptModel {
 
 abstract class _StudentAttemptModel extends StudentAttemptModel {
   const factory _StudentAttemptModel(
-      {final double? score,
+      {final int? historyId,
+      final double? score,
       final int? timeTaken,
       final int? correct,
       final int? total,
@@ -272,6 +291,8 @@ abstract class _StudentAttemptModel extends StudentAttemptModel {
   factory _StudentAttemptModel.fromJson(Map<String, dynamic> json) =
       _$StudentAttemptModelImpl.fromJson;
 
+  @override
+  int? get historyId;
   @override
   double? get score;
   @override

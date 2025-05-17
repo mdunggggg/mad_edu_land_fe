@@ -9,6 +9,7 @@ part of 'student_attempt_model.dart';
 _$StudentAttemptModelImpl _$$StudentAttemptModelImplFromJson(
         Map<String, dynamic> json) =>
     _$StudentAttemptModelImpl(
+      historyId: (json['historyId'] as num?)?.toInt(),
       score: (json['score'] as num?)?.toDouble(),
       timeTaken: (json['timeTaken'] as num?)?.toInt(),
       correct: (json['correct'] as num?)?.toInt(),
@@ -27,6 +28,7 @@ _$StudentAttemptModelImpl _$$StudentAttemptModelImplFromJson(
 Map<String, dynamic> _$$StudentAttemptModelImplToJson(
         _$StudentAttemptModelImpl instance) =>
     <String, dynamic>{
+      'historyId': instance.historyId,
       'score': instance.score,
       'timeTaken': instance.timeTaken,
       'correct': instance.correct,

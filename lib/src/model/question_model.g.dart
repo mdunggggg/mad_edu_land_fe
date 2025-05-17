@@ -18,6 +18,7 @@ _$QuestionModelImpl _$$QuestionModelImplFromJson(Map<String, dynamic> json) =>
                   (e) => AnswerChoiceModel.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const <AnswerChoiceModel>[],
+      isCorrect: json['isCorrect'] as bool?,
     );
 
 Map<String, dynamic> _$$QuestionModelImplToJson(_$QuestionModelImpl instance) =>
@@ -27,6 +28,7 @@ Map<String, dynamic> _$$QuestionModelImplToJson(_$QuestionModelImpl instance) =>
       'questionText': instance.questionText,
       'questionImageUrl': instance.questionImageUrl,
       'answerChoices': instance.answerChoices,
+      'isCorrect': instance.isCorrect,
     };
 
 const _$QuestionTypeEnumMap = {
