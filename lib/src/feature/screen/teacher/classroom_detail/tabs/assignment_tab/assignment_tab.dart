@@ -91,12 +91,12 @@ class _AssignmentTabState extends State<AssignmentTab> {
               ),
               Row(
                 children: [
-                  const Text('Due Jan 15, 2025'),
-                  8.width,
-                  ChipCustom(
-                    color: const Color(AppColors.c04),
-                    title: AppStrings.assigned,
-                  )
+                   Text(assignment.description ?? '',).expanded(),
+                  // 8.width,
+                  // ChipCustom(
+                  //   color: const Color(AppColors.c04),
+                  //   title: AppStrings.assigned,
+                  // )
                 ],
               ),
             ],

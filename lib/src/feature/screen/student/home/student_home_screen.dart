@@ -87,9 +87,9 @@ class _StudentHomeScreenState extends State<StudentHomeScreen> {
                   const SizedBox(
                     height: 16.0,
                   ),
-                  const Text(
-                    'Xin chào A! 👋',
-                    style: TextStyle(fontSize: 24, color: Color(AppColors.cEC)),
+                  Text(
+                    'Xin chào ${state.data?.fullName}! 👋',
+                    style: const TextStyle(fontSize: 24, color: Color(AppColors.cEC)),
                   ),
                   const SizedBox(height: 20.0),
                   Text(

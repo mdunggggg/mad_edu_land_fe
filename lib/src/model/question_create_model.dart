@@ -28,7 +28,19 @@ class QuestionCreateModel {
       payload['questionImage'] = MultipartFile.fromFileSync(questionImageFile!.path);
     }
     return payload;
+  }
 
+  QuestionCreateModel copyWith({
+    QuestionType? questionType,
+    String? questionText,
+    XFile? questionImageFile,
+    List<AnswerChoiceCreateModel>? answerChoices,
+  }) {
+    return QuestionCreateModel()
+      ..questionType = questionType ?? this.questionType
+      ..questionText = questionText ?? this.questionText
+      ..questionImageFile = questionImageFile ?? this.questionImageFile
+      ..answerChoices = answerChoices ?? this.answerChoices;
   }
 
 

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:edu_land/src/data/local/app_shared_preference.dart';
@@ -14,6 +16,7 @@ void main() {
     EasyLocalization.ensureInitialized(),
     AppSharedPreference.instance.initSharedPreferences(),
   ];
+  HttpOverrides.global = MyHttpOverrides();
   Future.wait(initJobs).then(
     (value) {
       runApp(
@@ -30,6 +33,13 @@ void main() {
 }
 
 final AppRouter appRouter = AppRouter();
+class MyHttpOverrides extends HttpOverrides{
+  @override
+  HttpClient createHttpClient(SecurityContext? context){
+    return super.createHttpClient(context)
+      ..badCertificateCallback = (X509Certificate cert, String host, int port)=> true;
+  }
+}
 
 class MainApp extends StatelessWidget {
   const MainApp({super.key});

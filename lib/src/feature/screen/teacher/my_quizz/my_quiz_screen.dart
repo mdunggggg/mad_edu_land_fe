@@ -1,4 +1,5 @@
 import 'package:auto_route/annotations.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:edu_land/src/bloc/bloc_state.dart';
 import 'package:edu_land/src/feature/components/app_input.dart';
 import 'package:edu_land/src/feature/components/delete_dialog.dart';
@@ -14,6 +15,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../bloc/check_status_bloc.dart';
 import '../../../../resources/constant/app_colors.dart';
 import '../../../../resources/constant/app_strings.dart';
+import '../../../../router/router.gr.dart';
 import '../../../components/delay_call_back.dart';
 import '../../../components/fa_icon.dart';
 import 'my_quiz_bloc.dart';
@@ -78,6 +80,22 @@ class _MyQuizScreenState extends State<MyQuizScreen> {
                 } ,
               ),
             ),
+          ),
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            context.router.push(CreateQuestionSetRoute()).then(
+              (value) {
+                bloc.init();
+              },
+            );
+          },
+          backgroundColor: const Color(AppColors.c3B),
+          shape: const CircleBorder(),
+          child: const FaIcon(
+            iconCode: '2b',
+            color: Colors.white,
+            size: 20,
           ),
         ),
         body: BlocBuilder<MyQuizBloc, BlocState>(

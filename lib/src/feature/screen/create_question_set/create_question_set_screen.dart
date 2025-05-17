@@ -37,6 +37,7 @@ class _CreateQuestionSetScreenState extends State<CreateQuestionSetScreen> {
   final ScrollController _scrollController = ScrollController();
   final TextEditingController _questionSetNameController =
       TextEditingController();
+  final TextEditingController description = TextEditingController();
 
 
   @override
@@ -44,6 +45,7 @@ class _CreateQuestionSetScreenState extends State<CreateQuestionSetScreen> {
     _bloc.close();
     _scrollController.dispose();
     _questionSetNameController.dispose();
+    description.dispose();
     super.dispose();
   }
 
@@ -70,6 +72,8 @@ class _CreateQuestionSetScreenState extends State<CreateQuestionSetScreen> {
               children: [
                 _buildQuestionSetName(),
                 16.height,
+                _buildQuestionSetDescription(),
+                16.height,
                 _buildCategory(),
                 16.height,
                 _buildAddQuestionTitle(),
@@ -87,7 +91,7 @@ class _CreateQuestionSetScreenState extends State<CreateQuestionSetScreen> {
         child: PrimaryButton(
           text: AppStrings.createQuiz,
           onClick: () {
-            _bloc.createQs(_questionSetNameController.text, widget.classId);
+            _bloc.createQs(_questionSetNameController.text, description.text, widget.classId);
           },
           color: Colors.blue,
           textStyle: StyleApp.normal(color: Colors.white, fontSize: 16),
@@ -249,6 +253,17 @@ class _CreateQuestionSetScreenState extends State<CreateQuestionSetScreen> {
           physics: const NeverScrollableScrollPhysics(),
         );
       },
+    );
+  }
+
+  _buildQuestionSetDescription() {
+    return AppInput(
+      hintText: "Mô tả bộ câu hỏi",
+      label: "Mô tả",
+      borderColor: const Color(AppColors.cE5),
+      bgColor: Colors.white,
+      controller: description,
+      maxLines: 5,
     );
   }
 }

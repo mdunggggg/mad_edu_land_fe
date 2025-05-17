@@ -29,7 +29,7 @@ class _ClassroomDetailScreenState extends State<ClassroomDetailScreen>
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 3, vsync: this);
+    _tabController = TabController(length: 2, vsync: this);
   }
 
   @override
@@ -53,7 +53,6 @@ class _ClassroomDetailScreenState extends State<ClassroomDetailScreen>
           tabs: [
             Tab(text: AppStrings.student),
             Tab(text: AppStrings.assignments),
-            Tab(text: AppStrings.statistics),
           ],
         ),
       ),
@@ -62,12 +61,6 @@ class _ClassroomDetailScreenState extends State<ClassroomDetailScreen>
         children: [
           StudentTab(id: widget.id),
           AssignmentTab(id: widget.id),
-          Container(
-            color: Colors.white,
-            child: const Center(
-              child: Text('Statistics'),
-            ),
-          ),
         ],
       ),
     );
