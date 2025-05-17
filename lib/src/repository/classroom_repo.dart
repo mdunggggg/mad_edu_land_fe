@@ -3,6 +3,7 @@ import 'package:edu_land/src/data/apis/api_service.dart';
 import 'package:edu_land/src/model/base_model.dart';
 import 'package:edu_land/src/model/question_set_in_student_class_model.dart';
 import 'package:edu_land/src/model/question_set_model.dart';
+import 'package:edu_land/src/model/statistic_model.dart';
 import 'package:edu_land/src/model/student_profile_model.dart';
 
 import '../data/apis/api_path.dart';
@@ -216,6 +217,38 @@ class ClassroomRepo {
         return errorMessage;
       }
       return e.toString();
+    }
+  }
+
+  Future<BaseModel<StatisticModel>> statistic({required int classroomId, required int questionSetId}) async {
+    try {
+      final res = await _dio.get(
+        '${ApiPath.classroom}/$classroomId/statistics-question-set/$questionSetId',
+      );
+      final data = StatisticModel.fromJson(res.data['result']);
+      return BaseModel(
+        code: res.data['code'],
+        message: res.data['message'],
+        data: data,
+      );
+    }
+    catch(e) {
+      if (e is DioException) {
+        final responseData = e.response?.data;
+        final errorMessage = responseData is Map<String, dynamic>
+            ? responseData['message'] ?? 'Unknown error'
+            : e.message ?? 'Dio error'; // Add null check for e.message
+        return BaseModel(
+          code: 400,
+          message: errorMessage,
+          data: null,
+        );
+      }
+      return BaseModel(
+        code: 400,
+        message: e.toString(),
+        data: null,
+      );
     }
   }
 

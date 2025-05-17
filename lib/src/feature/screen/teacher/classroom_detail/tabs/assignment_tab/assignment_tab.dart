@@ -105,6 +105,9 @@ class _AssignmentTabState extends State<AssignmentTab> {
           ChipCustom(
             color: const Color(AppColors.c7C),
             title: AppStrings.viewStats,
+            onTap: () {
+              context.router.push(StatisticRoute(classroomId: widget.id, questionSetId: assignment.id ?? -1));
+            },
           ),
         ],
       ),

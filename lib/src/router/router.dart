@@ -32,5 +32,6 @@ class AppRouter extends RootStackRouter {
     AutoRoute(page: MoreOrLessGameRoute.page),
     AutoRoute(page: SimpleAdditionGameRoute.page),
     AutoRoute(page: MyQuizDetailRoute.page),
+    AutoRoute(page: StatisticRoute.page),
   ];
 }
