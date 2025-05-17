@@ -66,7 +66,9 @@ class _MyClassroomsScreenState extends State<MyClassroomsScreen> {
                 final classroom = state.data![index];
                 return InkWell(
                   onTap: () {
-                    context.router.push(QuestionSetInClassRoute(id: classroom.id!, name: classroom.name ?? ''));
+                    context.router.push(QuestionSetInClassRoute(id: classroom.id!, name: classroom.name ?? '')).then((value) {
+                      bloc.init();
+                    },);
                   },
                   child: _buildClassroomItem(classroom),
                 );

@@ -129,7 +129,10 @@ class _QuestionSetInClassScreenState extends State<QuestionSetInClassScreen> {
             // context.router.push(PlayQuizRoute(idQuestionSet: e.id ?? -1, title: e.name ?? '', classId: widget.id, onSubmit: () {
             //   bloc.init(widget.id);
             // },));
-            context.router.push(StudentAttemptHistoryRoute(classId: widget.id, questionSetId: e.id ?? -1, title: widget.name));
+            context.router.push(StudentAttemptHistoryRoute(classId: widget.id, questionSetId: e.id ?? -1, title: widget.name))
+            .then((value) {;
+              bloc.init(widget.id);
+            },);
           },
           child: Container(
             padding: 16.padding,
