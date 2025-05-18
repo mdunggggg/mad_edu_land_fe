@@ -27,7 +27,7 @@ class ExpandableCustom extends StatefulWidget {
 
 class _ExpandableV2State extends State<ExpandableCustom> {
   late ExpandableController controller =
-  ExpandableController(initialExpanded: true)
+  ExpandableController(initialExpanded: false)
     ..addListener(() => setState(() {}));
 
   @override
@@ -77,7 +77,6 @@ class _ExpandableV2State extends State<ExpandableCustom> {
                   ],
                 )
               : Container(
-                  padding: 16.paddingTop,
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: controller.expanded 

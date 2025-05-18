@@ -108,7 +108,6 @@ class _StudentHomeScreenState extends State<StudentHomeScreen> {
                           width: double.infinity,
                           decoration: const BoxDecoration(
                             color: Color(AppColors.c8B),
-                            // Không cần border radius ở đây vì đã được xử lý bởi ClipRRect trong ExpandableCustom
                           ),
                           child: Row(
                             children: [
@@ -149,8 +148,8 @@ class _StudentHomeScreenState extends State<StudentHomeScreen> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            // Game cards in a grid
                             GridView.count(
+                              padding: 0.padding,
                               shrinkWrap: true,
                               physics: const NeverScrollableScrollPhysics(),
                               crossAxisCount: 2,
