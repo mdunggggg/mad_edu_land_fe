@@ -19,6 +19,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:linear_progress_bar/linear_progress_bar.dart';
 
 import '../../../resources/constant/dummy_data.dart';
+import '../../../shared/utils/text_to_speech_util.dart';
 import '../../components/answer_choice.dart';
 
 @RoutePage()
@@ -34,10 +35,20 @@ class ReviewQuizPlayedScreen extends StatefulWidget {
 class _ReviewQuizPlayedScreenState extends State<ReviewQuizPlayedScreen> {
   final bloc = ReviewQuizBloc();
 
+  // TTS utility
+  final TextToSpeechUtil _tts = TextToSpeechUtil();
+
   @override
   void initState() {
     bloc.init(historyId: widget.historyId);
     super.initState();
+    _tts.init();
+  }
+
+  @override
+  void dispose() {
+    _tts.dispose();
+    super.dispose();
   }
 
   @override
@@ -202,8 +213,8 @@ class _ReviewQuizPlayedScreenState extends State<ReviewQuizPlayedScreen> {
       decoration: BoxDecoration(
         color: const Color(AppColors.cFFFF),
         borderRadius: BorderRadius.circular(16),
-        boxShadow: [
-          const BoxShadow(
+        boxShadow: const [
+          BoxShadow(
             color: Color(AppColors.cE5),
             blurRadius: 8,
             offset: Offset(0, 2),
@@ -213,7 +224,7 @@ class _ReviewQuizPlayedScreenState extends State<ReviewQuizPlayedScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _buildNumOrder(),
+          _buildNumOrder(question.questionText ?? ''),
           8.height,
           Text(
             question.questionText ?? '',
@@ -235,7 +246,7 @@ class _ReviewQuizPlayedScreenState extends State<ReviewQuizPlayedScreen> {
     );
   }
 
-  _buildNumOrder() {
+  _buildNumOrder(String questionText) {
     return Row(
       children: [
         Text(
@@ -248,7 +259,16 @@ class _ReviewQuizPlayedScreenState extends State<ReviewQuizPlayedScreen> {
           ),
         ),
         8.width,
-        const FaIcon(iconCode: 'f6a8'),
+        InkWell(
+            onTap: () {
+              if (_tts.isPlaying()) {
+                _tts.stop();
+              } else {
+                _tts.speak(questionText);
+              }
+            },
+            child: const FaIcon(iconCode: 'f6a8')
+        )
       ],
     );
   }
@@ -296,6 +316,20 @@ class _ReviewQuizPlayedScreenState extends State<ReviewQuizPlayedScreen> {
                 e.answerText ?? '',
                 style: StyleApp.normal(fontSize: 16),
               ),
+              (e.answerText!=null)
+                  ? const SizedBox(width: 8.0)
+                  : const SizedBox.shrink(),
+              if (e.answerText != null)
+                InkWell(
+                    onTap: () {
+                      if (_tts.isPlaying()) {
+                        _tts.stop();
+                      } else {
+                        _tts.speak(e.answerText ?? '');
+                      }
+                    },
+                    child: const FaIcon(iconCode: 'f6a8')
+                ),
               if(e.answerImageUrl != null)
                 BaseCacheImage(
                   url: e.answerImageUrl ?? '',

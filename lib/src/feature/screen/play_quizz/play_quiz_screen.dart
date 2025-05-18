@@ -15,6 +15,7 @@ import 'package:edu_land/src/router/router.gr.dart';
 import 'package:edu_land/src/shared/extension/ext_context.dart';
 import 'package:edu_land/src/shared/extension/ext_duration.dart';
 import 'package:edu_land/src/shared/extension/ext_num.dart';
+import 'package:edu_land/src/shared/utils/text_to_speech_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:linear_progress_bar/linear_progress_bar.dart';
@@ -48,11 +49,15 @@ class _PlayQuizScreenState extends State<PlayQuizScreen> {
   final timeNotifier = ValueNotifier<Duration>(Duration.zero);
   Timer? timer;
 
+  // TTS utility
+  final TextToSpeechUtil _tts = TextToSpeechUtil();
+
   @override
   void initState() {
     bloc.init(questionSetId: widget.idQuestionSet, classId: widget.classId);
     super.initState();
     _startTimer();
+    _tts.init();
   }
 
   @override
@@ -60,6 +65,7 @@ class _PlayQuizScreenState extends State<PlayQuizScreen> {
     _stopTimer();
     timer = null;
     timeNotifier.dispose();
+    _tts.dispose();
     super.dispose();
   }
 
@@ -190,7 +196,7 @@ class _PlayQuizScreenState extends State<PlayQuizScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _buildNumOrder(),
+          _buildNumOrder(question.questionText ?? ''),
           8.height,
           Text(
             question.questionText ?? '',
@@ -213,7 +219,7 @@ class _PlayQuizScreenState extends State<PlayQuizScreen> {
     );
   }
 
-  _buildNumOrder() {
+  _buildNumOrder(String questionText) {
     return Row(
       children: [
         Text(
@@ -226,7 +232,16 @@ class _PlayQuizScreenState extends State<PlayQuizScreen> {
           ),
         ),
         8.width,
-        const FaIcon(iconCode: 'f6a8'),
+        InkWell(
+            onTap: () {
+              if (_tts.isPlaying()) {
+                _tts.stop();
+              } else {
+                _tts.speak(questionText);
+              }
+            },
+            child: const FaIcon(iconCode: 'f6a8')
+        ),
       ],
     );
   }
@@ -273,6 +288,20 @@ class _PlayQuizScreenState extends State<PlayQuizScreen> {
                 e.answerText ?? '',
                 style: StyleApp.normal(fontSize: 16),
               ),
+              (e.answerText!=null)
+                ? const SizedBox(width: 8.0)
+                : const SizedBox.shrink(),
+              if (e.answerText != null)
+                InkWell(
+                    onTap: () {
+                      if (_tts.isPlaying()) {
+                        _tts.stop();
+                      } else {
+                        _tts.speak(e.answerText ?? '');
+                      }
+                    },
+                    child: const FaIcon(iconCode: 'f6a8')
+                ),
               if(e.answerImageUrl != null)
                 BaseCacheImage(
                   url: e.answerImageUrl ?? '',
