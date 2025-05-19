@@ -42,19 +42,19 @@ class CustomAppbar extends StatelessWidget {
               ],
             ),
           ),
-          16.width,
-          Container(
-            padding: 8.padding,
-            decoration: const BoxDecoration(
-              shape: BoxShape.circle,
-              color: Color(AppColors.cFFF),
-            ),
-            child: const FaIcon(
-              iconCode: 'f0f3',
-              type: FaIconType.light,
-              color: Color(AppColors.cFF9F),
-            ),
-          )
+          // 16.width,
+          // Container(
+          //   padding: 8.padding,
+          //   decoration: const BoxDecoration(
+          //     shape: BoxShape.circle,
+          //     color: Color(AppColors.cFFF),
+          //   ),
+          //   child: const FaIcon(
+          //     iconCode: 'f0f3',
+          //     type: FaIconType.light,
+          //     color: Color(AppColors.cFF9F),
+          //   ),
+          // )
         ],
       ),
     );

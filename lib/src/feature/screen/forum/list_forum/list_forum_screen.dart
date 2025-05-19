@@ -141,7 +141,7 @@ class _ListForumScreenState extends State<ListForumScreen> {
               ),
               8.width,
               Text(
-                e.createdAt.format(format: 'hh:mm dd/MM/yyyy'),
+                e.createdAt!.getTimeAgo(),
                 style: StyleApp.normal(
                     fontSize: 14, color: const Color(AppColors.c9C)),
               ).expanded(),

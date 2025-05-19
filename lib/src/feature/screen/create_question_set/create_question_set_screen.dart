@@ -33,16 +33,60 @@ class CreateQuestionSetScreen extends StatefulWidget {
 }
 
 class _CreateQuestionSetScreenState extends State<CreateQuestionSetScreen> {
-  final CreateQuestionSetBloc _bloc = CreateQuestionSetBloc();
+  final CreateQuestionSetBloc _bloc = CreateQuestionSetBloc(); 
   final ScrollController _scrollController = ScrollController();
   final TextEditingController _questionSetNameController =
       TextEditingController();
   final TextEditingController description = TextEditingController();
+  bool isAtTop = true;
 
+  @override
+  void initState() {
+    super.initState();
+    _scrollController.addListener(_scrollListener);
+  }
+
+  void _scrollListener() {
+    final isTop = _scrollController.offset <= _scrollController.position.minScrollExtent;
+    final isBottom = _scrollController.offset >= _scrollController.position.maxScrollExtent;
+    
+    if (isTop) {
+      if (!isAtTop) {
+        setState(() {
+          isAtTop = true;
+        });
+      }
+    } else {
+      if (isAtTop) {
+        setState(() {
+          isAtTop = false;
+        });
+      }
+    }
+  }
+
+  void _scrollToPosition() {
+    if (isAtTop) {
+      // Scroll to bottom
+      _scrollController.animateTo(
+        _scrollController.position.maxScrollExtent,
+        duration: const Duration(milliseconds: 500),
+        curve: Curves.easeInOut,
+      );
+    } else {
+      // Scroll to top
+      _scrollController.animateTo(
+        _scrollController.position.minScrollExtent,
+        duration: const Duration(milliseconds: 500),
+        curve: Curves.easeInOut,
+      );
+    }
+  }
 
   @override
   void dispose() {
     _bloc.close();
+    _scrollController.removeListener(_scrollListener);
     _scrollController.dispose();
     _questionSetNameController.dispose();
     description.dispose();
@@ -56,6 +100,14 @@ class _CreateQuestionSetScreenState extends State<CreateQuestionSetScreen> {
       appBar: AppBar(
         title: Text(AppStrings.createQuiz),
         backgroundColor: Colors.white,
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: _scrollToPosition,
+        backgroundColor: Colors.blue,
+        child: FaIcon(
+          iconCode: isAtTop ? 'f078' : 'f077', // f078: down arrow, f077: up arrow
+          color: Colors.white,
+        ),
       ),
       body: BlocListener<CreateQuestionSetBloc, BlocState>(
         bloc: _bloc,
