@@ -143,7 +143,6 @@ class _StudentHomeScreenState extends State<StudentHomeScreen> {
                         padding: const EdgeInsets.all(16),
                         decoration: const BoxDecoration(
                           color: Color(AppColors.c8B),
-                          // Không cần border radius ở đây vì đã được xử lý bởi ClipRRect trong ExpandableCustom
                         ),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -401,11 +400,7 @@ class _StudentHomeScreenState extends State<StudentHomeScreen> {
       child: Container(
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
-          gradient: const LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [Color(AppColors.c8B), Color(AppColors.c7C)],
-          ),
+          color: Colors.white,
           borderRadius: BorderRadius.circular(16),
         ),
         child: Column(
@@ -416,7 +411,6 @@ class _StudentHomeScreenState extends State<StudentHomeScreen> {
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
-                color: Colors.white,
               ),
             ),
             const SizedBox(height: 16),
@@ -434,8 +428,6 @@ class _StudentHomeScreenState extends State<StudentHomeScreen> {
                     }
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.white.withOpacity(0.2),
-                    foregroundColor: Colors.white,
                     padding: const EdgeInsets.symmetric(vertical: 12),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12),
@@ -446,6 +438,7 @@ class _StudentHomeScreenState extends State<StudentHomeScreen> {
                     style: const TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
+                      color: Colors.black
                     ),
                   ),
                 ),
