@@ -163,29 +163,36 @@ class _TeacherClassListScreenState extends State<TeacherClassListScreen> {
                   ),
                   const SizedBox(width: 8.0),
                   Text(
-                    '${item.totalStudent} ${AppStrings.students}',
+                    '${item.totalStudent} ${AppStrings.students} - ',
                     style: const TextStyle(
                       fontSize: 14,
                       color: Color(AppColors.c6B),
                     ),
                   ),
-                  const SizedBox(width: 16.0),
-                  Container(
-                    padding: 8.paddingVer + 12.paddingHor,
-                    decoration: const BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(20)),
-                      color: Color(AppColors.cF3),
+                  Text(
+                    item.grade == 0 ? 'Mâm Non' : 'Lớp ${item.grade}',
+                    style: const TextStyle(
+                      fontSize: 14,
+                      color: Color(AppColors.c6B),
                     ),
-                    alignment: Alignment.center,
-                    child: Text(
-                      '${AppStrings.code}: ${item.code}',
-                      style: const TextStyle(
-                        fontSize: 14,
-                        color: Color(AppColors.c4B),
-                      ),
-                    )
-                  )
+                  ),
                 ],
+              ),
+              const SizedBox(height: 4.0),
+              Container(
+                  padding: 8.paddingVer + 12.paddingHor,
+                  decoration: const BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(20)),
+                    color: Color(AppColors.cF3),
+                  ),
+                  alignment: Alignment.center,
+                  child: Text(
+                    '${AppStrings.code}: ${item.code}',
+                    style: const TextStyle(
+                      fontSize: 14,
+                      color: Color(AppColors.c4B),
+                    ),
+                  )
               )
             ],
           ),

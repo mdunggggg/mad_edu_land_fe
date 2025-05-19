@@ -19,8 +19,19 @@ class ListForumBloc extends Cubit<BlocState<List<ForumOverviewModel>>> {
   }
 
   Future<void> changeLike(int id) async {
+    final index = state.data?.indexWhere((element) => element.id == id);
+    final List<ForumOverviewModel> list = state.data ?? [];
+    if (index != null && index != -1) {
+      list[index] = list[index].copyWith(
+        liked: !list[index].liked,
+        totalLikes: list[index].liked
+            ? list[index].totalLikes! - 1
+            : list[index].totalLikes! + 1,
+      );
+      emit(state.copyWith(status: Status.loaded, data: list));
+    }
     final res = await repo.changeLike(id);
-    if (res.code == 1000) {
+    if (res.code != 1000) {
       init();
     }
   }

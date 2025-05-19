@@ -12,6 +12,7 @@ class TeacherClassInfoModel with _$TeacherClassInfoModel {
     String? name,
     int? totalStudent,
     String? code,
+    int? grade,
   }) = _TeacherClassInfoModel;
 
   factory TeacherClassInfoModel.fromJson(Map<String, dynamic> json) => _$TeacherClassInfoModelFromJson(json);

@@ -245,12 +245,23 @@ class _TeacherHomeScreenState extends State<TeacherHomeScreen> {
                       color: const Color(AppColors.c1F),
                     ),
                   ),
-                  Text(
-                    '${classroom?.totalStudent ?? 0} ${AppStrings.student.toLowerCase()}',
-                    style: StyleApp.normal(
-                      fontSize: 14,
-                      color: const Color(AppColors.c6B),
-                    ),
+                  Row(
+                    children: [
+                      Text(
+                        '${classroom?.totalStudent ?? 0} ${AppStrings.student.toLowerCase()} - ',
+                        style: StyleApp.normal(
+                          fontSize: 14,
+                          color: const Color(AppColors.c6B),
+                        ),
+                      ),
+                      Text(
+                        classroom?.grade == 0 ? 'Mâm Non' : 'Lớp ${classroom?.grade}',
+                        style: const TextStyle(
+                          fontSize: 14,
+                          color: Color(AppColors.c6B),
+                        ),
+                      ),
+                    ],
                   ),
                   8.height,
                   ChipCustom(

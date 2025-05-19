@@ -13,6 +13,7 @@ _$TeacherClassInfoModelImpl _$$TeacherClassInfoModelImplFromJson(
       name: json['name'] as String?,
       totalStudent: (json['totalStudent'] as num?)?.toInt(),
       code: json['code'] as String?,
+      grade: (json['grade'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$$TeacherClassInfoModelImplToJson(
@@ -22,4 +23,5 @@ Map<String, dynamic> _$$TeacherClassInfoModelImplToJson(
       'name': instance.name,
       'totalStudent': instance.totalStudent,
       'code': instance.code,
+      'grade': instance.grade,
     };

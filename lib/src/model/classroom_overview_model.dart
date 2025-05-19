@@ -12,6 +12,7 @@ class ClassroomOverviewModel with _$ClassroomOverviewModel {
     String? name,
     int? totalStudent,
     String? code,
+    int? grade,
   }) = _ClassroomOverviewModel;
 
   factory ClassroomOverviewModel.fromJson(Map<String, dynamic> json) => _$ClassroomOverviewModelFromJson(json);

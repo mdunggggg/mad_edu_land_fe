@@ -25,6 +25,7 @@ mixin _$TeacherClassInfoModel {
   String? get name => throw _privateConstructorUsedError;
   int? get totalStudent => throw _privateConstructorUsedError;
   String? get code => throw _privateConstructorUsedError;
+  int? get grade => throw _privateConstructorUsedError;
 
   /// Serializes this TeacherClassInfoModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -42,7 +43,8 @@ abstract class $TeacherClassInfoModelCopyWith<$Res> {
           $Res Function(TeacherClassInfoModel) then) =
       _$TeacherClassInfoModelCopyWithImpl<$Res, TeacherClassInfoModel>;
   @useResult
-  $Res call({int? id, String? name, int? totalStudent, String? code});
+  $Res call(
+      {int? id, String? name, int? totalStudent, String? code, int? grade});
 }
 
 /// @nodoc
@@ -65,6 +67,7 @@ class _$TeacherClassInfoModelCopyWithImpl<$Res,
     Object? name = freezed,
     Object? totalStudent = freezed,
     Object? code = freezed,
+    Object? grade = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -83,6 +86,10 @@ class _$TeacherClassInfoModelCopyWithImpl<$Res,
           ? _value.code
           : code // ignore: cast_nullable_to_non_nullable
               as String?,
+      grade: freezed == grade
+          ? _value.grade
+          : grade // ignore: cast_nullable_to_non_nullable
+              as int?,
     ) as $Val);
   }
 }
@@ -96,7 +103,8 @@ abstract class _$$TeacherClassInfoModelImplCopyWith<$Res>
       __$$TeacherClassInfoModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int? id, String? name, int? totalStudent, String? code});
+  $Res call(
+      {int? id, String? name, int? totalStudent, String? code, int? grade});
 }
 
 /// @nodoc
@@ -117,6 +125,7 @@ class __$$TeacherClassInfoModelImplCopyWithImpl<$Res>
     Object? name = freezed,
     Object? totalStudent = freezed,
     Object? code = freezed,
+    Object? grade = freezed,
   }) {
     return _then(_$TeacherClassInfoModelImpl(
       id: freezed == id
@@ -135,6 +144,10 @@ class __$$TeacherClassInfoModelImplCopyWithImpl<$Res>
           ? _value.code
           : code // ignore: cast_nullable_to_non_nullable
               as String?,
+      grade: freezed == grade
+          ? _value.grade
+          : grade // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
@@ -143,7 +156,7 @@ class __$$TeacherClassInfoModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$TeacherClassInfoModelImpl extends _TeacherClassInfoModel {
   const _$TeacherClassInfoModelImpl(
-      {this.id, this.name, this.totalStudent, this.code})
+      {this.id, this.name, this.totalStudent, this.code, this.grade})
       : super._();
 
   factory _$TeacherClassInfoModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -157,10 +170,12 @@ class _$TeacherClassInfoModelImpl extends _TeacherClassInfoModel {
   final int? totalStudent;
   @override
   final String? code;
+  @override
+  final int? grade;
 
   @override
   String toString() {
-    return 'TeacherClassInfoModel(id: $id, name: $name, totalStudent: $totalStudent, code: $code)';
+    return 'TeacherClassInfoModel(id: $id, name: $name, totalStudent: $totalStudent, code: $code, grade: $grade)';
   }
 
   @override
@@ -172,12 +187,14 @@ class _$TeacherClassInfoModelImpl extends _TeacherClassInfoModel {
             (identical(other.name, name) || other.name == name) &&
             (identical(other.totalStudent, totalStudent) ||
                 other.totalStudent == totalStudent) &&
-            (identical(other.code, code) || other.code == code));
+            (identical(other.code, code) || other.code == code) &&
+            (identical(other.grade, grade) || other.grade == grade));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, totalStudent, code);
+  int get hashCode =>
+      Object.hash(runtimeType, id, name, totalStudent, code, grade);
 
   /// Create a copy of TeacherClassInfoModel
   /// with the given fields replaced by the non-null parameter values.
@@ -201,7 +218,8 @@ abstract class _TeacherClassInfoModel extends TeacherClassInfoModel {
       {final int? id,
       final String? name,
       final int? totalStudent,
-      final String? code}) = _$TeacherClassInfoModelImpl;
+      final String? code,
+      final int? grade}) = _$TeacherClassInfoModelImpl;
   const _TeacherClassInfoModel._() : super._();
 
   factory _TeacherClassInfoModel.fromJson(Map<String, dynamic> json) =
@@ -215,6 +233,8 @@ abstract class _TeacherClassInfoModel extends TeacherClassInfoModel {
   int? get totalStudent;
   @override
   String? get code;
+  @override
+  int? get grade;
 
   /// Create a copy of TeacherClassInfoModel
   /// with the given fields replaced by the non-null parameter values.
