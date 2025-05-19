@@ -13,6 +13,7 @@ class AnswerChoiceModel with _$AnswerChoiceModel {
     String? answerText,
     String? answerImageUrl,
     @Default(false) bool isSelected,
+    bool? isCorrect,
   }) = _AnswerChoiceModel;
 
   factory AnswerChoiceModel.fromJson(Map<String, dynamic> json) => _$AnswerChoiceModelFromJson(json);

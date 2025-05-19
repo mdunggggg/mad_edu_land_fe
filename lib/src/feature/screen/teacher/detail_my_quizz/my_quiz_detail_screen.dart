@@ -6,6 +6,7 @@ import 'package:edu_land/src/model/question_model.dart';
 import 'package:edu_land/src/model/question_set_model.dart';
 import 'package:edu_land/src/shared/extension/ext_context.dart';
 import 'package:edu_land/src/shared/extension/ext_num.dart';
+import 'package:edu_land/src/shared/extension/ext_string.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -169,6 +170,8 @@ class _MyQuizDetailScreenState extends State<MyQuizDetailScreen> {
                   fit: BoxFit.fill,
                 ),
               16.height,
+              _buildCorrectAnswer(question.answerChoices),
+              16.height,
               _buildAnswers(question.answerChoices),
             ],
           ),
@@ -225,5 +228,19 @@ class _MyQuizDetailScreenState extends State<MyQuizDetailScreen> {
       },
       itemCount: answerChoices.length,
     );
+  }
+
+  _buildCorrectAnswer(List<AnswerChoiceModel> answerChoices) {
+    final correctAnswer = answerChoices
+        .where((element) => element.isCorrect == true)
+        .fold('', (previousValue, element) => '$previousValue${element.choiceLabel.validator},',);
+    if(correctAnswer.isNotEmpty) {
+      return Text(
+        'Các đáp án đúng: ${correctAnswer.substring(0, correctAnswer.length - 1)}',
+        style: StyleApp.normal(fontSize: 16, color: Colors.green),
+      );
+    } else {
+      return const SizedBox();
+    }
   }
 }

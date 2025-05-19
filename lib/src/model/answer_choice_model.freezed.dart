@@ -25,6 +25,7 @@ mixin _$AnswerChoiceModel {
   String? get answerText => throw _privateConstructorUsedError;
   String? get answerImageUrl => throw _privateConstructorUsedError;
   bool get isSelected => throw _privateConstructorUsedError;
+  bool? get isCorrect => throw _privateConstructorUsedError;
 
   /// Serializes this AnswerChoiceModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -47,7 +48,8 @@ abstract class $AnswerChoiceModelCopyWith<$Res> {
       String? choiceLabel,
       String? answerText,
       String? answerImageUrl,
-      bool isSelected});
+      bool isSelected,
+      bool? isCorrect});
 }
 
 /// @nodoc
@@ -70,6 +72,7 @@ class _$AnswerChoiceModelCopyWithImpl<$Res, $Val extends AnswerChoiceModel>
     Object? answerText = freezed,
     Object? answerImageUrl = freezed,
     Object? isSelected = null,
+    Object? isCorrect = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -92,6 +95,10 @@ class _$AnswerChoiceModelCopyWithImpl<$Res, $Val extends AnswerChoiceModel>
           ? _value.isSelected
           : isSelected // ignore: cast_nullable_to_non_nullable
               as bool,
+      isCorrect: freezed == isCorrect
+          ? _value.isCorrect
+          : isCorrect // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ) as $Val);
   }
 }
@@ -109,7 +116,8 @@ abstract class _$$AnswerChoiceModelImplCopyWith<$Res>
       String? choiceLabel,
       String? answerText,
       String? answerImageUrl,
-      bool isSelected});
+      bool isSelected,
+      bool? isCorrect});
 }
 
 /// @nodoc
@@ -130,6 +138,7 @@ class __$$AnswerChoiceModelImplCopyWithImpl<$Res>
     Object? answerText = freezed,
     Object? answerImageUrl = freezed,
     Object? isSelected = null,
+    Object? isCorrect = freezed,
   }) {
     return _then(_$AnswerChoiceModelImpl(
       id: freezed == id
@@ -152,6 +161,10 @@ class __$$AnswerChoiceModelImplCopyWithImpl<$Res>
           ? _value.isSelected
           : isSelected // ignore: cast_nullable_to_non_nullable
               as bool,
+      isCorrect: freezed == isCorrect
+          ? _value.isCorrect
+          : isCorrect // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ));
   }
 }
@@ -164,7 +177,8 @@ class _$AnswerChoiceModelImpl extends _AnswerChoiceModel {
       this.choiceLabel,
       this.answerText,
       this.answerImageUrl,
-      this.isSelected = false})
+      this.isSelected = false,
+      this.isCorrect})
       : super._();
 
   factory _$AnswerChoiceModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -181,10 +195,12 @@ class _$AnswerChoiceModelImpl extends _AnswerChoiceModel {
   @override
   @JsonKey()
   final bool isSelected;
+  @override
+  final bool? isCorrect;
 
   @override
   String toString() {
-    return 'AnswerChoiceModel(id: $id, choiceLabel: $choiceLabel, answerText: $answerText, answerImageUrl: $answerImageUrl, isSelected: $isSelected)';
+    return 'AnswerChoiceModel(id: $id, choiceLabel: $choiceLabel, answerText: $answerText, answerImageUrl: $answerImageUrl, isSelected: $isSelected, isCorrect: $isCorrect)';
   }
 
   @override
@@ -200,13 +216,15 @@ class _$AnswerChoiceModelImpl extends _AnswerChoiceModel {
             (identical(other.answerImageUrl, answerImageUrl) ||
                 other.answerImageUrl == answerImageUrl) &&
             (identical(other.isSelected, isSelected) ||
-                other.isSelected == isSelected));
+                other.isSelected == isSelected) &&
+            (identical(other.isCorrect, isCorrect) ||
+                other.isCorrect == isCorrect));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, id, choiceLabel, answerText, answerImageUrl, isSelected);
+  int get hashCode => Object.hash(runtimeType, id, choiceLabel, answerText,
+      answerImageUrl, isSelected, isCorrect);
 
   /// Create a copy of AnswerChoiceModel
   /// with the given fields replaced by the non-null parameter values.
@@ -231,7 +249,8 @@ abstract class _AnswerChoiceModel extends AnswerChoiceModel {
       final String? choiceLabel,
       final String? answerText,
       final String? answerImageUrl,
-      final bool isSelected}) = _$AnswerChoiceModelImpl;
+      final bool isSelected,
+      final bool? isCorrect}) = _$AnswerChoiceModelImpl;
   const _AnswerChoiceModel._() : super._();
 
   factory _AnswerChoiceModel.fromJson(Map<String, dynamic> json) =
@@ -247,6 +266,8 @@ abstract class _AnswerChoiceModel extends AnswerChoiceModel {
   String? get answerImageUrl;
   @override
   bool get isSelected;
+  @override
+  bool? get isCorrect;
 
   /// Create a copy of AnswerChoiceModel
   /// with the given fields replaced by the non-null parameter values.

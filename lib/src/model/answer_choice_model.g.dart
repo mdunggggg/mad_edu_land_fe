@@ -14,6 +14,7 @@ _$AnswerChoiceModelImpl _$$AnswerChoiceModelImplFromJson(
       answerText: json['answerText'] as String?,
       answerImageUrl: json['answerImageUrl'] as String?,
       isSelected: json['isSelected'] as bool? ?? false,
+      isCorrect: json['isCorrect'] as bool?,
     );
 
 Map<String, dynamic> _$$AnswerChoiceModelImplToJson(
@@ -24,4 +25,5 @@ Map<String, dynamic> _$$AnswerChoiceModelImplToJson(
       'answerText': instance.answerText,
       'answerImageUrl': instance.answerImageUrl,
       'isSelected': instance.isSelected,
+      'isCorrect': instance.isCorrect,
     };
