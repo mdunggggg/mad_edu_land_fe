@@ -1,10 +1,12 @@
 import 'package:auto_route/annotations.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:edu_land/src/feature/components/fa_icon.dart';
+import 'package:edu_land/src/model/like_model.dart';
 import 'package:edu_land/src/resources/constant/app_colors.dart';
 import 'package:edu_land/src/resources/constant/app_strings.dart';
 import 'package:edu_land/src/resources/constant/app_styles.dart';
 import 'package:edu_land/src/router/router.gr.dart';
+import 'package:edu_land/src/shared/extension/ext_context.dart';
 import 'package:edu_land/src/shared/extension/ext_date.dart';
 import 'package:edu_land/src/shared/extension/ext_num.dart';
 import 'package:edu_land/src/shared/extension/ext_string.dart';
@@ -177,11 +179,84 @@ class _ListForumScreenState extends State<ListForumScreen> {
                     color: e.liked ? Colors.red : const Color(AppColors.c6B)),
               ),
               4.width,
-              Text(
-                '${e.totalLikes} ${AppStrings.like.toLowerCase()}',
-                style: StyleApp.normal(color: const Color(AppColors.c6B)),
+              InkWell(
+                onTap: () async {
+                  final likes = await bloc.getLikes(postId: e.id ?? -1);
+                  context.bottomSheet(
+                    child: _buildLikesList(likes: likes),
+                  );
+                },
+                child: Text(
+                  '${e.totalLikes} ${AppStrings.like.toLowerCase()}',
+                  style: StyleApp.normal(color: const Color(AppColors.c6B)),
+                ),
               ),
             ],
+          ),
+        ],
+      ),
+    );
+  }
+
+
+
+  _buildLikesList({required List<LikeModel> likes}) {
+    return Container(
+      decoration: const BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                'Số lượng người thích (${likes.length})',
+                style: StyleApp.bold(fontSize: 18),
+              ),
+              IconButton(
+                onPressed: () => context.router.maybePop(),
+                icon: const Icon(Icons.close),
+              ),
+            ],
+          ),
+          16.height,
+          Flexible(
+            child: ListView.separated(
+              shrinkWrap: true,
+              itemCount: likes.length,
+              padding: 0.padding,
+              separatorBuilder: (context, index) => const Divider(height: 1),
+              itemBuilder: (context, index) {
+                final like = likes[index];
+                return ListTile(
+                  leading: CircleAvatar(
+                    radius: 20,
+                    child: RandomAvatar(
+                      like.userId?.toString() ?? '',
+                      height: 40,
+                      width: 40,
+                    ),
+                  ),
+                  title: Text(
+                    like.fullName ?? like.username ?? 'Unknown User',
+                    style: StyleApp.normal(fontSize: 16),
+                  ),
+                  subtitle: Text(
+                    like.createdAt != null
+                        ? 'Thích lúc ${like.createdAt!.getTimeAgo().toLowerCase()}'
+                        : '',
+                    style: StyleApp.normal(
+                      fontSize: 12,
+                      color: Colors.grey,
+                    ),
+                  ),
+                );
+              },
+            ),
           ),
         ],
       ),

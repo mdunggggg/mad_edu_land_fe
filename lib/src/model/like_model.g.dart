@@ -11,6 +11,7 @@ _$LikeModelImpl _$$LikeModelImplFromJson(Map<String, dynamic> json) =>
       id: (json['id'] as num?)?.toInt(),
       userId: (json['userId'] as num?)?.toInt(),
       username: json['username'] as String?,
+      fullName: json['fullName'] as String?,
       postId: (json['postId'] as num?)?.toInt(),
       createdAt: json['createdAt'] == null
           ? null
@@ -22,6 +23,7 @@ Map<String, dynamic> _$$LikeModelImplToJson(_$LikeModelImpl instance) =>
       'id': instance.id,
       'userId': instance.userId,
       'username': instance.username,
+      'fullName': instance.fullName,
       'postId': instance.postId,
       'createdAt': instance.createdAt?.toIso8601String(),
     };

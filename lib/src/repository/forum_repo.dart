@@ -2,6 +2,7 @@ import 'package:edu_land/src/data/apis/api_path.dart';
 import 'package:edu_land/src/model/base_model.dart';
 import 'package:edu_land/src/model/comment_model.dart';
 import 'package:edu_land/src/model/forum_overview_model.dart';
+import 'package:edu_land/src/model/like_model.dart';
 import 'package:edu_land/src/model/post_model.dart';
 
 import '../data/apis/api_service.dart';
@@ -111,6 +112,25 @@ class ForumRepo {
         code: 400,
         message: e.toString(),
         data: false,
+      );
+    }
+  }
+
+  Future<BaseModel<List<LikeModel>>> getLikes({required int postId}) async {
+    try {
+      final response = await _dio.get('${ApiPath.posts}/$postId/likes');
+      final data = response.data['result'] as List;
+      final dataModel = data.map((e) => LikeModel.fromJson(e)).toList();
+      return BaseModel(
+        code: response.data['code'],
+        message: response.data['message'],
+        data: dataModel,
+      );
+    } catch (e) {
+      return BaseModel(
+        code: 400,
+        message: e.toString(),
+        data: [],
       );
     }
   }

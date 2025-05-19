@@ -11,6 +11,7 @@ class LikeModel with _$LikeModel {
     int? id,
     int? userId,
     String? username,
+    String? fullName,
     int? postId,
     DateTime? createdAt,
   }) = _LikeModel;

@@ -145,7 +145,7 @@ class _AssignQuizDialogState extends State<AssignQuizDialog> {
                         ),
                       ),
                       Text(
-                        '${item.totalStudent ?? ''}',
+                        'Tổng số học sinh: ${item.totalStudent ?? ''}',
                         style: const TextStyle(
                           fontSize: 14,
                           color: Color(AppColors.c6B),

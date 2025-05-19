@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:edu_land/src/bloc/bloc_state.dart';
 import 'package:edu_land/src/model/forum_overview_model.dart';
+import 'package:edu_land/src/model/like_model.dart';
 
 import '../../../../repository/forum_repo.dart';
 
@@ -33,6 +34,15 @@ class ListForumBloc extends Cubit<BlocState<List<ForumOverviewModel>>> {
     final res = await repo.changeLike(id);
     if (res.code != 1000) {
       init();
+    }
+  }
+
+  Future<List<LikeModel>> getLikes({required int postId}) async {
+    final res = await repo.getLikes(postId: postId);
+    if (res.code == 1000) {
+      return res.data;
+    } else {
+      return [];
     }
   }
 }

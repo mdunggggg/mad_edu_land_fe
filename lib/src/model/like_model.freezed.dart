@@ -23,6 +23,7 @@ mixin _$LikeModel {
   int? get id => throw _privateConstructorUsedError;
   int? get userId => throw _privateConstructorUsedError;
   String? get username => throw _privateConstructorUsedError;
+  String? get fullName => throw _privateConstructorUsedError;
   int? get postId => throw _privateConstructorUsedError;
   DateTime? get createdAt => throw _privateConstructorUsedError;
 
@@ -45,6 +46,7 @@ abstract class $LikeModelCopyWith<$Res> {
       {int? id,
       int? userId,
       String? username,
+      String? fullName,
       int? postId,
       DateTime? createdAt});
 }
@@ -67,6 +69,7 @@ class _$LikeModelCopyWithImpl<$Res, $Val extends LikeModel>
     Object? id = freezed,
     Object? userId = freezed,
     Object? username = freezed,
+    Object? fullName = freezed,
     Object? postId = freezed,
     Object? createdAt = freezed,
   }) {
@@ -82,6 +85,10 @@ class _$LikeModelCopyWithImpl<$Res, $Val extends LikeModel>
       username: freezed == username
           ? _value.username
           : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      fullName: freezed == fullName
+          ? _value.fullName
+          : fullName // ignore: cast_nullable_to_non_nullable
               as String?,
       postId: freezed == postId
           ? _value.postId
@@ -107,6 +114,7 @@ abstract class _$$LikeModelImplCopyWith<$Res>
       {int? id,
       int? userId,
       String? username,
+      String? fullName,
       int? postId,
       DateTime? createdAt});
 }
@@ -127,6 +135,7 @@ class __$$LikeModelImplCopyWithImpl<$Res>
     Object? id = freezed,
     Object? userId = freezed,
     Object? username = freezed,
+    Object? fullName = freezed,
     Object? postId = freezed,
     Object? createdAt = freezed,
   }) {
@@ -142,6 +151,10 @@ class __$$LikeModelImplCopyWithImpl<$Res>
       username: freezed == username
           ? _value.username
           : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      fullName: freezed == fullName
+          ? _value.fullName
+          : fullName // ignore: cast_nullable_to_non_nullable
               as String?,
       postId: freezed == postId
           ? _value.postId
@@ -159,7 +172,12 @@ class __$$LikeModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$LikeModelImpl extends _LikeModel {
   const _$LikeModelImpl(
-      {this.id, this.userId, this.username, this.postId, this.createdAt})
+      {this.id,
+      this.userId,
+      this.username,
+      this.fullName,
+      this.postId,
+      this.createdAt})
       : super._();
 
   factory _$LikeModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -172,13 +190,15 @@ class _$LikeModelImpl extends _LikeModel {
   @override
   final String? username;
   @override
+  final String? fullName;
+  @override
   final int? postId;
   @override
   final DateTime? createdAt;
 
   @override
   String toString() {
-    return 'LikeModel(id: $id, userId: $userId, username: $username, postId: $postId, createdAt: $createdAt)';
+    return 'LikeModel(id: $id, userId: $userId, username: $username, fullName: $fullName, postId: $postId, createdAt: $createdAt)';
   }
 
   @override
@@ -190,6 +210,8 @@ class _$LikeModelImpl extends _LikeModel {
             (identical(other.userId, userId) || other.userId == userId) &&
             (identical(other.username, username) ||
                 other.username == username) &&
+            (identical(other.fullName, fullName) ||
+                other.fullName == fullName) &&
             (identical(other.postId, postId) || other.postId == postId) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt));
@@ -197,8 +219,8 @@ class _$LikeModelImpl extends _LikeModel {
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, id, userId, username, postId, createdAt);
+  int get hashCode => Object.hash(
+      runtimeType, id, userId, username, fullName, postId, createdAt);
 
   /// Create a copy of LikeModel
   /// with the given fields replaced by the non-null parameter values.
@@ -221,6 +243,7 @@ abstract class _LikeModel extends LikeModel {
       {final int? id,
       final int? userId,
       final String? username,
+      final String? fullName,
       final int? postId,
       final DateTime? createdAt}) = _$LikeModelImpl;
   const _LikeModel._() : super._();
@@ -234,6 +257,8 @@ abstract class _LikeModel extends LikeModel {
   int? get userId;
   @override
   String? get username;
+  @override
+  String? get fullName;
   @override
   int? get postId;
   @override

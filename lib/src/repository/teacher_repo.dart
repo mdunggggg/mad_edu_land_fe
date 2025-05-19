@@ -90,7 +90,10 @@ class TeacherRepo {
 
   Future<BaseModel> getStateAssignedClass({required int questionSetId, String? search}) async {
     try {
-      final query = questionSetId != 0 ? {'questionSetId': questionSetId} : null;
+      final Map<String, dynamic>query = questionSetId != 0 ? {'questionSetId': questionSetId} : {};
+      if(search != null) {
+        query['search'] = search;
+      }
       final response = await _dio.get(ApiPath.stateAssignedClass, queryParameters: query);
       final data = response.data['result'] as List;
       final dataModel = data.map((e) => ClassAssignInfoModel.fromJson(e)).toList();
