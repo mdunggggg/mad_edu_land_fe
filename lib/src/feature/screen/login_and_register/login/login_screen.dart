@@ -8,6 +8,7 @@ import 'package:edu_land/src/resources/constant/app_styles.dart';
 import 'package:edu_land/src/router/router.gr.dart';
 import 'package:edu_land/src/shared/extension/ext_num.dart';
 import 'package:edu_land/src/shared/extension/ext_widget.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -41,8 +42,10 @@ class _LoginScreenState extends State<LoginScreen>
   @override
   void initState() {
     bloc.type = widget.role;
-    usernameCtrl.text = bloc.type == Role.student ? 'hocsinh' : 'giaovien';
-    passwordCtrl.text = '1';
+    if(kDebugMode) {
+      usernameCtrl.text = bloc.type == Role.student ? 'hocsinh' : 'giaovien';
+      passwordCtrl.text = '1';
+    }
     super.initState();
   }
 
@@ -82,7 +85,7 @@ class _LoginScreenState extends State<LoginScreen>
             16.height,
             Image.asset(
               AppImages.imgLogin,
-              height: 192,
+              height: 160,
             ),
             8.height,
             AppInput(
