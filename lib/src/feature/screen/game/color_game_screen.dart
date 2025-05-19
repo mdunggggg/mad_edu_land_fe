@@ -1,5 +1,5 @@
-
 import 'package:auto_route/annotations.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:edu_land/src/shared/extension/ext_context.dart';
 import 'package:edu_land/src/shared/extension/ext_num.dart';
 import 'package:flame/components.dart';
@@ -25,9 +25,37 @@ class _ColorGameScreenState extends State<ColorGameScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: context.padding.top.paddingTop,
-        child: GameWidget(game: ColorMatchingGame(difficulty: widget.difficulty)),
+      body: Stack(
+        children: [
+          Padding(
+            padding: context.padding.top.paddingTop,
+            child: GameWidget(game: ColorMatchingGame(difficulty: widget.difficulty)),
+          ),
+          Positioned(
+            top: MediaQuery.of(context).padding.top + 10,
+            left: 10,
+            child: InkWell(
+              onTap: () {
+                context.router.maybePop();
+              },
+              child: Container(
+                padding: const EdgeInsets.all(8),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  shape: BoxShape.circle,
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.2),
+                      blurRadius: 8,
+                      offset: const Offset(0, 2),
+                    ),
+                  ],
+                ),
+                child: const Icon(Icons.arrow_back, color: Colors.black),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -58,7 +86,7 @@ class ColorMatchingGame extends FlameGame with DragCallbacks {
     add(Background());
 
     timerText = TextComponent(
-      text: 'Time: ${timeLimit.toInt()} s',
+      text: 'Thời gian: ${timeLimit.toInt()} s',
       position: Vector2(size.x / 2, 50),
       anchor: Anchor.center,
       textRenderer: TextPaint(
@@ -112,7 +140,7 @@ class ColorMatchingGame extends FlameGame with DragCallbacks {
 
     elapsedTime += dt;
     final timeLeft = (timeLimit - elapsedTime).clamp(0, timeLimit).toInt();
-    timerText.text = 'Time: $timeLeft s';
+    timerText.text = 'Thời gian: $timeLeft s';
 
     if (elapsedTime >= timeLimit && objects.any((obj) => obj.isDraggable)) {
       showGameOver();

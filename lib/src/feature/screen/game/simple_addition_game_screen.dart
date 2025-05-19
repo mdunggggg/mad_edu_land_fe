@@ -1,4 +1,5 @@
 import 'package:auto_route/annotations.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flame/components.dart';
 import 'package:flame/effects.dart';
 import 'package:flame/events.dart';
@@ -19,7 +20,35 @@ class _SimpleAdditionGameScreenState extends State<SimpleAdditionGameScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: GameWidget(game: SimpleAdditionGame()),
+      body: Stack(
+        children: [
+          GameWidget(game: SimpleAdditionGame()),
+          Positioned(
+            top: MediaQuery.of(context).padding.top + 10,
+            left: 10,
+            child: InkWell(
+              onTap: () {
+                context.router.maybePop();
+              },
+              child: Container(
+                padding: const EdgeInsets.all(8),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  shape: BoxShape.circle,
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.2),
+                      blurRadius: 8,
+                      offset: const Offset(0, 2),
+                    ),
+                  ],
+                ),
+                child: const Icon(Icons.arrow_back, color: Colors.black),
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
@@ -34,8 +63,8 @@ class SimpleAdditionGame extends FlameGame with TapCallbacks {
   late List<ObjectIcon> leftObjects;
   late List<ObjectIcon> rightObjects;
   late List<int> answerOptions;
-  late TextComponent instructionText;
-  late TextComponent questionText;
+  late TextBoxComponent instructionText;
+  late TextBoxComponent questionText;
   late MathType mathType;
   bool isGameOver = false;
   bool isMerged = false;
@@ -49,12 +78,18 @@ class SimpleAdditionGame extends FlameGame with TapCallbacks {
     add(Background());
     
     // Hiển thị câu hỏi hướng dẫn
-    instructionText = TextComponent(
+    instructionText = TextBoxComponent(
       text: mathType == MathType.addition
           ? 'Có bao nhiêu quả bóng tất cả?'
           : 'Còn lại bao nhiêu quả bóng?',
       position: Vector2(size.x / 2, size.y * 0.12),
       anchor: Anchor.center,
+      boxConfig: TextBoxConfig(
+        maxWidth: size.x * 0.8,
+        timePerChar: 0.0,
+        growingBox: true,
+        margins: const EdgeInsets.all(16),
+      ),
       textRenderer: TextPaint(
         style: const TextStyle(
           color: Colors.black,
@@ -66,12 +101,18 @@ class SimpleAdditionGame extends FlameGame with TapCallbacks {
     add(instructionText);
 
     // Hiển thị phép tính
-    questionText = TextComponent(
+    questionText = TextBoxComponent(
       text: mathType == MathType.addition
           ? '$leftCount + $rightCount = ?'
           : '$leftCount - $rightCount = ?',
       position: Vector2(size.x / 2, size.y * 0.2),
       anchor: Anchor.center,
+      boxConfig: TextBoxConfig(
+        maxWidth: size.x * 0.8,
+        timePerChar: 0.0,
+        growingBox: true,
+        margins: const EdgeInsets.all(16),
+      ),
       textRenderer: TextPaint(
         style: const TextStyle(
           color: Colors.black,
@@ -81,6 +122,11 @@ class SimpleAdditionGame extends FlameGame with TapCallbacks {
       ),
     );
     add(questionText);
+
+    // Thêm padding cho game
+    final gameAreaWidth = size.x * 0.9; // Sử dụng 90% chiều rộng màn hình
+    final startX = (size.x - gameAreaWidth) / 2;
+    final startY = size.y * 0.3; // Bắt đầu từ 30% chiều cao
 
     // Hiển thị hai nhóm object
     leftObjects = [];
@@ -252,7 +298,7 @@ class SimpleAdditionGame extends FlameGame with TapCallbacks {
     bool correct = selected == correctAnswer;
     FlameAudio.play(correct ? 'correct.mp3' : 'wrong.mp3');
     add(
-      TextComponent(
+      TextBoxComponent(
         text: correct ? '🎉 Đúng rồi! Chạm để chơi tiếp' : 'Sai rồi! Thử lại nhé!',
         position: Vector2(size.x / 2, size.y * 0.9),
         anchor: Anchor.center,

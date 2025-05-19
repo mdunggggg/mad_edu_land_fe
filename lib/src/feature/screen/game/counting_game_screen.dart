@@ -1,4 +1,5 @@
 import 'package:auto_route/annotations.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:edu_land/src/shared/extension/ext_context.dart';
 import 'package:edu_land/src/shared/extension/ext_num.dart';
 import 'package:flame/components.dart';
@@ -25,9 +26,37 @@ class _CountingGameScreenState extends State<CountingGameScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: context.padding.top.paddingTop,
-        child: GameWidget(game: NumberSequenceGame(difficulty: widget.difficulty)),
+      body: Stack(
+        children: [
+          Padding(
+            padding: context.padding.top.paddingTop,
+            child: GameWidget(game: NumberSequenceGame(difficulty: widget.difficulty)),
+          ),
+          Positioned(
+            top: MediaQuery.of(context).padding.top + 10,
+            left: 10,
+            child: InkWell(
+              onTap: () {
+                context.router.maybePop();
+              },
+              child: Container(
+                padding: const EdgeInsets.all(8),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  shape: BoxShape.circle,
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.2),
+                      blurRadius: 8,
+                      offset: const Offset(0, 2),
+                    ),
+                  ],
+                ),
+                child: const Icon(Icons.arrow_back, color: Colors.black),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -37,8 +66,8 @@ class NumberSequenceGame extends FlameGame with DragCallbacks {
   final Difficulty difficulty;
   late List<NumberObject> numberObjects;
   late List<NumberTarget> numberTargets;
-  late TextComponent timerText;
-  late TextComponent instructionText;
+  late TextBoxComponent timerText;
+  late TextBoxComponent instructionText;
 
   List<int> sequence = [];
   List<int> missingNumbers = [];
@@ -59,10 +88,16 @@ class NumberSequenceGame extends FlameGame with DragCallbacks {
 
     add(Background());
 
-    instructionText = TextComponent(
+    instructionText = TextBoxComponent(
       text: 'Kéo số vào ô trống để hoàn thành dãy số!',
-      position: Vector2(size.x / 2, 30),
+      position: Vector2(size.x / 2, 50),
       anchor: Anchor.center,
+      boxConfig: TextBoxConfig(
+        maxWidth: size.x * 0.8,
+        timePerChar: 0.0,
+        growingBox: true,
+        margins: const EdgeInsets.all(16),
+      ),
       textRenderer: TextPaint(
         style: const TextStyle(
           color: Colors.black,
@@ -73,9 +108,9 @@ class NumberSequenceGame extends FlameGame with DragCallbacks {
     );
     add(instructionText);
 
-    timerText = TextComponent(
+    timerText = TextBoxComponent(
       text: 'Time: ${timeLimit.toInt()} s',
-      position: Vector2(size.x / 2, 60),
+      position: Vector2(size.x / 2, 100),
       anchor: Anchor.center,
       textRenderer: TextPaint(
         style: const TextStyle(
@@ -83,6 +118,12 @@ class NumberSequenceGame extends FlameGame with DragCallbacks {
           fontSize: 24,
           fontWeight: FontWeight.bold,
         ),
+      ),
+      boxConfig: TextBoxConfig(
+        maxWidth: size.x * 0.8,
+        timePerChar: 0.0,
+        growingBox: true,
+        margins: const EdgeInsets.all(16),
       ),
     );
     add(timerText);
@@ -170,7 +211,7 @@ class NumberSequenceGame extends FlameGame with DragCallbacks {
 
     elapsedTime += dt;
     final timeLeft = (timeLimit - elapsedTime).clamp(0, timeLimit).toInt();
-    timerText.text = 'Time: $timeLeft s';
+    timerText.text = 'Thời gian: $timeLeft s';
 
     if (elapsedTime >= timeLimit && numberObjects.any((obj) => obj.isDraggable)) {
       showGameOver();
