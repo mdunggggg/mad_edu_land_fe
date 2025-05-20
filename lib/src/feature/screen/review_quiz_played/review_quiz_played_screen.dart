@@ -126,12 +126,9 @@ class _ReviewQuizPlayedScreenState extends State<ReviewQuizPlayedScreen> {
         ),
         const SizedBox(width: 24.0),
         Text(
-          '8/10',
-          style: StyleApp.normal(
-            fontSize: 16,
-            color: const Color(AppColors.c4B),
-          ),
-        )
+          '${bloc.currentIndex + 1}/${bloc.questionHistory.length}',
+          style: StyleApp.normal(fontSize: 16),
+        ),
       ],
     );
   }

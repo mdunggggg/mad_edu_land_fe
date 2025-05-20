@@ -98,7 +98,7 @@ class _TeacherProfileScreenState extends State<TeacherProfileScreen> {
                         ),
                         const SizedBox(height: 12.0),
                         Text(
-                          AppStrings.emailAddress,
+                          "Tài khoản",
                           style: const TextStyle(
                             fontSize: 14,
                             color: Color(AppColors.c6B),

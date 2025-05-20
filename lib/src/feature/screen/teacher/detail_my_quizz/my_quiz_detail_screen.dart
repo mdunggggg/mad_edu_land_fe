@@ -121,8 +121,6 @@ class _MyQuizDetailScreenState extends State<MyQuizDetailScreen> {
         Text(
           model.name ?? '',
           style: StyleApp.normal(fontSize: 24),
-          overflow: TextOverflow.ellipsis,
-          maxLines: 1,
         ),
         8.height,
         Text(

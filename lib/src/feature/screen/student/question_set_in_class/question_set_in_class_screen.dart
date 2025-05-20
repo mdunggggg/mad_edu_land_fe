@@ -11,6 +11,7 @@ import 'package:edu_land/src/shared/extension/ext_num.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:linear_progress_bar/linear_progress_bar.dart';
+import 'package:readmore/readmore.dart';
 
 import '../../../../resources/constant/app_colors.dart';
 import '../../../../resources/constant/app_strings.dart';
@@ -158,7 +159,14 @@ class _QuestionSetInClassScreenState extends State<QuestionSetInClassScreen> {
                         style: StyleApp.normal(fontSize: 18),
                       ),
                       4.height,
-                      Text(e.description ?? ' '),
+                      ReadMoreText(
+                        e.description ?? ' ',
+                        trimLines: 3,
+                        trimMode: TrimMode.Line,
+                        trimCollapsedText: AppStrings.readMore.toLowerCase(),
+                        trimExpandedText: AppStrings.readLess.toLowerCase(),
+                        style: StyleApp.normal(),
+                      ),
                     ],
                   ),
                 ),

@@ -11,6 +11,7 @@ import 'package:edu_land/src/shared/extension/ext_num.dart';
 import 'package:edu_land/src/shared/extension/ext_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:readmore/readmore.dart';
 
 import '../../../../../../router/router.gr.dart';
 import 'assignment_bloc.dart';
@@ -89,15 +90,14 @@ class _AssignmentTabState extends State<AssignmentTab> {
                   fontSize: 16,
                 ),
               ),
-              Row(
-                children: [
-                   Text(assignment.description ?? '',).expanded(),
-                  // 8.width,
-                  // ChipCustom(
-                  //   color: const Color(AppColors.c04),
-                  //   title: AppStrings.assigned,
-                  // )
-                ],
+              6.height,
+              ReadMoreText(
+                assignment.description ?? '',
+                trimLines: 3,
+                trimMode: TrimMode.Line,
+                trimCollapsedText: AppStrings.readMore.toLowerCase(),
+                trimExpandedText: AppStrings.readLess.toLowerCase(),
+                style: StyleApp.normal(),
               ),
             ],
           ).expanded(),
