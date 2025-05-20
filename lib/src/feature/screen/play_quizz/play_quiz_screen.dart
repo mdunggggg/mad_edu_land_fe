@@ -8,6 +8,7 @@ import 'package:edu_land/src/feature/components/base_cache_image.dart';
 import 'package:edu_land/src/feature/components/primary_button.dart';
 import 'package:edu_land/src/feature/screen/play_quizz/play_quiz_bloc.dart';
 import 'package:edu_land/src/model/answer_choice_model.dart';
+import 'package:edu_land/src/model/question_type.dart';
 import 'package:edu_land/src/resources/constant/app_strings.dart';
 import 'package:edu_land/src/resources/constant/app_styles.dart';
 import 'package:edu_land/src/resources/constant/dummy_data.dart';
@@ -146,12 +147,12 @@ class _PlayQuizScreenState extends State<PlayQuizScreen> {
     return Row(
       children: [
         Expanded(
-            child: Text(
-              widget.title,
-              style: StyleApp.normal(fontSize: 24),
-              overflow: TextOverflow.ellipsis,
-              maxLines: 1,
-            ),
+          child: Text(
+            widget.title,
+            style: StyleApp.normal(fontSize: 24),
+            overflow: TextOverflow.ellipsis,
+            maxLines: 1,
+          ),
         ),
         const SizedBox(width: 24.0),
         Text(
@@ -161,7 +162,7 @@ class _PlayQuizScreenState extends State<PlayQuizScreen> {
       ],
     );
   }
-  
+
   _buildTimerUI() {
     return ValueListenableBuilder<Duration>(
       valueListenable: timeNotifier,
@@ -196,7 +197,8 @@ class _PlayQuizScreenState extends State<PlayQuizScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _buildNumOrder(question.questionText ?? ''),
+          _buildNumOrder(question.questionText ?? '',
+              question.questionType == QuestionType.SINGLE_CHOICE),
           8.height,
           Text(
             question.questionText ?? '',
@@ -219,7 +221,7 @@ class _PlayQuizScreenState extends State<PlayQuizScreen> {
     );
   }
 
-  _buildNumOrder(String questionText) {
+  _buildNumOrder(String questionText, bool isSingleChoice) {
     return Row(
       children: [
         Text(
@@ -240,7 +242,16 @@ class _PlayQuizScreenState extends State<PlayQuizScreen> {
                 _tts.speak(questionText);
               }
             },
-            child: const FaIcon(iconCode: 'f6a8')
+            child: const FaIcon(iconCode: 'f6a8')),
+        Spacer(),
+        Text(
+          isSingleChoice ? "1 đáp án đúng" : "Nhiều đáp án đúng",
+          style: StyleApp.normal(
+            fontSize: 16,
+            color: const Color(
+              AppColors.c60,
+            ),
+          ),
         ),
       ],
     );
@@ -288,9 +299,9 @@ class _PlayQuizScreenState extends State<PlayQuizScreen> {
                 e.answerText ?? '',
                 style: StyleApp.normal(fontSize: 16),
               ),
-              (e.answerText!=null)
-                ? const SizedBox(width: 8.0)
-                : const SizedBox.shrink(),
+              (e.answerText != null)
+                  ? const SizedBox(width: 8.0)
+                  : const SizedBox.shrink(),
               if (e.answerText != null)
                 InkWell(
                     onTap: () {
@@ -300,9 +311,8 @@ class _PlayQuizScreenState extends State<PlayQuizScreen> {
                         _tts.speak(e.answerText ?? '');
                       }
                     },
-                    child: const FaIcon(iconCode: 'f6a8')
-                ),
-              if(e.answerImageUrl != null)
+                    child: const FaIcon(iconCode: 'f6a8')),
+              if (e.answerImageUrl != null)
                 BaseCacheImage(
                   url: e.answerImageUrl ?? '',
                   height: 50,
@@ -335,13 +345,13 @@ class _PlayQuizScreenState extends State<PlayQuizScreen> {
             color: bloc.canPrevious() ? Colors.white : null,
           ),
         ),
-
         InkWell(
           onTap: () async {
             _stopTimer();
             int elapsedTime = getElapsedTimeInSeconds();
-            final model = await bloc.submit(questionSetId: widget.idQuestionSet, timeTaken: elapsedTime);
-            if (model != null  && mounted) {
+            final model = await bloc.submit(
+                questionSetId: widget.idQuestionSet, timeTaken: elapsedTime);
+            if (model != null && mounted) {
               print('result: ${model.toJson()}');
               widget.onSubmit?.call();
               context.router.maybePop();
@@ -361,11 +371,9 @@ class _PlayQuizScreenState extends State<PlayQuizScreen> {
                 ),
               ],
             ),
-
             child: const FaIcon(iconCode: 'f00c'),
           ),
         ),
-        
         PrimaryButton(
           text: AppStrings.next,
           textStyle:
