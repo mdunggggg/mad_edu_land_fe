@@ -44,7 +44,9 @@ class TextToSpeechUtil {
   
   Future<bool> speak(String text) async {
     if (text.isEmpty) return false;
-    
+    // stop any  ongoing speech
+    await flutterTts.stop();
+
     await flutterTts.setVolume(volume);
     await flutterTts.setSpeechRate(rate);
     await flutterTts.setPitch(pitch);

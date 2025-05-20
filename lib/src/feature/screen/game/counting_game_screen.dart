@@ -9,6 +9,7 @@ import 'package:flame/game.dart';
 import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
 
+import '../../../shared/utils/text_to_speech_util.dart';
 import 'color_game_screen.dart';
 
 
@@ -23,6 +24,22 @@ class CountingGameScreen extends StatefulWidget {
 }
 
 class _CountingGameScreenState extends State<CountingGameScreen> {
+
+  final TextToSpeechUtil tts = TextToSpeechUtil();
+
+  @override
+  void initState() {
+    tts.init();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    tts.dispose();
+    super.dispose();
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,7 +47,7 @@ class _CountingGameScreenState extends State<CountingGameScreen> {
         children: [
           Padding(
             padding: context.padding.top.paddingTop,
-            child: GameWidget(game: NumberSequenceGame(difficulty: widget.difficulty)),
+            child: GameWidget(game: NumberSequenceGame(difficulty: widget.difficulty, tts: tts)),
           ),
           Positioned(
             top: MediaQuery.of(context).padding.top + 10,
@@ -74,8 +91,9 @@ class NumberSequenceGame extends FlameGame with DragCallbacks {
   bool isGameOver = false;
   double timeLimit = 0;
   double elapsedTime = 0;
+  final TextToSpeechUtil tts;
 
-  NumberSequenceGame({required this.difficulty});
+  NumberSequenceGame({required this.difficulty, required this.tts});
 
   @override
   Future<void> onLoad() async {
@@ -107,6 +125,7 @@ class NumberSequenceGame extends FlameGame with DragCallbacks {
       ),
     );
     add(instructionText);
+    tts.speak('Kéo số vào ô trống để hoàn thành dãy số!');
 
     timerText = TextBoxComponent(
       text: 'Time: ${timeLimit.toInt()} s',
@@ -259,6 +278,7 @@ class NumberSequenceGame extends FlameGame with DragCallbacks {
       timerText.removeFromParent();
       instructionText.removeFromParent();
 
+      tts.speak('Chúc mừng! Bạn đã hoàn thành!');
       add(
         TextComponent(
           text: '🎉 Chúc mừng! \nBạn đã hoàn thành!',
@@ -296,6 +316,7 @@ class NumberSequenceGame extends FlameGame with DragCallbacks {
     timerText.removeFromParent();
     instructionText.removeFromParent();
 
+    tts.speak('Hết giờ! Bạn chưa hoàn thành trò chơi');
     add(
       TextComponent(
         text: "Game Over! Time's Up!",

@@ -8,6 +8,8 @@ import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
 import 'dart:math';
 
+import '../../../shared/utils/text_to_speech_util.dart';
+
 @RoutePage()
 class SimpleAdditionGameScreen extends StatefulWidget {
   const SimpleAdditionGameScreen({super.key});
@@ -17,12 +19,28 @@ class SimpleAdditionGameScreen extends StatefulWidget {
 }
 
 class _SimpleAdditionGameScreenState extends State<SimpleAdditionGameScreen> {
+
+  final TextToSpeechUtil tts = TextToSpeechUtil();
+
+  @override
+  void initState() {
+    tts.init();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    tts.dispose();
+    super.dispose();
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(
         children: [
-          GameWidget(game: SimpleAdditionGame()),
+          GameWidget(game: SimpleAdditionGame(tts: tts)),
           Positioned(
             top: MediaQuery.of(context).padding.top + 10,
             left: 10,
@@ -70,6 +88,9 @@ class SimpleAdditionGame extends FlameGame with TapCallbacks {
   bool isMerged = false;
   int animationCount = 0;
   static const int maxAnimations = 10;
+  final TextToSpeechUtil tts;
+  
+  SimpleAdditionGame({required this.tts});
 
   @override
   Future<void> onLoad() async {
@@ -99,6 +120,7 @@ class SimpleAdditionGame extends FlameGame with TapCallbacks {
       ),
     );
     add(instructionText);
+    tts.speak(instructionText.text);
 
     // Hiển thị phép tính
     questionText = TextBoxComponent(
@@ -122,11 +144,10 @@ class SimpleAdditionGame extends FlameGame with TapCallbacks {
       ),
     );
     add(questionText);
+    tts.speak(questionText.text);
 
     // Thêm padding cho game
     final gameAreaWidth = size.x * 0.9; // Sử dụng 90% chiều rộng màn hình
-    final startX = (size.x - gameAreaWidth) / 2;
-    final startY = size.y * 0.3; // Bắt đầu từ 30% chiều cao
 
     // Hiển thị hai nhóm object
     leftObjects = [];
@@ -270,10 +291,10 @@ class SimpleAdditionGame extends FlameGame with TapCallbacks {
   }
 
   void _generateQuestion() {
-    mathType = Random().nextDouble() < 0.6 ? MathType.addition : MathType.subtraction;
+    mathType = Random().nextDouble() <= 0.5 ? MathType.addition : MathType.subtraction;
     if (mathType == MathType.addition) {
-      leftCount = Random().nextInt(3) + 1; // 1-3
-      rightCount = Random().nextInt(3) + 1; // 1-3
+      leftCount = Random().nextInt(5) + 1; // 1-3
+      rightCount = Random().nextInt(5) + 1; // 1-3
       correctAnswer = leftCount + rightCount;
     } else {
       leftCount = Random().nextInt(3) + 2; // 2-4
@@ -297,9 +318,12 @@ class SimpleAdditionGame extends FlameGame with TapCallbacks {
     isGameOver = true;
     bool correct = selected == correctAnswer;
     FlameAudio.play(correct ? 'correct.mp3' : 'wrong.mp3');
+    
+    String message = correct ? '🎉 Đúng rồi! Chạm để chơi tiếp' : 'Sai rồi! Thử lại nhé!';
+    tts.speak(message);
     add(
       TextBoxComponent(
-        text: correct ? '🎉 Đúng rồi! Chạm để chơi tiếp' : 'Sai rồi! Thử lại nhé!',
+        text: message,
         position: Vector2(size.x / 2, size.y * 0.9),
         anchor: Anchor.center,
         textRenderer: TextPaint(

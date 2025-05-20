@@ -9,6 +9,8 @@ import 'package:flame/game.dart';
 import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
 
+import '../../../shared/utils/text_to_speech_util.dart';
+
 enum Difficulty { easy, medium, hard }
 
 @RoutePage()
@@ -22,6 +24,22 @@ class ColorGameScreen extends StatefulWidget {
 }
 
 class _ColorGameScreenState extends State<ColorGameScreen> {
+
+  final TextToSpeechUtil _tts = TextToSpeechUtil();
+
+  @override
+  void initState() {
+    _tts.init();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _tts.dispose();
+    super.dispose();
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,7 +47,7 @@ class _ColorGameScreenState extends State<ColorGameScreen> {
         children: [
           Padding(
             padding: context.padding.top.paddingTop,
-            child: GameWidget(game: ColorMatchingGame(difficulty: widget.difficulty)),
+            child: GameWidget(game: ColorMatchingGame(difficulty: widget.difficulty, tts: _tts)),
           ),
           Positioned(
             top: MediaQuery.of(context).padding.top + 10,
@@ -66,13 +84,14 @@ class ColorMatchingGame extends FlameGame with DragCallbacks {
   late List<ColorObject> objects;
   late List<ColorTarget> targets;
   late TextComponent timerText;
+  final TextToSpeechUtil tts;
 
   List<Color> colors = [];
   bool isGameOver = false;
   double timeLimit = 0;
   double elapsedTime = 0;
 
-  ColorMatchingGame({required this.difficulty});
+  ColorMatchingGame({required this.difficulty, required this.tts});
 
   @override
   Future<void> onLoad() async {
@@ -84,6 +103,9 @@ class ColorMatchingGame extends FlameGame with DragCallbacks {
     timeLimit = _getTimeLimitForDifficulty();
 
     add(Background());
+
+    // Thêm text hướng dẫn
+    tts.speak('Kéo các hình tròn màu bên trái vào đúng ô màu tương ứng bên phải');
 
     timerText = TextComponent(
       text: 'Thời gian: ${timeLimit.toInt()} s',
@@ -222,7 +244,8 @@ class ColorMatchingGame extends FlameGame with DragCallbacks {
       targets.forEach((target) => remove(target));
       timerText.removeFromParent();
 
-      // Thêm thông báo chúc mừng
+      // Thêm thông báo chúc mừng và đọc
+      tts.speak('Chúc mừng! Bạn đã hoàn thành!');
       add(
         TextComponent(
           text: '🎉 Chúc mừng! \nBạn đã hoàn thành!',
@@ -261,6 +284,8 @@ class ColorMatchingGame extends FlameGame with DragCallbacks {
     targets.forEach((target) => remove(target));
     timerText.removeFromParent();
 
+    // Thêm thông báo hết giờ và đọc
+    tts.speak('Hết giờ! Bạn chưa hoàn thành trò chơi');
     add(
       TextComponent(
         text: "Game Over! Time's Up!",

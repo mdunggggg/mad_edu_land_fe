@@ -121,7 +121,7 @@ class _DetailPostScreenState extends State<DetailPostScreen> {
               ),
               8.width,
               Text(
-                e.createdAt.format(format: 'hh:mm dd/MM/yyyy'),
+                e.createdAt.getTimeAgo(),
                 style: StyleApp.normal(
                     fontSize: 14, color: const Color(AppColors.c9C)),
               ).expanded(),
@@ -180,7 +180,7 @@ class _DetailPostScreenState extends State<DetailPostScreen> {
               ),
               8.width,
               Text(
-                e.createdAt.format(format: 'hh:mm dd/MM/yyyy'),
+                e.createdAt.getTimeAgo(),
                 style: StyleApp.normal(
                     fontSize: 14, color: const Color(AppColors.c9C)),
               ).expanded(),

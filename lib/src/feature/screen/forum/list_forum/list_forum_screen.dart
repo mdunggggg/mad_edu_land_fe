@@ -18,6 +18,8 @@ import 'package:readmore/readmore.dart';
 
 import '../../../../bloc/bloc_state.dart';
 import '../../../../model/forum_overview_model.dart';
+import '../../../components/app_input.dart';
+import '../../../components/delay_call_back.dart';
 import 'list_forum_bloc.dart';
 
 @RoutePage()
@@ -30,11 +32,23 @@ class ListForumScreen extends StatefulWidget {
 
 class _ListForumScreenState extends State<ListForumScreen> {
   final bloc = ListForumBloc();
+  final scrollCtrl = ScrollController();
 
   @override
   void initState() {
     bloc.init();
+    scrollCtrl.addListener(() {
+      if (scrollCtrl.position.pixels == scrollCtrl.position.maxScrollExtent) {
+        bloc.init(isMore: true);
+      }
+    },);
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    scrollCtrl.dispose();
+    super.dispose();
   }
 
   @override
@@ -42,6 +56,7 @@ class _ListForumScreenState extends State<ListForumScreen> {
     return Scaffold(
       backgroundColor: const Color(AppColors.cF9),
       appBar: AppBar(
+        surfaceTintColor: Colors.transparent,
         backgroundColor: Colors.white,
         title: Text(
           AppStrings.forum,
@@ -50,6 +65,22 @@ class _ListForumScreenState extends State<ListForumScreen> {
         ),
         leading: null,
         automaticallyImplyLeading: false,
+        bottom: PreferredSize(
+          preferredSize: const Size.fromHeight(40),
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: AppInput(
+              hintText: 'Tìm kiếm bài viết',
+              radius: 999,
+              prefixIcon: const Icon(Icons.search),
+              contentPadding: 8.padding,
+              bgColor: const Color(AppColors.cF3),
+              onChanged:(p0) {
+                bloc.search(p0);
+              } ,
+            ),
+          ),
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
@@ -67,14 +98,9 @@ class _ListForumScreenState extends State<ListForumScreen> {
           size: 20,
         ),
       ),
-      body: BlocBuilder<ListForumBloc, BlocState<List<ForumOverviewModel>>>(
+      body: BlocBuilder<ListForumBloc, BlocState>(
         bloc: bloc,
         builder: (context, state) {
-          if (state.status == Status.loading) {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-          }
           return Container(
             padding: 16.padding.copyWith(bottom: 0),
             decoration: const BoxDecoration(color: Color(AppColors.cF9)),
@@ -83,12 +109,15 @@ class _ListForumScreenState extends State<ListForumScreen> {
                 return bloc.init();
               },
               child: SingleChildScrollView(
+                controller: scrollCtrl,
                 child: Column(
                   children: [
-                    ...state.data?.map((e) {
+                    ...bloc.list.map((e) {
                           return _buildForumItem(e).padding(16.paddingBottom);
-                        }).toList() ??
-                        [],
+                        }),
+
+                if (state.status == Status.loading)
+                  const Center(child: CircularProgressIndicator()),
                   ],
                 ),
               ),
@@ -164,9 +193,14 @@ class _ListForumScreenState extends State<ListForumScreen> {
                   type: FaIconType.light,
                   color: Color(AppColors.c6B)),
               4.width,
-              Text(
-                '${e.totalComments} ${AppStrings.comments.toLowerCase()}',
-                style: StyleApp.normal(color: const Color(AppColors.c6B)),
+              InkWell(
+                onTap: () {
+                  context.router.push(DetailPostRoute(id: e.id ?? -1, onSuccess: () => bloc.init(),));
+                },
+                child: Text(
+                  '${e.totalComments} ${AppStrings.comments.toLowerCase()}',
+                  style: StyleApp.normal(color: const Color(AppColors.c6B)),
+                ),
               ),
               16.width,
               InkWell(

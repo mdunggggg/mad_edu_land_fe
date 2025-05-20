@@ -10,9 +10,18 @@ import '../data/apis/api_service.dart';
 class ForumRepo {
   final _dio = ApiService();
 
-  Future<BaseModel<List<ForumOverviewModel>>> getListForums() async {
+  Future<BaseModel<List<ForumOverviewModel>>> getListForums({
+    String? search,
+    int? page,
+    int? size,
+  }) async {
     try {
-      final response = await _dio.get(ApiPath.posts);
+      final response = await _dio.get(ApiPath.posts,
+      queryParameters: {
+          'search': search,
+          'page': page,
+          'size': size,
+        },);
       final data = response.data['result'] as List;
       final dataModel = data.map((e) => ForumOverviewModel.fromJson(e)).toList();
       return BaseModel(

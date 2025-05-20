@@ -7,6 +7,8 @@ import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
 import 'dart:math';
 
+import '../../../shared/utils/text_to_speech_util.dart';
+
 @RoutePage()
 class MoreOrLessGameScreen extends StatefulWidget {
   const MoreOrLessGameScreen({super.key});
@@ -16,12 +18,28 @@ class MoreOrLessGameScreen extends StatefulWidget {
 }
 
 class _MoreOrLessGameScreenState extends State<MoreOrLessGameScreen> {
+
+  final TextToSpeechUtil tts = TextToSpeechUtil();
+
+  @override
+  void initState() {
+    tts.init();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    tts.dispose();
+    super.dispose();
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(
         children: [
-          GameWidget(game: MoreOrLessGame()),
+          GameWidget(game: MoreOrLessGame(tts: tts)),
           Positioned(
             top: MediaQuery.of(context).padding.top + 10,
             left: 10,
@@ -66,6 +84,10 @@ class MoreOrLessGame extends FlameGame with TapCallbacks {
   late int leftDigit;
   late int rightDigit;
   bool isGameOver = false;
+  final TextToSpeechUtil tts;
+
+
+  MoreOrLessGame({required this.tts});
 
   // Tham số cho grid
    double iconSize = 32;
@@ -89,6 +111,7 @@ class MoreOrLessGame extends FlameGame with TapCallbacks {
       ),
     );
     add(instructionText);
+    tts.speak(_getInstruction());
 
     // Cán cân
     scaleComponent = ScaleComponent(
@@ -221,9 +244,11 @@ class MoreOrLessGame extends FlameGame with TapCallbacks {
     }
     if (correct) {
       FlameAudio.play('correct.mp3');
+      String message = '🎉 Đúng rồi! Chạm để chơi tiếp';
+      tts.speak(message);
       add(
         TextComponent(
-          text: '🎉 Đúng rồi! Chạm để chơi tiếp',
+          text: message,
           position: Vector2(size.x / 2, size.y * 0.9),
           anchor: Anchor.center,
           textRenderer: TextPaint(
@@ -239,9 +264,11 @@ class MoreOrLessGame extends FlameGame with TapCallbacks {
       add(TappableOverlay(onTap: _restart));
     } else {
       FlameAudio.play('wrong.mp3');
+      String message = 'Sai rồi! Thử lại nhé!';
+      tts.speak(message);
       add(
         TextComponent(
-          text: 'Sai rồi! Thử lại nhé!',
+          text: message,
           position: Vector2(size.x / 2, size.y * 0.9),
           anchor: Anchor.center,
           textRenderer: TextPaint(
@@ -385,7 +412,6 @@ class TappableOverlay extends PositionComponent with TapCallbacks {
   }
   @override
   void render(Canvas canvas) {
-    // Không cần vẽ gì, chỉ nhận sự kiện
   }
   @override
   void onTapDown(TapDownEvent event) {
